@@ -1,0 +1,709 @@
+/* --- RESET & DESIGN VARIABLES --- */
+/* --- UPDATED CLEAN BASES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+:root {
+    --bg-bright: #e8f5e9;       
+    --agri-glow: #00e676;       
+    --text-dark: #1b5e20;       
+    --accent-gold: #ffd600;     
+    --white: #ffffff;
+}
+
+/* FIX: Body handles normal downward page scrolling cleanly without pushing structural targets */
+body, html {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg-bright);
+}
+
+/* --- NEW: FIXED SCREEN CENTERING ARCHITECTURE --- */
+.preloader-screen-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg-bright);
+    z-index: 2000; /* Stays locked on the very top layer during app execution */
+    display: flex;
+    justify-content: center; /* Forces glass card dead center horizontally */
+    align-items: center;     /* Forces glass card dead center vertically */
+    opacity: 1;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s ease;
+}
+
+/* --- PRELOADER CARD BLOCK (Internal Dimensions Protected) --- */
+.preload-wrapper {
+    position: relative;
+    text-align: center;
+    padding: 3rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 20px 50px rgba(27, 94, 32, 0.08);
+    max-width: 450px;
+    width: 90%;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preload-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    background: linear-gradient(135deg, var(--agri-glow), var(--accent-gold));
+    border-radius: 28px;
+    z-index: -1;
+    opacity: 0.3;
+    filter: blur(15px);
+    animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+.preload-wrapper:hover {
+    transform: translateY(-8px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 30px 60px rgba(0, 230, 118, 0.25);
+}
+
+/* (Keep the rest of your original .icon-container, animations, and breakpoint adjustments unchanged) */
+
+
+/* --- ANIMATED VECTOR ICON --- */
+.icon-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 2rem auto;
+}
+
+/* Spinning Vector Ecosystem Ring */
+.vector-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 4px dashed var(--agri-glow);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    animation: spinRing 3s linear infinite;
+}
+
+/* Central Growing Sprout Vector */
+.sprout-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65px;
+    height: 65px;
+    fill: var(--text-dark);
+    filter: drop-shadow(0 0 0px var(--agri-glow));
+    transition: filter 0.4s, fill 0.4s;
+    animation: bounceSprout 2s ease-in-out infinite alternate;
+}
+
+.preload-wrapper:hover .sprout-svg {
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 12px var(--agri-glow));
+}
+
+/* --- BRANDING TYPOGRAPHY --- */
+.brand-name {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.brand-tagline {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.75;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+}
+
+/* --- MODERN METRIC PROGRESS BAR --- */
+.progress-box {
+    width: 100%;
+    position: relative;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: rgba(27, 94, 32, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--text-dark), var(--agri-glow));
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--agri-glow);
+    transition: width 0.4s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+.counter-text {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* --- HARDWARE ACCELERATED KEYFRAMES --- */
+@keyframes spinRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes bounceSprout {
+    0% { transform: translate(-50%, -46%) scale(0.95); }
+    100% { transform: translate(-50%, -54%) scale(1.05); }
+}
+
+@keyframes pulseGlow {
+    0% { filter: blur(15px); opacity: 0.2; }
+    100% { filter: blur(25px); opacity: 0.5; }
+}
+
+/* --- RESPONSIVE BREAKPOINTS --- */
+@media (max-width: 480px) {
+    .preload-wrapper {
+        padding: 2rem 1.5rem;
+        width: 85%;
+    }
+    .brand-name { font-size: 2.2rem; }
+    .brand-tagline { font-size: 0.8rem; letter-spacing: 3px; }
+    .icon-container { width: 100px; height: 100px; }
+    .sprout-svg { width: 50px; height: 50px; }
+}
+
+/* --- COMPREHENSIVE HEADER ARCHITECTURE --- */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    background-color: rgba(232, 245, 233, 0.9); /* Translucent bright light green */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(27, 94, 32, 0.1);
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    
+    /* Preloader state protections */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* State modifier invoked by javascript engine when preloading ends */
+.main-header.revealed {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.header-container {
+    width: 100%;
+    max-width: 1400px; /* Expanded slightly for spacious 3-column balancing */
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- THREE COLUMN LAYOUT ENFORCEMENT --- */
+.header-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.desktop-nav {
+    flex: 2;
+    display: flex;
+    justify-content: center; /* Locks links dead center horizontally */
+    align-items: center;
+}
+
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end; /* Locks actions firmly into right corner */
+    align-items: center;
+}
+
+/* --- LOGO ELEMENT STYLE --- */
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.03);
+}
+
+.brand-logo-img {
+    height: 40px;
+    width: auto;
+    border-radius: 6px;
+    transition: box-shadow 0.3s ease;
+}
+
+.logo-link:hover .brand-logo-img {
+    box-shadow: 0 0 15px var(--agri-glow);
+}
+
+/* --- NAV ITEMS STYLE --- */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 3rem; /* Clean professional link breathing space */
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 1.05rem;
+    position: relative;
+    padding: 0.4rem 0;
+    transition: color 0.3s ease;
+}
+
+/* Glowing Indicator Tracking Bar */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--agri-glow);
+    box-shadow: 0 0 10px var(--agri-glow);
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover {
+    color: var(--agri-glow);
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* --- AUTH BUTTON STYLE --- */
+.btn-auth {
+    text-decoration: none;
+    background-color: var(--text-dark);
+    color: var(--white);
+    padding: 0.65rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(27, 94, 32, 0.15);
+}
+
+.btn-auth:hover {
+    background-color: var(--agri-glow);
+    color: var(--text-dark);
+    box-shadow: 0 4px 20px rgba(0, 230, 118, 0.45);
+    transform: translateY(-2px);
+}
+
+/* --- HAMBURGER TRIGGER CORE --- */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 32px;
+    height: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger-bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-dark);
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- MOBILE DRAWER SLIDEOUT --- */
+.mobile-overlay-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(232, 245, 233, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: right 0.4s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+.mobile-overlay-menu.is-active {
+    right: 0;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    gap: 2rem;
+    width: 100%;
+}
+
+.mobile-nav-item {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 1.8rem;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-item:hover {
+    color: var(--agri-glow);
+    text-shadow: 0 0 12px rgba(0, 230, 118, 0.6);
+}
+
+.mobile-btn-auth {
+    background-color: var(--text-dark);
+    color: var(--white);
+    padding: 0.8rem 4rem;
+    border-radius: 30px;
+    margin-top: 1rem;
+}
+
+/* --- GLOBAL BODY LAYOUT LOCKS --- */
+body.no-scroll {
+    overflow: hidden !important;
+    touch-action: none;
+}
+
+/* --- ANIMATED ACTIONS ON HAMBURGER ACTIVE --- */
+.hamburger-btn.is-active .hamburger-bar:nth-child(1) {
+    transform: translateY(9.5px) rotate(45deg);
+    background-color: var(--agri-glow);
+}
+
+.hamburger-btn.is-active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.is-active .hamburger-bar:nth-child(3) {
+    transform: translateY(-9.5px) rotate(-45deg);
+    background-color: var(--agri-glow);
+}
+
+/* --- RESPONSIVE STRUCTURAL OVERRIDES --- */
+@media (max-width: 992px) {
+    .header-container { padding: 0 1.2rem; }
+    .desktop-nav { display: none; }
+    .btn-auth { display: none; } /* Hide standard auth inside header bar */
+    .hamburger-btn { display: flex; } /* Show overlay trigger */
+}
+/* --- COMPREHENSIVE HEADER ARCHITECTURE --- */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    background-color: rgba(232, 245, 233, 0.9); /* Translucent bright light green */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(27, 94, 32, 0.1);
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    
+    /* Preloader protection defaults */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Invoked by loading completion event loop */
+.main-header.revealed {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.header-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- THREE COLUMN LAYOUT ENFORCEMENT --- */
+.header-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.desktop-nav {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* --- BRAND LOGO DESIGN STYLING --- */
+.logo-link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.brand-logo-fallback {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+    transition: text-shadow 0.3s ease;
+}
+
+.logo-link:hover .brand-logo-fallback {
+    text-shadow: 0 0 10px var(--agri-glow);
+}
+
+/* --- NAV ITEMS STYLE --- */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem; 
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 1.05rem;
+    position: relative;
+    padding: 0.4rem 0;
+    transition: color 0.3s ease;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--agri-glow);
+    box-shadow: 0 0 10px var(--agri-glow);
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover {
+    color: var(--agri-glow);
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* --- AUTH BUTTON STYLE --- */
+.btn-auth {
+    text-decoration: none;
+    background-color: var(--text-dark);
+    color: var(--white);
+    padding: 0.65rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(27, 94, 32, 0.15);
+}
+
+.btn-auth:hover {
+    background-color: var(--agri-glow);
+    color: var(--text-dark);
+    box-shadow: 0 4px 20px rgba(0, 230, 118, 0.45);
+    transform: translateY(-2px);
+}
+
+/* --- MOBILE HAMBURGER ICON TRIPPERS --- */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger-bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-dark);
+    border-radius: 4px;
+}
+
+/* --- MOBILE 75% WIDTH OVERLAY DRAWER WITH SHADOW CLOSURES --- */
+.mobile-overlay-menu {
+    position: fixed;
+    top: 0;
+    right: -75%; /* Completely hidden by default offscreen */
+    width: 75%;  /* Constrained to required 75% width specs */
+    height: 100vh;
+    background-color: rgba(232, 245, 233, 0.98); 
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1200; /* Forces drawer to stay above standard app bars */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: right 0.4s cubic-bezier(0.1, 0.8, 0.3, 1);
+    box-shadow: -10px 0 35px rgba(27, 94, 32, 0.15);
+}
+
+.mobile-overlay-menu.is-active {
+    right: 0; /* Slides out cleanly into viewport frame */
+}
+
+/* Dedicated Close Button Icon within the mobile drawer layer */
+.drawer-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 3rem;
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.drawer-close-btn:hover {
+    color: var(--agri-glow);
+    transform: scale(1.1);
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    gap: 1.8rem;
+    width: 100%;
+}
+
+.mobile-nav-item {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 1.6rem;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-item:hover {
+    color: var(--agri-glow);
+    text-shadow: 0 0 12px rgba(0, 230, 118, 0.6);
+}
+
+.mobile-btn-auth {
+    background-color: var(--text-dark);
+    color: var(--white);
+    padding: 0.8rem 4rem;
+    border-radius: 30px;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+/* --- SCROLL BLOCK CLASS EXTENSIONS --- */
+body.no-scroll {
+    overflow: hidden !important;
+    touch-action: none;
+}
+
+/* --- DISPLAY MEDIA QUERIES BREAKPOINTS --- */
+@media (max-width: 992px) {
+    .header-container { padding: 0 1.5rem; }
+    .desktop-nav { display: none; }
+    .btn-auth { display: none; } 
+    .hamburger-btn { display: flex; } /* Show icon to open drawer */
+}
+
+/* --- BRAND LOGO IMAGE DESIGN STYLING --- */
+.logo-link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-link:hover {
+    transform: scale(1.04); /* Subtle smooth pop scaling on interaction */
+}
+
+.brand-logo-img {
+    height: 42px;           /* Pinned height to match layout symmetry across viewports */
+    width: auto;            /* Auto scale width profile to protect ratio proportions */
+    object-fit: contain;    /* Prevents pixelated squishing across narrow screens */
+    border-radius: 6px;
+    transition: filter 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Elegant typography styling rules to handle crisp text formatting if connection fails */
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+}
+
+/* Bright green glowing aura illumination on cursor hovering events */
+.logo-link:hover .brand-logo-img {
+    filter: drop-shadow(0 0 8px var(--agri-glow));
+}
