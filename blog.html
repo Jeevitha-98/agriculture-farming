@@ -1,0 +1,3260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Cultivating Innovation</title>
+    <!-- Link to the separate CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <!-- Dedicated Screen-Anchored Fixed Preloader Layer Mask -->
+<div class="preloader-screen-mask" id="global-preloader">
+    <div class="preload-wrapper">
+        <!-- SVG Vector Container -->
+        <div class="icon-container">
+            <div class="vector-ring"></div>
+            <svg class="sprout-svg" viewBox="0 0 24 24">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,5A1,1 0 0,1 13,6A1,1 0 0,1 12,7A1,1 0 0,1 11,6A1,1 0 0,1 12,5M12,18C10.5,18 9,17.2 8,16C9,14.5 10.5,13.5 12,13.5C13.5,13.5 15,14.5 16,16C15,17.2 13.5,18 12,18M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"/>
+            </svg>
+        </div>
+
+        <!-- Typography -->
+        <h1 class="brand-name">Stackly</h1>
+        <div class="brand-tagline">Smart Agriculture</div>
+
+        <!-- Loader Component -->
+        <div class="progress-box">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+            <span class="counter-text" id="counter-value">0%</span>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Link to the separate JavaScript file -->
+  <script>
+   document.addEventListener("DOMContentLoaded", () => {
+    const fill = document.getElementById("progress-fill");
+    const counter = document.getElementById("counter-value");
+    const mainHeader = document.querySelector(".main-header");
+    const heroSection = document.querySelector(".hero-section");
+    const preloaderScreen = document.getElementById("global-preloader"); // Target new layout wrapper mask
+
+    let count = 0;
+
+    const loaderInterval = setInterval(() => {
+        count += Math.floor(Math.random() * 4) + 2; 
+        
+        if (count >= 100) {
+            count = 100;
+            clearInterval(loaderInterval);
+            
+            setTimeout(() => {
+                // Fade out the entire overlay wrapper screen mask at once
+                if (preloaderScreen) {
+                    preloaderScreen.style.opacity = '0';
+                    preloaderScreen.style.pointerEvents = 'none';
+                    
+                    // Pull off DOM tree completely after transition animation finishes
+                    setTimeout(() => {
+                        preloaderScreen.style.display = 'none';
+                    }, 600);
+                }
+
+                // Unlock application components seamlessly into position
+                if (mainHeader) { mainHeader.classList.add("revealed"); }
+                if (heroSection) { heroSection.classList.add("revealed"); }
+            }, 400);
+        }
+        if (fill) fill.style.width = `${count}%`;
+        if (counter) counter.textContent = `${count}%`;
+    }, 80);
+
+    /* (Keep your remaining logo buttons and hamburger drawer logic completely unchanged below this point) */
+});
+
+  </script>
+
+<!-- Fixed Navigation Header -->
+<header class="main-header">
+    <div class="header-container">
+        
+        <!-- Left Side: Refreshable Brand Logo Container -->
+              <!-- Left Side: Refreshable Brand Logo Container -->
+        <div class="header-left">
+            <a href="#" class="logo-link" id="brand-logo-btn" title="Refresh Page">
+                <!-- Live Image Tag for Brand Logo Graphic Asset -->
+                <img src="https://placehold.co" alt="🌱 Stackly" class="brand-logo-img">
+            </a>
+        </div>
+
+
+        <!-- Center Space: Main Navigation Items (5 Menus) -->
+        <nav class="desktop-nav">
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="about.html" class="nav-item">About</a></li>
+                <li><a href="services.html" class="nav-item">Services</a></li>
+                <li><a href="blog.html" class="nav-item">Blog</a></li>
+                <li><a href="contact.html" class="nav-item">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Right Side: Auth Button Control Layout -->
+        <div class="header-right">
+            <a href="login.html" class="btn-auth">Login</a>
+            
+            <!-- Mobile Hamburger Trigger Button (Visible only on smaller displays) -->
+            <button class="hamburger-btn" id="mobile-menu-trigger" aria-label="Open Navigation">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
+        </div>
+
+    </div>
+</header>
+
+<!-- Mobile Overlay Navigation Draw Menu (75% Responsive Profile Width) -->
+<div class="mobile-overlay-menu" id="mobile-drawer">
+    <!-- Explicit close button positioned inside the drawer layout itself -->
+    <button class="drawer-close-btn" id="mobile-menu-close" aria-label="Close Navigation">&times;</button>
+    
+    <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-item">Home</a></li>
+        <li><a href="about.html" class="mobile-nav-item">About</a></li>
+        <li><a href="services.html" class="mobile-nav-item">Services</a></li>
+        <li><a href="blog.html" class="mobile-nav-item">Blog</a></li>
+        <li><a href="contact.html" class="mobile-nav-item">Contact</a></li>
+        <li><a href="login.html" class="mobile-nav-item mobile-btn-auth">Login</a></li>
+    </ul>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    // --- PRELOADER ANIMATION LOOP ---
+    const fill = document.getElementById("progress-fill");
+    const counter = document.getElementById("counter-value");
+    const mainHeader = document.querySelector(".main-header");
+    let count = 0;
+
+    const loaderInterval = setInterval(() => {
+        count += Math.floor(Math.random() * 4) + 2; 
+        
+        if (count >= 100) {
+            count = 100;
+            clearInterval(loaderInterval);
+            
+            setTimeout(() => {
+                const wrapper = document.querySelector('.preload-wrapper');
+                if (wrapper) {
+                    wrapper.style.opacity = '0';
+                    wrapper.style.transform = 'scale(0.9)';
+                    setTimeout(() => { wrapper.style.display = 'none'; }, 500);
+                }
+                // Reveal header after loading terminates cleanly
+                if (mainHeader) { mainHeader.classList.add("revealed"); }
+            }, 400);
+        }
+        if (fill) fill.style.width = `${count}%`;
+        if (counter) counter.textContent = `${count}%`;
+    }, 80);
+
+    // --- BRAND LOGO REFRESH ACTION ---
+    const logoBtn = document.getElementById("brand-logo-btn");
+    if (logoBtn) {
+        logoBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            window.location.reload();
+        });
+    }
+
+    // --- MOBILE DRAWER CLOSURE ENGINE ---
+    const openMenuBtn = document.getElementById("mobile-menu-trigger");
+    const closeMenuBtn = document.getElementById("mobile-menu-close");
+    const navDrawer = document.getElementById("mobile-drawer");
+    const bodyElement = document.body;
+    const mobileLinks = document.querySelectorAll(".mobile-nav-item");
+
+    // Action function to open drawer interface state parameters
+    function openMobileDrawer() {
+        navDrawer.classList.add("is-active");
+        bodyElement.classList.add("no-scroll");
+    }
+
+    // Action function to close drawer interface state parameters
+    function closeMobileDrawer() {
+        navDrawer.classList.remove("is-active");
+        bodyElement.classList.remove("no-scroll");
+    }
+
+    // Event bindings for standard trigger frameworks
+    if (openMenuBtn) { openMenuBtn.addEventListener("click", openMobileDrawer); }
+    if (closeMenuBtn) { closeMenuBtn.addEventListener("click", closeMobileDrawer); }
+
+    // Auto-closes mobile drawer layer whenever a navigation choice link is tapped
+    mobileLinks.forEach(link => {
+        link.addEventListener("click", closeMobileDrawer);
+    });
+});
+
+</script>
+
+<!-- High-Impact Blog Page Hero Section Landmark -->
+<section class="blog-hero-section">
+    <!-- Ambient background blurred lighting aura pass -->
+    <div class="blog-hero-backdrop-blur"></div>
+
+    <div class="blog-hero-container">
+        
+        <!-- Left Column: Content Presentation & Navigation Hub -->
+        <div class="blog-hero-content">
+            <span class="blog-hero-badge">
+                <svg class="blog-badge-vector" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.11,3 19,3M19,19H5V5H19V19M7,7H17V9H7V7M7,11H17V13H7V11M7,15H14V17H7V15Z"/>
+                </svg>
+                <span>The Canopy Dispatch</span>
+            </span>
+            <h1 class="blog-hero-title">Agricultural Insights & <br><span class="blog-glow-accent">Field Telemetry Data</span></h1>
+            <p class="blog-hero-description">Stay updated with real-world agronomist case studies, predictive data mapping techniques, and precision hardware installation blueprints written by our engineering team.</p>
+            
+            <!-- Quick Category Filter Shortcut Row -->
+            <div class="blog-hero-categories">
+                <a href="#blog-grid" class="category-chip active">All Updates</a>
+                <a href="#blog-grid" class="category-chip">IoT Tech</a>
+                <a href="#blog-grid" class="category-chip">Soil Science</a>
+            </div>
+        </div>
+
+        <!-- Right Column: Featured Spotlight Article Interactive Card -->
+        <div class="blog-hero-featured-wrapper">
+            <div class="blog-hero-orb-aura"></div>
+            
+            <!-- Clickable Featured Post Highlight Card -->
+            <article class="featured-spotlight-card">
+                <div class="spotlight-image-box">
+                    <img src="./Assests/automated.webp" alt="Drone capturing multi-spectral telemetry overlays above healthy green crops" class="spotlight-card-img">
+                    <span class="spotlight-category-tag">Featured Study</span>
+                </div>
+                <div class="spotlight-info-box">
+                    <span class="spotlight-date-meta">August 10, 2026</span>
+                    <h3>Mapping Subsurface Soil Hydration Barriers via Drone Telemetry</h3>
+                    <p>A granular breakdown of how multi-spectral infrared passes highlight field water stress conditions weeks before visible crop markers emerge.</p>
+                    <a href="404.html" class="spotlight-read-link">
+                        <span>Read Case Study</span>
+                        <svg class="spotlight-arrow-vector" viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M4,11H16.17L10.58,5.41L12,4L20,12L12,20L10.58,18.59L16.17,13H4V11Z"/>
+                        </svg>
+                    </a>
+                </div>
+            </article>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* --- COMPREHENSIVE BLOG HERO MASTER ARCHITECTURE --- */
+.blog-hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 75vh;
+    /* SPECIFIED PADDING CONSTRAINT: 50px top/bottom desktop breathing safe zones */
+    padding: 150px 30px;
+    background-color: var(--bg-bright); /* Inherits base bright light green canvas token */
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Background soft ambient blur burst */
+.blog-hero-backdrop-blur {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.05) 0%, transparent 70%);
+    left: -150px;
+    top: -150px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.blog-hero-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    /* Asymmetric grid distribution balancing copy volume with featured card weights */
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 5rem;
+    align-items: center;
+    z-index: 2;
+}
+
+/* --- LEFT COLUMN: TYPOGRAPHY PRESENTATION --- */
+.blog-hero-content {
+    width: 100%;
+}
+
+.blog-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(27, 94, 32, 0.06);
+    color: var(--text-dark);
+    padding: 0.45rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(27, 94, 32, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.blog-badge-vector {
+    width: 16px;
+    height: 16px;
+    fill: var(--text-dark);
+}
+
+.blog-hero-title {
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-dark);
+    margin-bottom: 1.25rem;
+    letter-spacing: -1px;
+}
+
+.blog-glow-accent {
+    color: var(--text-dark);
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+/* Underlying custom theme color glow underline indicator */
+.blog-glow-accent::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: var(--agri-glow);
+    z-index: -1;
+    opacity: 0.6;
+    border-radius: 4px;
+    box-shadow: 0 0 12px var(--agri-glow);
+}
+
+.blog-hero-description {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    opacity: 0.85;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    max-width: 620px;
+}
+
+/* Filter Chip Shortcut Item Layouts */
+.blog-hero-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.category-chip {
+    text-decoration: none;
+    padding: 0.55rem 1.25rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    background-color: #ffffff;
+    border: 1px solid rgba(27, 94, 32, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.02);
+}
+
+.category-chip:hover, .category-chip.active {
+    background-color: var(--text-dark);
+    color: #ffffff;
+    border-color: var(--text-dark);
+}
+
+.category-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(27, 94, 32, 0.1);
+}
+
+/* --- RIGHT COLUMN: FEATURED POST INTERACTIVE CARD --- */
+.blog-hero-featured-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.blog-hero-orb-aura {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.18) 0%, transparent 70%);
+    filter: blur(35px);
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: blogOrbMotion 6s ease-in-out infinite alternate;
+}
+
+.featured-spotlight-card {
+    width: 100%;
+    max-width: 540px;
+    background-color: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(27, 94, 32, 0.04);
+    box-shadow: 0 15px 40px rgba(27, 94, 32, 0.04);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                border-color 0.4s ease;
+}
+
+.spotlight-image-box {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+}
+
+.spotlight-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.spotlight-category-tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: var(--text-dark);
+    color: #ffffff;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.spotlight-info-box {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.spotlight-date-meta {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    opacity: 0.5;
+    margin-bottom: 0.5rem;
+}
+
+.spotlight-info-box h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.35;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
+}
+
+.spotlight-info-box p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.75;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+}
+
+.spotlight-read-link {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+    transition: color 0.3s ease;
+}
+
+.spotlight-arrow-vector {
+    fill: var(--text-dark);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s ease;
+}
+
+/* --- INTERACTIVE HOVER & NEON GLOWS --- */
+.featured-spotlight-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--agri-glow);
+    /* Cast glowing green bounding drop shadows on cursor tracking layers */
+    box-shadow: 0 22px 45px rgba(0, 230, 118, 0.25);
+}
+
+.featured-spotlight-card:hover .spotlight-card-img {
+    transform: scale(1.04); /* Fluidly scales background image graphic */
+}
+
+.featured-spotlight-card:hover h3, 
+.featured-spotlight-card:hover .spotlight-read-link {
+    color: var(--agri-glow);
+}
+
+/* Linear vector translation shift on hover */
+.featured-spotlight-card:hover .spotlight-arrow-vector {
+    transform: translateX(5px);
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 2px var(--agri-glow));
+}
+
+/* --- HARDWARE-ACCELERATED KEYFRAMES ANIMATIONS --- */
+@keyframes blogOrbMotion {
+    0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.6; }
+    100% { transform: translate(-46%, -54%) scale(1.05); opacity: 1; }
+}
+
+/* --- HIGH-PERFORMANCE RESPONSIVE BREAKPOINTS --- */
+@media (max-width: 1200px) {
+    .blog-hero-title { font-size: 2.8rem; }
+    .blog-hero-container { gap: 3rem; }
+}
+
+@media (max-width: 992px) {
+    .blog-hero-section {
+        /* SPECIFIED CONSTRAINT: Gracefully collapses layout padding cushions directly down to 30px rules */
+        padding: 30px 1.5rem;
+    }
+    .blog-hero-container {
+        grid-template-columns: 1fr; /* Force columns to break instantly into linear stack rows */
+        text-align: center;
+        gap: 3.5rem;
+    }
+    .blog-hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .blog-hero-description { margin-left: auto; margin-right: auto; }
+    .blog-hero-categories { justify-content: center; }
+    .blog-hero-featured-wrapper { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+    .blog-hero-title { font-size: 2.1rem; }
+    .featured-spotlight-card { border-radius: 16px; }
+    .spotlight-image-box { height: 190px; }
+    .spotlight-info-box { padding: 1.5rem; }
+    .blog-hero-categories .category-chip { width: 100%; text-align: center; } /* Blocks chip options full width across mobile */
+}
+
+</style>
+
+<!-- Interactive Blog Cards Grid Landmark Section -->
+<section id="blog-grid" class="blog-grid-section">
+    <!-- Subtle environmental layout mesh texture backdrop -->
+    <div class="blog-grid-bg-overlay"></div>
+
+    <div class="blog-grid-container">
+        
+        <!-- ADDED: Dedicated Section Typography Header Title -->
+        <div class="blog-grid-header">
+            <span class="grid-badge">📰 Knowledge Archives</span>
+            <h2 class="grid-title">All Field Publications</h2>
+            <p class="grid-subtitle">Filter through our comprehensive index of data studies, soil evaluations, and tech deployment updates.</p>
+        </div>
+
+        <!-- 6 Card Matrix Wrapper -->
+        <div class="articles-matrix-wrapper">
+            
+            <!-- Post Card 1 -->
+            <article class="blog-post-card">
+                <div class="post-img-housing">
+                    <img src="./Assests/sprouts.webp" alt="Heirloom plant sprouts growing under optimized greenhouse telemetry conditions" class="post-card-img">
+                    <span class="post-category-tag">IoT Tech</span>
+                </div>
+                <div class="post-details-box">
+                    <div class="post-meta-row">
+                        <span class="post-date-meta">August 05, 2026</span>
+                        <span class="post-read-time">5 Min Read</span>
+                    </div>
+                    <h3>Optimizing Greenhouse Microclimates For Off-Season Harvest</h3>
+                    <p class="post-excerpt">A tactical configuration breakdown of baseline nitrogen data parameters and hydration scales required to duplicate spring crops inside extreme winter conditions.</p>
+                    <a href="404.html" class="post-action-link">
+                        <span>Read Full Guide</span>
+                        <svg class="post-arrow-vector" viewBox="0 0 24 24" width="16" height="16"><path d="M4,11H16.17L10.58,5.41L12,4L20,12L12,20L10.58,18.59L16.17,13H4V11Z"/></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Post Card 2 -->
+            <article class="blog-post-card">
+                <div class="post-img-housing">
+                    <img src="./Assests/soil nutrition.webp" alt="Farmer reviewing chemical nutrient tracking data profiles" class="post-card-img">
+                    <span class="post-category-tag">Soil Science</span>
+                </div>
+                <div class="post-details-box">
+                    <div class="post-meta-row">
+                        <span class="post-date-meta">July 28, 2026</span>
+                        <span class="post-read-time">4 Min Read</span>
+                    </div>
+                    <h3>Restoring Microbiological Vitality in Depleted Clay Lands</h3>
+                    <p class="post-excerpt">Learn the precise step-by-step carbon-to-nitrogen ratios needed to reactivate micro-bacterial colonies, aerate clay density blocks, and eliminate overhead dependencies.</p>
+                    <a href="404.html" class="post-action-link">
+                        <span>Read Full Guide</span>
+                        <svg class="post-arrow-vector" viewBox="0 0 24 24" width="16" height="16"><path d="M4,11H16.17L10.58,5.41L12,4L20,12L12,20L10.58,18.59L16.17,13H4V11Z"/></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Post Card 3 -->
+            <article class="blog-post-card">
+                <div class="post-img-housing">
+                    <img src="./Assests/tractor.webp" alt="Autonomous harvesting tractor telemetry route execution mappings" class="post-card-img">
+                    <span class="post-category-tag">Automation</span>
+                </div>
+                <div class="post-details-box">
+                    <div class="post-meta-row">
+                        <span class="post-date-meta">July 15, 2026</span>
+                        <span class="post-read-time">7 Min Read</span>
+                    </div>
+                    <h3>Integrating Closed-Loop Automated Solenoid Valves</h3>
+                    <p class="post-excerpt">How to link open-source webhook API controllers directly with electric automated field machinery and water valve hardware nodes to actuate crop irrigation workflows autonomously.</p>
+                    <a href="404.html" class="post-action-link">
+                        <span>Read Full Guide</span>
+                        <svg class="post-arrow-vector" viewBox="0 0 24 24" width="16" height="16"><path d="M4,11H16.17L10.58,5.41L12,4L20,12L12,20L10.58,18.59L16.17,13H4V11Z"/></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Post Card 4 -->
+            <article class="blog-post-card">
+                <div class="post-img-housing">
+                    <img src="./Assests/IoT.webp" alt="Large scale crop monitoring setup" class="post-card-img">
+                    <span class="post-category-tag">IoT Tech</span>
+                </div>
+                <div class="post-details-box">
+                    <div class="post-meta-row">
+                        <span class="post-date-meta">July 02, 2026</span>
+                        <span class="post-read-time">6 Min Read</span>
+                    </div>
+                    <h3>Multi-Node Mesh Topologies for Large Scale Crop Fields</h3>
+                    <p class="post-excerpt">A case study evaluating low-power long-range radio data frequencies across vast multi-regional acreage fields to secure offline caching streams.</p>
+                    <a href="404.html" class="post-action-link">
+                        <span>Read Full Guide</span>
+                        <svg class="post-arrow-vector" viewBox="0 0 24 24" width="16" height="16"><path d="M4,11H16.17L10.58,5.41L12,4L20,12L12,20L10.58,18.59L16.17,13H4V11Z"/></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Post Card 5 -->
+            <article class="blog-post-card">
+                <div class="post-img-housing">
+                    <img src="./Assests/radar.webp" alt="Weather station instrumentation measuring ambient moisture" class="post-card-img">
+                    <span class="post-category-tag">Soil Science</span>
+                </div>
+                <div class="post-details-box">
+                    <div class="post-meta-row">
+                        <span class="post-date-meta">June 21, 2026</span>
+                        <span class="post-read-time">4 Min Read</span>
+                    </div>
+                    <h3>Predicting Soil Acidification Shifts with Edge Core Loggers</h3>
+                    <p class="post-excerpt">Discover how automated subsurface telemetry core points identify minor chemical pH shifts before micro-nutrients lock out crop roots entirely.</p>
+                    <a href="404.html" class="post-action-link">
+                        <span>Read Full Guide</span>
+                        <svg class="post-arrow-vector" viewBox="0 0 24 24" width="16" height="16"><path d="M4,11H16.17L10.58,5.41L12,4L20,12L12,20L10.58,18.59L16.17,13H4V11Z"/></svg>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Post Card 6 -->
+            <article class="blog-post-card">
+                <div class="post-img-housing">
+                    <img src="./Assests/Irrigation.webp" alt="Irrigation canal grids with sensor endpoints" class="post-card-img">
+                    <span class="post-category-tag">Automation</span>
+                </div>
+                <div class="post-details-box">
+                    <div class="post-meta-row">
+                        <span class="post-date-meta">June 11, 2026</span>
+                        <span class="post-read-time">8 Min Read</span>
+                    </div>
+                    <h3>Conserving Aqua-Fer Buffers via Volumetric Analysis</h3>
+                    <p class="post-excerpt">A operational blueprint demonstrating how tracking real-time evapo-transpiration variables drops local irrigation system runtimes by 34%.</p>
+                    <a href="404.html" class="post-action-link">
+                        <span>Read Full Guide</span>
+                        <svg class="post-arrow-vector" viewBox="0 0 24 24" width="16" height="16"><path d="M4,11H16.17L10.58,5.41L12,4L20,12L12,20L10.58,18.59L16.17,13H4V11Z"/></svg>
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+    <!-- Integrated Pagination Track Module -->
+    <div class="blog-pagination-row">
+        <a href="404.html" class="pagination-btn active">1</a>
+        <a href="404.html" class="pagination-btn">2</a>
+        <a href="404.html" class="pagination-btn arrow-btn" aria-label="Next Page Link">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+        </a>
+    </div>
+</section>
+
+
+<style>
+    /* --- BLOG CARDS GRID MASTER ARCHITECTURE --- */
+.blog-grid-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: Matches required 50px top/bottom desktop profile padding bounds */
+    padding: 50px 2rem;
+    background-color: #ffffff; 
+    overflow: hidden;
+}
+
+.blog-grid-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 50% 50%, rgba(0, 230, 118, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.blog-grid-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+/* --- ADDED SECTION TYPOGRAPHY HEADERS --- */
+.blog-grid-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3.5rem auto;
+}
+
+.grid-badge {
+    display: inline-block;
+    background-color: var(--bg-bright);
+    color: var(--text-dark);
+    padding: 0.4rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(27, 94, 32, 0.1);
+}
+
+.grid-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.grid-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* --- FIXED HORIZONTAL 3-COLUMN LAYOUT MATRIX --- */
+.articles-matrix-wrapper {
+    display: grid;
+    /* FIX: Locks columns into an explicit, non-collapsing 3-column template on desktop monitors */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.blog-post-card {
+    background-color: var(--bg-bright); /* Inherits base light green theme canvas token */
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(27, 94, 32, 0.04);
+    box-shadow: 0 10px 30px rgba(27, 94, 32, 0.02);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                border-color 0.4s ease,
+                background-color 0.3s ease;
+}
+
+/* Image framing box context */
+.post-img-housing {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.post-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.post-category-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--text-dark);
+    color: #ffffff;
+    padding: 0.35rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    z-index: 2;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Card Body Content Layout Blocks */
+.post-details-box {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Forces grid cards to match uniform height parameters */
+}
+
+.post-meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    opacity: 0.5;
+    margin-bottom: 0.6rem;
+}
+
+.post-details-box h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    line-height: 1.35;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
+}
+
+.post-excerpt {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.75;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+}
+
+.post-action-link {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto; /* Anchors link baseline safely onto card bottoms */
+    transition: color 0.3s ease;
+}
+
+.post-arrow-vector {
+    fill: var(--text-dark);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s ease;
+}
+
+/* --- INTERACTIVE HOVER & NEON GLOW ENGINE --- */
+.blog-post-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--agri-glow);
+    background-color: #ffffff;
+    /* Projects vivid neon green bounding aura shadows on cursor interactions */
+    box-shadow: 0 20px 45px rgba(0, 230, 118, 0.25);
+}
+
+.blog-post-card:hover .post-card-img { transform: scale(1.05); }
+
+.blog-post-card:hover .post-category-tag {
+    background-color: var(--agri-glow);
+    color: var(--text-dark);
+    box-shadow: 0 0 10px var(--agri-glow);
+}
+
+.blog-post-card:hover h3, .blog-post-card:hover .post-action-link {
+    color: var(--agri-glow);
+}
+
+.blog-post-card:hover .post-arrow-vector {
+    transform: translateX(5px);
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 2px var(--agri-glow));
+}
+
+/* --- INTEGRATED PAGINATION MODULE --- */
+.blog-pagination-row {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 3.5rem;
+    z-index: 2;
+}
+
+.pagination-btn {
+    text-decoration: none;
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-bright);
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    border-radius: 10px;
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pagination-btn.arrow-btn svg { fill: var(--text-dark); transition: fill 0.3s ease, transform 0.3s ease; }
+
+.pagination-btn:hover, .pagination-btn.active {
+    background-color: var(--text-dark);
+    color: #ffffff;
+    border-color: var(--text-dark);
+}
+
+.pagination-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(27, 94, 32, 0.12); }
+.pagination-btn.arrow-btn:hover svg { fill: #ffffff; transform: translateX(2px); }
+
+/* --- HIGH-PERFORMANCE RESPONSIVE VIEWPORT BREAKPOINTS --- */
+@media (max-width: 1100px) {
+    /* Collapse down horizontally to a neat 2-column structure on mid-range tablets */
+    .articles-matrix-wrapper { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+}
+
+@media (max-width: 992px) {
+    /* SPECIFIED CONSTRAINT: Compresses safe margins neatly down to 30px on mobile layers */
+    .blog-grid-section { padding: 30px 1.5rem; }
+    .blog-grid-header { margin-bottom: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+    /* Collapse matrix fields into a clean single column layout stack for phone screens */
+    .articles-matrix-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    .blog-post-card { max-width: 580px; width: 100%; margin: 0 auto; }
+}
+
+@media (max-width: 480px) {
+    .grid-title { font-size: 1.8rem; }
+    .post-img-housing { height: 190px; }
+    .post-details-box { padding: 1.5rem; }
+}
+
+</style>
+
+<!-- Interactive Trending Spotlights Landmark Section -->
+<section id="trending-insights" class="trending-section">
+    <!-- Subtle environment background layer acting as a deep overlay texture pass -->
+    <div class="trending-bg-blur-orb"></div>
+
+    <div class="trending-container">
+        
+        <!-- Left Side: Dynamic Text Headlines & Carousel Navigation Controllers -->
+        <div class="trending-content-column">
+            <span class="trending-badge">🔥 Rising In Popularity</span>
+            <h2 class="trending-title">Weekly Core Reading Spotlights</h2>
+            <p class="trending-desc">
+                Review the most shared publications and data optimization guides capturing the attention of our global agronomy and sensor engineering network this week.
+            </p>
+            
+            <!-- Custom Vector Navigation Controller Buttons -->
+            <div class="trending-carousel-controls">
+                <button class="control-arrow-btn" aria-label="Slide Previous Layout Card">
+                    <svg viewBox="0 0 24 24"><path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"/></svg>
+                </button>
+                <button class="control-arrow-btn active-glow" aria-label="Slide Next Layout Card">
+                    <svg viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Side: Interactive Overlapping Trending Post Card Layer -->
+        <div class="trending-slider-column">
+            <div class="trending-cards-deck">
+                
+                <!-- Main Featured Trending Post Card -->
+                <article class="trend-glow-card main-trend-card">
+                    <div class="trend-image-box">
+                        <img src="./Assests/soil beds.webp" alt="Farmer checking smart soil diagnostic sensor data parameters on tablet" class="trend-card-img">
+                        <span class="trend-rank-badge">Top Trend</span>
+                    </div>
+                    <div class="trend-info-box">
+                        <div class="trend-meta-metrics">
+                            <span class="trend-date">August 09, 2026</span>
+                            <span class="trend-shares-counter">
+                                <svg class="inline-share-vector" viewBox="0 0 24 24"><path d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.19C16.5,7.69 17.21,8 18,8A3,3 0 0,0 21,5A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.81C7.5,9.31 6.79,9 6,9A3,3 0 0,0 3,12A3,3 0 0,0 6,15C6.79,15 7.5,14.69 8.04,14.19L15.16,18.34C15.11,18.55 15.13,18.77 15.13,19A3,3 0 0,0 18,22A3,3 0 0,0 21,19A3,3 0 0,0 18,16.08Z"/></svg>
+                                1.2K Shares
+                            </span>
+                        </div>
+                        <h3>Ecosystem Scaling: Managing 10,000+ Active Sensor Nodes Safely</h3>
+                        <p>An operational handbook detailing the decentralized physical cloud infrastructure pipelines needed to secure telemetry feeds across large, multi-regional farm cooperatives without connectivity lags.</p>
+                        <a href="404.html" class="trend-read-link">
+                            <span>Read Research Paper</span>
+                            <svg class="trend-arrow-vector" viewBox="0 0 24 24"><path d="M4,11H16.17L10.58,5.41L12,4L20,12L12,20L10.58,18.59L16.17,13H4V11Z"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* --- TRENDING SECTION MASTER ARCHITECTURE --- */
+.trending-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: 50px top/bottom desktop breathing safe zones */
+    padding: 50px 2rem;
+    background-color: var(--bg-bright); /* Alternates clean canvas backdrop layers cleanly */
+    overflow: hidden;
+}
+
+.trending-bg-blur-orb {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.2) 0%, transparent 70%);
+    filter: blur(40px);
+    z-index: 1;
+    right: -50px;
+    bottom: -50px;
+    pointer-events: none;
+}
+
+.trending-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr; /* Dynamic asymmetric column split */
+    gap: 5rem;
+    align-items: center;
+    z-index: 2;
+}
+
+/* --- LEFT COLUMN: HEADLINES & CONTRL CHANNELS --- */
+.trending-content-column {
+    width: 100%;
+}
+
+.trending-badge {
+    display: inline-block;
+    background-color: rgba(27, 94, 32, 0.08);
+    color: var(--text-dark);
+    padding: 0.4rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(27, 94, 32, 0.1);
+}
+
+.trending-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-dark);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.5px;
+}
+
+.trending-desc {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Custom Vector Carousel Button Triggers Layout Block */
+.trending-carousel-controls {
+    display: flex;
+    gap: 0.85rem;
+}
+
+.control-arrow-btn {
+    width: 44px;
+    height: 44px;
+    background-color: #ffffff;
+    border: 1px solid rgba(27, 94, 32, 0.08);
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.02);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.control-arrow-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--text-dark);
+    transition: fill 0.3s ease;
+}
+
+.control-arrow-btn:hover, .control-arrow-btn.active-glow {
+    background-color: var(--text-dark);
+    border-color: var(--text-dark);
+}
+
+.control-arrow-btn:hover svg, .control-arrow-btn.active-glow svg {
+    fill: #ffffff;
+}
+
+.control-arrow-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(27, 94, 32, 0.12), 0 0 10px var(--agri-glow);
+}
+
+/* --- RIGHT COLUMN: INTERACTIVE CARD PRESENTATION LAYOUTS --- */
+.trending-slider-column {
+    width: 100%;
+}
+
+.trending-cards-deck {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.trend-glow-card {
+    width: 100%;
+    max-width: 540px;
+    background-color: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(27, 94, 32, 0.04);
+    box-shadow: 0 15px 35px rgba(27, 94, 32, 0.03);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                border-color 0.4s ease;
+}
+
+/* Image framing box context */
+.trend-image-box {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.trend-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trend-rank-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #f05454; /* High-visibility priority red highlight token */
+    color: #ffffff;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Card Body Content Layout Blocks */
+.trend-info-box {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.trend-meta-metrics {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    opacity: 0.5;
+    margin-bottom: 0.6rem;
+}
+
+.trend-shares-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.inline-share-vector {
+    width: 14px;
+    height: 14px;
+    fill: var(--text-dark);
+}
+
+.trend-info-box h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.35;
+    color: var(--text-dark);
+    margin-bottom: 0.6rem;
+    transition: color 0.3s ease;
+}
+
+.trend-info-box p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.75;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.trend-read-link {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.trend-arrow-vector {
+    width: 16px;
+    height: 16px;
+    fill: var(--text-dark);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s ease;
+}
+
+/* --- INTERACTIVE HOVER & NEON GLOW ENGINE --- */
+.trend-glow-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--agri-glow);
+    /* Projects bright green glowing drop shadows on cursor tracking interactions */
+    box-shadow: 0 20px 45px rgba(0, 230, 118, 0.22);
+}
+
+.trend-glow-card:hover .trend-card-img {
+    transform: scale(1.04); /* Hardware accelerated dynamic layout card image zoom */
+}
+
+.trend-glow-card:hover h3, .trend-glow-card:hover .trend-read-link {
+    color: var(--agri-glow);
+}
+
+/* Linear vector translation arrow shifting animation rules */
+.trend-glow-card:hover .trend-arrow-vector {
+    transform: translateX(5px);
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 2px var(--agri-glow));
+}
+
+/* --- HIGH-PERFORMANCE RESPONSIVE VIEWPORT BREAKPOINTS --- */
+@media (max-width: 1200px) {
+    .trending-title { font-size: 2.1rem; }
+    .trending-container { gap: 3rem; }
+}
+
+@media (max-width: 992px) {
+    .trending-section {
+        /* SPECIFIED CONSTRAINT: Drops layout cushions smoothly to 30px profiles on small screen monitors */
+        padding: 30px 1.5rem;
+    }
+    .trending-container {
+        grid-template-columns: 1fr; /* Toggle layout columns into uniform linear stacks */
+        text-align: center;
+        gap: 3.5rem;
+    }
+    .trending-content-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .trending-desc { margin-left: auto; margin-right: auto; }
+    .trending-carousel-controls { justify-content: center; }
+    .trending-cards-deck { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+    .trending-title { font-size: 1.8rem; }
+    .trend-glow-card { border-radius: 16px; }
+    .trend-image-box { height: 190px; }
+    .trend-info-box { padding: 1.5rem; }
+}
+
+</style>
+
+<section class="cta-section">
+    <!-- Img tag layer acting as a deep parallax background framework -->
+    <img src="./Assests/green infra.webp" alt="Vast bright green agricultural crop landscape fields background" class="cta-bg-image-layer">
+    <div class="cta-overlay-tint"></div>
+
+    <div class="cta-container">
+        
+        <!-- Left Structural Column: Clean 2-Line Headline Block -->
+        <div class="cta-content-column">
+            <h2 class="cta-headline">
+                Ready to Automate Your Harvest Fields? <br>
+                <span class="cta-glow-subtext">Join Over 5,000+ Modern Digital Farmers Today.</span>
+            </h2>
+            <p class="cta-description">Deploy secure sensor clusters across your soil layouts in minutes. No complex programming or data engineering background required.</p>
+        </div>
+
+        <!-- Right Structural Column: Interactive Action Trigger & Foreground Graphics -->
+        <div class="cta-action-column">
+            <div class="cta-button-glow-wrapper">
+                <a href="#contact" class="btn-cta-action">Get Started Risk Free</a>
+            </div>
+            
+            <!-- Foreground Decorative Floating Vector Image Card -->
+            <div class="cta-floating-image-wrapper">
+                <img src="./Assests/mobile sensor.webp" alt="Stackly secure mobile sensor dashboard tracking" class="cta-foreground-img">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* --- COMPREHENSIVE CTA SECTION MASTER ARCHITECTURE --- */
+.cta-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED CONSTRAINT: 50px top/bottom desktop breathing safe zones */
+    padding: 50px 2rem;
+    background-color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Background Image Layer Rendering Pipeline Controls */
+.cta-bg-image-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transform: scale(1.02);
+    filter: brightness(0.25) contrast(1.1); /* Darkens background graphics to protect content readability */
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta-overlay-tint {
+    position: absolute;
+    inset: 0;
+    /* Soft nature green ambient shading pass */
+    background: linear-gradient(135deg, rgba(27, 94, 32, 0.85), rgba(0, 230, 118, 0.2));
+    z-index: 2;
+    pointer-events: none;
+}
+
+.cta-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Balanced distribution giving priority to the text stream */
+    gap: 4rem;
+    align-items: center;
+    z-index: 3;
+}
+
+/* --- LEFT COLUMN: 2-LINE HEADLINE ENGINE --- */
+.cta-content-column {
+    width: 100%;
+}
+
+.cta-headline {
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1.25;
+    color: var(--white);
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.cta-glow-subtext {
+    color: var(--agri-glow);
+    text-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+    font-weight: 800;
+    display: inline-block;
+}
+
+.cta-description {
+    font-size: 1.1rem;
+    color: var(--white);
+    opacity: 0.85;
+    line-height: 1.6;
+    max-width: 680px;
+}
+
+/* --- RIGHT COLUMN: ACTIVE ACTION BUTTONS & FOREGROUND GRAPHICS --- */
+.cta-action-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    position: relative;
+    width: 100%;
+}
+
+/* Pulsing ambient neon field backdrop behind button */
+.cta-button-glow-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.btn-cta-action {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    background-color: var(--agri-glow);
+    color: var(--text-dark);
+    padding: 1.1rem 2rem;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 20px rgba(0, 230, 118, 0.4);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Foreground Floating Card Submodule Image Graphic Frame */
+.cta-floating-image-wrapper {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    right: -20px;
+    top: -90px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    z-index: 5;
+    pointer-events: none; /* Allows cursor inputs to drop down straight onto button paths */
+    animation: ctaFloatMotion 4s ease-in-out infinite alternate;
+}
+
+.cta-foreground-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- HOVER INTERACTION OVERRIDES --- */
+.cta-section:hover .cta-bg-image-layer {
+    transform: scale(1.05); /* Soft, cinematic zoom reaction when working the container layout space */
+}
+
+.btn-cta-action:hover {
+    background-color: var(--white);
+    color: var(--text-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.5), 0 0 25px var(--agri-glow);
+}
+
+/* --- HARDWARE-ACCELERATED KEYFRAMES ANIMATIONS --- */
+@keyframes ctaFloatMotion {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-12px) rotate(2deg); }
+}
+
+/* --- RIGID RESPONSIVE BREAKPOINT INTERPOLATION LAYERS --- */
+@media (max-width: 1200px) {
+    .cta-headline { font-size: 2.3rem; }
+    .cta-container { gap: 2.5rem; }
+}
+
+@media (max-width: 992px) {
+    .cta-section {
+        /* SPECIFIED CONSTRAINT: Drops layout cushions smoothly to a tight 30px frame structure */
+        padding: 30px 1.5rem;
+    }
+    .cta-container {
+        grid-template-columns: 1fr; /* Toggle layout columns directly into unified blocks */
+        text-align: center;
+        gap: 3rem;
+    }
+    .cta-content-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .cta-action-column {
+        align-items: center;
+    }
+    .btn-cta-action {
+        margin: 0 auto;
+    }
+    .cta-floating-image-wrapper {
+        display: none; /* Purge decorative float layers on medium viewports to save screen real estate */
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-headline { font-size: 1.8rem; }
+    .btn-cta-action {
+        width: 100%;
+        max-width: 100%; /* Expands buttons full-width across extra-small touchscreen displays */
+    }
+}
+
+</style>
+
+<script>
+        // --- PARALLAX OPTIMIZATION SCROLL EFFECT FOR CTA IMAGE ---
+    const ctaSectionElement = document.querySelector(".cta-section");
+    const ctaBackgroundImage = document.querySelector(".cta-bg-image-layer");
+
+    if (ctaSectionElement && ctaBackgroundImage) {
+        window.addEventListener("scroll", () => {
+            const sectionBoundingRect = ctaSectionElement.getBoundingClientRect();
+            const viewScreenHeight = window.innerHeight;
+
+            // Run calculations exclusively when the section box bounds occupy screen coordinate tracks
+            if (sectionBoundingRect.top < viewScreenHeight && sectionBoundingRect.bottom > 0) {
+                const scrollPercentageOffset = (viewScreenHeight - sectionBoundingRect.top) / (viewScreenHeight + sectionBoundingRect.height);
+                // Subtle matrix calculation to handle deep structural shifting profiles safely
+                ctaBackgroundImage.style.transform = `scale(1.05) translateY(${(scrollPercentageOffset * -25) + 12}px)`;
+            }
+        }, { passive: true }); // Passive tagging locks thread resources away from interface scrolling lags
+    }
+
+</script>
+
+<!-- Interactive Knowledge Hub & Search Filter Landmark Section -->
+<section id="knowledge-hub" class="hub-section">
+    <!-- Deep vector geometric background contour line layer -->
+    <div class="hub-bg-mesh-texture"></div>
+
+    <div class="hub-container">
+        
+        <!-- Left Side: Interactive High-Glow Search & Tag Cloud Card -->
+        <div class="hub-interactive-column">
+            <div class="hub-glow-search-card">
+                <span class="hub-badge-tag">📊 Portal Discovery</span>
+                <h3>Target Field Diagnostics</h3>
+                <p>Isolate localized engineering publications by inputting field keywords or selecting standardized node category tokens below.</p>
+                
+                <!-- Live Keyword Filter Input Field -->
+                <form class="hub-search-form" onsubmit="event.preventDefault();">
+                    <div class="hub-search-composite">
+                        <input type="text" placeholder="Search soil chemistry, valve webhooks, drones..." aria-label="Search publications index" autocomplete="off">
+                        <button type="submit" class="btn-hub-search" aria-label="Execute search parameters">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5A4.5,4.5 0 0,0 5,9.5A4.5,4.5 0 0,0 9.5,14A4.5,4.5 0 0,0 14,9.5A4.5,4.5 0 0,0 9.5,5Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Dynamic Tag Cloud Row Items Block -->
+                <div class="hub-tag-cloud">
+                    <a href="#blog-grid" class="vector-tag-chip active-glow">#pH_Shifts</a>
+                    <a href="#blog-grid" class="vector-tag-chip">#LEO_Satellites</a>
+                    <a href="#blog-grid" class="vector-tag-chip">#Solenoid_Valves</a>
+                    <a href="#blog-grid" class="vector-tag-chip">#Alkali_Data</a>
+                    <a href="#blog-grid" class="vector-tag-chip">#Mesh_RF_Mesh</a>
+                    <a href="#blog-grid" class="vector-tag-chip">#Water_Conservation</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Interactive Stacked Image Panels with Glow Foundations -->
+        <div class="hub-graphics-column">
+            <div class="hub-aurora-glow"></div>
+            
+            <!-- Main Corporate Blueprint Image Frame -->
+            <div class="hub-image-card primary-hub-frame">
+                <img src="./Assests/analytics dashboard.webp" alt="Agronomist expert indexing soil analytics parameters over digital tables" class="hub-img">
+            </div>
+
+            <!-- Floating Dynamic Sub-Card Sensor Image Asset -->
+            <div class="hub-image-card secondary-hub-frame">
+                <img src="./Assests/dashboard analytics agri.webp" alt="Close-up of smart low power Lora mesh data nodes running offline" class="hub-img">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+/* --- KNOWLEDGE HUB PORTAL MASTER ARCHITECTURE --- */
+.hub-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: 50px top/bottom desktop breathing safe zones */
+    padding: 50px 2rem;
+    background-color: #ffffff; /* Clean contrasting backdrop layer alternation */
+    overflow: hidden;
+}
+
+.hub-bg-mesh-texture {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 10% 10%, rgba(0, 230, 118, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hub-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr; /* Spatial grid distribution weights */
+    gap: 5rem;
+    align-items: center;
+    z-index: 2;
+}
+
+/* --- LEFT COLUMN: HIGH-GLOW SEARCH & TAG ACCORDION BOX --- */
+.hub-interactive-column { width: 100%; }
+
+.hub-glow-search-card {
+    background-color: var(--bg-bright); /* Inherits base bright light green canvas theme token */
+    padding: 2.5rem;
+    border-radius: 24px;
+    border: 1px solid rgba(27, 94, 32, 0.04);
+    box-shadow: 0 10px 30px rgba(27, 94, 32, 0.02);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                border-color 0.4s ease;
+}
+
+.hub-badge-tag {
+    display: inline-block;
+    background-color: #ffffff;
+    color: var(--text-dark);
+    padding: 0.35rem 0.9rem;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(27, 94, 32, 0.08);
+}
+
+.hub-glow-search-card h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.hub-glow-search-card p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.75;
+    line-height: 1.55;
+    margin-bottom: 1.75rem;
+}
+
+/* Input Fields Composite Construction */
+.hub-search-form { width: 100%; margin-bottom: 2rem; }
+
+.hub-search-composite {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.hub-search-composite input {
+    width: 100%;
+    padding: 1rem 3.5rem 1rem 1.25rem;
+    background-color: #ffffff;
+    border: 2px solid transparent;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(27, 94, 32, 0.03);
+    transition: all 0.3s ease;
+}
+
+.hub-search-composite input:focus {
+    outline: none;
+    border-color: var(--agri-glow);
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.3);
+}
+
+.btn-hub-search {
+    position: absolute;
+    right: 6px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--text-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.btn-hub-search svg { width: 18px; height: 18px; fill: #ffffff; transition: fill 0.25s ease; }
+
+.btn-hub-search:hover {
+    background-color: var(--agri-glow);
+    transform: scale(1.02);
+}
+.btn-hub-search:hover svg { fill: var(--text-dark); }
+
+/* Tag Clouds Array Layout */
+.hub-tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.vector-tag-chip {
+    text-decoration: none;
+    padding: 0.45rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    background-color: #ffffff;
+    border: 1px solid rgba(27, 94, 32, 0.06);
+    transition: all 0.25s ease;
+}
+
+.vector-tag-chip:hover, .vector-tag-chip.active-glow {
+    border-color: var(--agri-glow);
+    box-shadow: 0 0 8px rgba(0, 230, 118, 0.25);
+}
+
+.vector-tag-chip:hover {
+    transform: translateY(-2px);
+    background-color: #ffffff;
+    color: var(--agri-glow);
+}
+
+/* --- RIGHT COLUMN: LAYERED IMAGERY DESIGN SYSTEM --- */
+.hub-graphics-column {
+    position: relative;
+    width: 100%;
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hub-aurora-glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.22) 0%, transparent 70%);
+    filter: blur(40px);
+    z-index: 1;
+    animation: hubOrbMotion  6s ease-in-out infinite alternate;
+}
+
+.hub-image-card {
+    position: absolute;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(27, 94, 32, 0.08);
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.hub-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.primary-hub-frame { width: 74%; height: 380px; left: 10px; top: 20px; z-index: 2; }
+
+.secondary-hub-frame {
+    width: 46%;
+    height: 220px;
+    right: 10px;
+    bottom: 20px;
+    z-index: 3;
+    animation: hubCardBounce 4s ease-in-out infinite alternate;
+}
+
+/* --- INTERACTIVE CARD ACTIONS HOVER OVERRIDES --- */
+.hub-glow-search-card:hover {
+    border-color: var(--agri-glow);
+    /* Projects vivid green perimeter lighting bounding glows */
+    box-shadow: 0 15px 35px rgba(0, 230, 118, 0.22);
+    transform: translateY(-4px);
+}
+
+.hub-image-card:hover {
+    transform: scale(1.04) translateY(-6px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 22px 45px rgba(0, 230, 118, 0.35);
+    z-index: 4;
+}
+
+/* --- HARDWARE-ACCELERATED KEYFRAMES ANIMATIONS --- */
+@keyframes hubCardBounce { 0% { transform: translateY(0); } 100% { transform: translateY(-12px); } }
+@keyframes hubOrbMotion { 0% { transform: translate(0) scale(1); } 100% { transform: translate(-10px, 5px) scale(1.08); } }
+
+/* --- HIGH-PERFORMANCE RESPONSIVE VIEWPORT BREAKPOINTS --- */
+@media (max-width: 1200px) {
+    .hub-container { gap: 3rem; }
+}
+
+@media (max-width: 992px) {
+    .hub-section {
+        /* CRITICAL REQUIREMENT: Gracefully collapses vertical cushions down to tight 30px bounds */
+        padding: 30px 1.5rem;
+    }
+    .hub-container {
+        grid-template-columns: 1fr; /* Switch directly into stacked single grid configurations */
+        gap: 3.5rem;
+    }
+    .hub-graphics-column {
+        height: 380px;
+        max-width: 550px;
+        margin: 0 auto;
+    }
+    .primary-hub-frame { height: 320px; }
+    .secondary-hub-frame { height: 180px; }
+}
+
+@media (max-width: 480px) {
+    .hub-glow-search-card { padding: 1.5rem; }
+    .hub-glow-search-card h3 { font-size: 1.35rem; }
+    .hub-graphics-column { display: none; } /* Drop complex graphics overlay stack layers on mobile touch viewports */
+}
+
+</style>
+
+<!-- Featured Authors & Editorial Board Landmark Section -->
+<section id="authors" class="authors-section">
+    <!-- Subtle environment background mesh texture overlay pass -->
+    <div class="authors-bg-mesh-grid"></div>
+
+    <div class="authors-container">
+        
+        <!-- Section Header Text Layer -->
+        <div class="authors-header">
+            <span class="authors-badge">✍️ Field Editorial Board</span>
+            <h2 class="authors-title">Meet Our Research Contributors</h2>
+            <p class="authors-subtitle">Demystifying raw field metrics with operational clarity. Review publications written by our staff engineers and agronomists.</p>
+        </div>
+
+        <!-- 3-Column Profile Card Grid Array -->
+        <div class="authors-grid">
+            
+            <!-- Author Card 1 -->
+            <div class="author-glow-card">
+                <div class="author-img-housing">
+                    <img src="./Assests/testimonial 1.webp"alt="Sarah Jenkins, Soil Chemistry Specialist at Stackly" class="author-card-img">
+                    <div class="author-card-overlay-glow"></div>
+                </div>
+                <div class="author-details-box">
+                    <h3>Sarah Jenkins</h3>
+                    <p class="author-role">Soil Microbiologist</p>
+                    <p class="author-bio">Focuses her field publications on subsurface carbon-to-nitrogen ratios and alkali ground recovery management profiles.</p>
+                    
+                    <div class="author-social-strip">
+                        <a href="404.html" class="author-social-btn" aria-label="LinkedIn Profile Link">
+                            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.4 0 0 0 1.68-1.4a1.68 1.4 0 0 0-1.68-1.4a1.68 1.4 0 0 0-1.68 1.4a1.68 1.4 0 0 0 1.68 1.4m1.39 9.94V10.13H5.5v8.37h2.77z"/></svg>
+                        </a>
+                        <a href="404.html" class="author-social-btn" aria-label="Twitter Profile Link">
+                            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Author Card 2 -->
+            <div class="author-glow-card">
+                <div class="author-img-housing">
+                    <img src="./Assests/testimonial 2.webp" alt="Marcus Vance, Telemetry Firmware Engineer at Stackly" class="author-card-img">
+                    <div class="author-card-overlay-glow"></div>
+                </div>
+                <div class="author-details-box">
+                    <h3>Marcus Vance</h3>
+                    <p class="author-role">Telemetry Firmware Lead</p>
+                    <p class="author-bio">Authored our most shared field studies on low-power long-range radio mesh frequencies and offline node storage caching.</p>
+                    
+                    <div class="author-social-strip">
+                        <a href="404.html" class="author-social-btn" aria-label="LinkedIn Profile Link">
+                            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.4 0 0 0 1.68-1.4a1.68 1.4 0 0 0-1.68-1.4a1.68 1.4 0 0 0-1.68 1.4a1.68 1.4 0 0 0 1.68 1.4m1.39 9.94V10.13H5.5v8.37h2.77z"/></svg>
+                        </a>
+                        <a href="404.html" class="author-social-btn" aria-label="Twitter Profile Link">
+                            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Author Card 3 -->
+            <div class="author-glow-card">
+                <div class="author-img-housing">
+                    <img src="./Assests/test 4.webp" alt="Dr. Elena Rostova, Hydration Engineering Director at Stackly" class="author-card-img">
+                    <div class="author-card-overlay-glow"></div>
+                </div>
+                <div class="author-details-box">
+                    <h3>Dr. Elena Rostova</h3>
+                    <p class="author-role">Hydration Director</p>
+                    <p class="author-bio">Publishes deep industrial guides outlining automated closed-loop solenoid valve triggers linked directly with cloud APIs.</p>
+                    
+                    <div class="author-social-strip">
+                        <a href="404.html" class="author-social-btn" aria-label="LinkedIn Profile Link">
+                            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.4 0 0 0 1.68-1.4a1.68 1.4 0 0 0-1.68-1.4a1.68 1.4 0 0 0-1.68 1.4a1.68 1.4 0 0 0 1.68 1.4m1.39 9.94V10.13H5.5v8.37h2.77z"/></svg>
+                        </a>
+                        <a href="404.html" class="author-social-btn" aria-label="Twitter Profile Link">
+                            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* --- AUTHORS SECTION MASTER ARCHITECTURE --- */
+.authors-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: Matches required 50px top/bottom desktop profile padding bounds */
+    padding: 50px 2rem;
+    background-color: var(--bg-bright); /* Alternates clean canvas backdrop layers smoothly */
+    overflow: hidden;
+}
+
+.authors-bg-mesh-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 50% 50%, rgba(0, 230, 118, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.authors-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+/* --- SECTION TYPOGRAPHY HEADERS --- */
+.authors-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3.5rem auto;
+}
+
+.authors-badge {
+    display: inline-block;
+    background-color: rgba(27, 94, 32, 0.08);
+    color: var(--text-dark);
+    padding: 0.4rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(27, 94, 32, 0.1);
+}
+
+.authors-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.authors-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* --- ADVISORY CARD GRID LAYOUT ENGINE --- */
+.authors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 2.5rem;
+}
+
+.author-glow-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(27, 94, 32, 0.04);
+    box-shadow: 0 10px 30px rgba(27, 94, 32, 0.03);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                border-color 0.4s ease;
+}
+
+/* Portrait profile crop housing */
+.author-img-housing {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.author-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Translucent overlay inside profile frames */
+.author-card-overlay-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(27, 94, 32, 0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* Profile Description Content Blocks */
+.author-details-box {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.author-details-box h3 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+    transition: color 0.3s ease;
+}
+
+.author-role {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--agri-glow); /* Custom neon green tracking role highlight */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+.author-bio {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.75;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* --- INLINE SOCIAL HANDLE CHANNELS --- */
+.author-social-strip {
+    margin-top: auto; /* Aligns handles perfectly straight across card bottoms */
+    display: flex;
+    gap: 0.75rem;
+}
+
+.author-social-btn {
+    text-decoration: none;
+    width: 34px;
+    height: 34px;
+    background-color: var(--bg-bright);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.author-social-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--text-dark);
+    transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+/* --- INTERACTIVE CURSOR HOVER & NEON GLOWS --- */
+.author-glow-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--agri-glow);
+    /* Projects vivid green bounding aura shadows on cursor interactions */
+    box-shadow: 0 20px 45px rgba(0, 230, 118, 0.25);
+}
+
+.author-glow-card:hover .author-card-img {
+    transform: scale(1.04); /* Hardware-accelerated dynamic profile zoom */
+}
+
+.author-glow-card:hover .author-card-overlay-glow {
+    opacity: 1;
+}
+
+.author-glow-card:hover h3 {
+    color: var(--agri-glow);
+}
+
+/* Elevate individual vector elements inside the active layout */
+.author-social-btn:hover {
+    background-color: var(--text-dark);
+    transform: scale(1.08) translateY(-2px);
+}
+
+.author-social-btn:hover svg {
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 3px var(--agri-glow));
+}
+
+/* --- COMPREHENSIVE RESPONSIVE VIEWPORT BREAKPOINTS --- */
+@media (max-width: 992px) {
+    .authors-section {
+        /* SPECIFIED CONSTRAINT: Compresses safe margins neatly down to 30px on mobile layers */
+        padding: 30px 1.5rem;
+    }
+    .authors-title { font-size: 2.1rem; }
+    .authors-header { margin-bottom: 2.5rem; }
+}
+
+@media (max-width: 480px) {
+    .authors-title { font-size: 1.8rem; }
+    .authors-grid {
+        grid-template-columns: 1fr; /* Force team columns to vertical stacks on small touchscreens */
+    }
+    .author-img-housing { height: 280px; }
+    .author-details-box { padding: 1.5rem; }
+}
+
+</style>
+
+<section id="faq" class="faq-section">
+    <!-- Subtle environment background mesh texture overlay pass -->
+    <div class="faq-bg-contour-pattern"></div>
+
+    <div class="faq-container">
+        
+        <!-- Left Side: Interactive Brand Visual Card Imagery -->
+        <div class="faq-graphics-block">
+            <div class="faq-aurora-glow"></div>
+            
+            <!-- Main Imagery Frame -->
+            <div class="faq-image-frame main-faq-frame">
+                <img src="./Assests/dashboard analytics agri.webp" alt="Farmer reviewing real-time crop metrics via Stackly software dashboards" class="faq-img">
+            </div>
+
+            <!-- Floating Accessory Support Status Card with Vector Overlay -->
+            <div class="faq-image-frame support-metric-card">
+                <div class="support-vector-box">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12,1A11,11 0 1,0 23,12A11,11 0 0,0 12,1M12,21A9,9 0 1,1 21,12A9,9 0 0,1 12,21M11,14H13V16H11V14M12,6A3.5,3.5 0 0,1 15.5,9.5A3.5,3.5 0 0,1 12,13V13.5H11V12A2,2 0 0,1 13,10A1.5,1.5 0 0,0 11.5,8.5A1.5,1.5 0 0,0 10,10H9A3.5,3.5 0 0,1 12,6Z"/>
+                    </svg>
+                </div>
+                <div class="support-text-wrapper">
+                    <h4>99.4% Resolution</h4>
+                    <p>Field inquiries responded to within 1 hour globally.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Accordion Mechanics Grid -->
+        <div class="faq-accordion-block">
+            <span class="faq-badge">❓ Resolution Center</span>
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            <p class="faq-desc">Can't locate details regarding localized sensor clustering bounds or API tokens? Review these core deployment breakdowns.</p>
+
+            <div class="accordion-group">
+                
+                <!-- Accordion Item 1 -->
+                <div class="faq-accordion-item">
+                    <input type="checkbox" id="faq-toggle-1" class="accordion-input-shutter">
+                    <label for="faq-toggle-1" class="accordion-trigger-header">
+                        <span>How complex is physical sensor kit deployment?</span>
+                        <svg class="accordion-chevron" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+                    </label>
+                    <div class="accordion-content-panel">
+                        <p>Extremely straightforward. All Stackly telemetry spikes are engineered as self-contained, pre-calibrated ground instruments. Simply sink the carbon spike profile directly into target soil grids, actuate the master trigger key, and the device self-registers with your field cloud profile instantaneously.</p>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 2 -->
+                <div class="faq-accordion-item">
+                    <input type="checkbox" id="faq-toggle-2" class="accordion-input-shutter">
+                    <label for="faq-toggle-2" class="accordion-trigger-header">
+                        <span>Do software telemetry frameworks function offline?</span>
+                        <svg class="accordion-chevron" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+                    </label>
+                    <div class="accordion-content-panel">
+                        <p>Yes. Our active sensor node clusters establish regional peer-to-peer radio frequency meshes. If cellular connections drop, localized data points cache securely inside localized hardware memory cards, flushing data pipelines up to central cloud logs as soon as connection links restore.</p>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 3 -->
+                <div class="faq-accordion-item">
+                    <input type="checkbox" id="faq-toggle-3" class="accordion-input-shutter">
+                    <label for="faq-toggle-3" class="accordion-trigger-header">
+                        <span>Can I sync autonomous third-party irrigation lines?</span>
+                        <svg class="accordion-chevron" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+                    </label>
+                    <div class="accordion-content-panel">
+                        <p>Absolutely. The Acreage Pro and Enterprise packages grant comprehensive access to developer webhook endpoints. Our platform outputs unified payload signals designed to link natively with industrial automated solenoid water channels and electronic fertilizer grids without friction.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* --- FAQ SECTION MASTER ARCHITECTURE --- */
+.faq-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: 50px top/bottom desktop breathing safe zones */
+    padding: 50px 2rem;
+    background-color: #ffffff; /* Alternates bright clean backdrops against the green pricing layer */
+    overflow: hidden;
+}
+
+.faq-bg-contour-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 90% 90%, rgba(0, 230, 118, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.faq-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr; /* Asymmetric distribution balancing weights */
+    gap: 5rem;
+    align-items: center;
+    z-index: 2;
+}
+
+/* --- LEFT COLUMN: DYNAMIC STRUCTURAL GRAPHICS ENGINE --- */
+.faq-graphics-block {
+    position: relative;
+    width: 100%;
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.faq-aurora-glow {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.22) 0%, transparent 70%);
+    filter: blur(40px);
+    z-index: 1;
+}
+
+.faq-image-frame {
+    position: absolute;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(27, 94, 32, 0.08);
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.faq-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.main-faq-frame { width: 75%; height: 380px; left: 0; top: 20px; z-index: 2; }
+
+/* Support stats card overlay box */
+.support-metric-card {
+    width: 55%;
+    background-color: #ffffff;
+    padding: 1.25rem;
+    right: 0;
+    bottom: 25px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    animation: faqFloatBounce 4s ease-in-out infinite alternate;
+}
+
+.support-vector-box {
+    width: 44px;
+    height: 44px;
+    background-color: var(--bg-bright);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.support-vector-box svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-dark);
+    transition: fill 0.3s ease;
+}
+
+.support-text-wrapper h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.2rem; }
+.support-text-wrapper p { font-size: 0.8rem; color: var(--text-dark); opacity: 0.75; line-height: 1.3; }
+
+/* Image Frame Glow and Transformation Hover States */
+.faq-image-frame:hover {
+    transform: scale(1.04) translateY(-5px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 20px 40px rgba(0, 230, 118, 0.3);
+    z-index: 4;
+}
+
+.faq-image-frame:hover .support-vector-box { background-color: var(--text-dark); }
+.faq-image-frame:hover .support-vector-box svg { fill: var(--agri-glow); filter: drop-shadow(0 0 3px var(--agri-glow)); }
+
+/* --- RIGHT COLUMN: INTERACTIVE PURE CSS ACCORDION --- */
+.faq-accordion-block {
+    width: 100%;
+}
+
+.faq-badge {
+    display: inline-block;
+    background-color: var(--bg-bright);
+    color: var(--text-dark);
+    padding: 0.4rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(27, 94, 32, 0.1);
+}
+
+.faq-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.faq-desc {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.accordion-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.faq-accordion-item {
+    background-color: var(--bg-bright);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(27, 94, 32, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hide native inputs out of viewport grids */
+.accordion-input-shutter {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+.accordion-trigger-header {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    user-select: none;
+}
+
+.accordion-chevron {
+    width: 20px;
+    height: 20px;
+    fill: var(--text-dark);
+    transform: rotate(0deg);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), fill 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Content Container Collapsing Logics */
+.accordion-content-panel {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 1.5rem;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease;
+}
+
+.accordion-content-panel p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.6;
+    padding-bottom: 1.25rem;
+}
+
+/* --- INTERACTIVE TOGGLE & ACCORDION GLOW STATES --- */
+.faq-accordion-item:hover {
+    border-color: var(--agri-glow);
+    box-shadow: 0 4px 15px rgba(0, 230, 118, 0.12);
+}
+
+/* CSS state tracking when checkboxes are checked */
+.accordion-input-shutter:checked ~ .faq-accordion-item,
+.accordion-input-shutter:checked + .accordion-trigger-header {
+    color: var(--agri-glow);
+}
+
+.accordion-input-shutter:checked ~ .accordion-content-panel {
+    max-height: 200px; /* Expands to safely contain content heights */
+    padding: 0 1.5rem;
+}
+
+.accordion-input-shutter:checked + .accordion-trigger-header .accordion-chevron {
+    transform: rotate(90deg); /* Chevrons twist downward gracefully */
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 2px var(--agri-glow));
+}
+
+/* Forces active accordion wrapper to turn white and cast bounding glows */
+.accordion-input-shutter:checked ~ .faq-accordion-item,
+.faq-accordion-item:has(.accordion-input-shutter:checked) {
+    background-color: #ffffff;
+    border-color: var(--agri-glow);
+    box-shadow: 0 10px 25px rgba(0, 230, 118, 0.22);
+}
+
+/* --- ACCELERATED TRANSITIONS --- */
+@keyframes faqFloatBounce { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
+
+/* --- RESPONSIVE ENGINEERING BREAKPOINTS --- */
+@media (max-width: 1200px) {
+    .faq-title { font-size: 2.1rem; }
+    .faq-container { gap: 3rem; }
+}
+
+@media (max-width: 992px) {
+    .faq-section {
+        /* SPECIFIED CONSTRAINT: Drops layout padding cushions smoothly to 30px profiles on small screens */
+        padding: 30px 1.5rem;
+    }
+    .faq-container {
+        grid-template-columns: 1fr; /* Switch directly into stacked single grid configurations */
+        gap: 3.5rem;
+    }
+    .faq-graphics-block {
+        height: 380px;
+        max-width: 550px;
+        margin: 0 auto;
+    }
+    .main-faq-frame { height: 320px; }
+    .support-metric-card { height: auto; }
+}
+
+@media (max-width: 480px) {
+    .faq-title { font-size: 1.8rem; }
+    .faq-graphics-block { display: none; } /* Drop complex graphics overlap stack layers on mobile */
+    .accordion-trigger-header { padding: 1rem 1.2rem; font-size: 1rem; }
+    .accordion-content-panel { padding: 0 1.2rem; }
+}
+
+</style>
+
+<!-- Interactive 1-Line Call To Action Landmark -->
+<section class="single-line-cta-section">
+    <!-- Img tag layer acting as a deep parallax background asset -->
+    <img src="./Assests/seed pack.webp" alt="Vast sustainable green agricultural crop landscape fields background" class="sl-cta-bg-image">
+    <div class="sl-cta-overlay-tint"></div>
+
+    <div class="sl-cta-container">
+        
+        <!-- Left Side: High-Impact 1-Line Headline & Brief Detail -->
+        <div class="sl-cta-content-box">
+            <h2 class="sl-cta-headline">
+                Ready to transform your fields with <span class="sl-cta-glow-text">Smart Precision Automation?</span>
+            </h2>
+            <p class="sl-cta-subtext">Deploy secure sensor clusters across your soil layouts in minutes. No data engineering background required.</p>
+        </div>
+
+        <!-- Right Side: Action Trigger & Decorative Foreground Vector Image -->
+        <div class="sl-cta-action-box">
+            <a href="#contact" class="btn-sl-cta-action">Get Started Risk Free</a>
+            
+            <!-- Foreground Decorative Floating Vector Image Card -->
+       
+        </div>
+
+    </div>
+</section>
+<style>
+    /* --- COMPREHENSIVE 1-LINE CTA SECTION MASTER ARCHITECTURE --- */
+.single-line-cta-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: Matches required 50px top/bottom desktop profile */
+    padding: 50px 2rem;
+    background-color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Background Image Layer Rendering Pipeline Controls */
+.sl-cta-bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transform: scale(1.02);
+    filter: brightness(0.22) contrast(1.15); /* Darkens imagery to maximize text readability */
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.sl-cta-overlay-tint {
+    position: absolute;
+    inset: 0;
+    /* Rich nature forest green ambient shading pass */
+    background: linear-gradient(135deg, rgba(27, 94, 32, 0.85), rgba(0, 230, 118, 0.25));
+    z-index: 2;
+    pointer-events: none;
+}
+
+.sl-cta-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr; /* Spatial optimization grid layout rules */
+    gap: 3.5rem;
+    align-items: center;
+    z-index: 3;
+}
+
+/* --- LEFT SIDE: 1-LINE HEADLINE STYLE --- */
+.sl-cta-content-box {
+    width: 100%;
+}
+
+.sl-cta-headline {
+    font-size: 2.3rem; /* Spatially optimized for comfortable 1-line desktop scan flows */
+    font-weight: 900;
+    line-height: 1.3;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.sl-cta-glow-text {
+    color: var(--agri-glow);
+    text-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+    font-weight: 800;
+}
+
+.sl-cta-subtext {
+    font-size: 1.05rem;
+    color: var(--white);
+    opacity: 0.85;
+    font-weight: 500;
+}
+
+/* --- RIGHT SIDE: ACTIVE BUTTON ACTIONS & FLOATING VECTOR --- */
+.sl-cta-action-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    position: relative;
+    width: 100%;
+}
+
+.btn-sl-cta-action {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+    background-color: var(--agri-glow);
+    color: var(--text-dark);
+    padding: 1.1rem 1.8rem;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 1.05rem;
+    box-shadow: 0 5px 20px rgba(0, 230, 118, 0.35);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 4;
+}
+
+/* Foreground Floating Card Submodule Image Graphic Frame */
+.sl-cta-floating-badge {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    right: 20px;
+    top: -75px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    z-index: 5;
+    pointer-events: none; /* Allows mouse tracking to glide through onto action button layers */
+    animation: slCtaFloatMotion 4s ease-in-out infinite alternate;
+}
+
+.sl-cta-foreground-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- HOVER INTERACTION OVERRIDES --- */
+.single-line-cta-section:hover .sl-cta-bg-image {
+    transform: scale(1.04); /* Cinematic slow-zoom feedback on mouseenter */
+}
+
+.btn-sl-cta-action:hover {
+    background-color: var(--white);
+    color: var(--text-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4), 0 0 20px var(--agri-glow);
+}
+
+/* --- HARDWARE-ACCELERATED KEYFRAMES ANIMATIONS --- */
+@keyframes slCtaFloatMotion {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-10px) rotate(2.5deg); }
+}
+
+/* --- RESPONSIVE ENGINEERING MEDIA BREAKPOINTS --- */
+@media (max-width: 1200px) {
+    .sl-cta-headline { font-size: 2rem; }
+    .sl-cta-container { gap: 2rem; }
+    .sl-cta-floating-badge { width: 90px; height: 90px; top: -65px; }
+}
+
+@media (max-width: 992px) {
+    .single-line-cta-section {
+        /* SPECIFIED CONSTRAINT: Drops layout safe zones smoothly to 30px profiles on small devices */
+        padding: 30px 1.5rem;
+    }
+    .sl-cta-container {
+        grid-template-columns: 1fr; /* Force columns to break instantly into linear stack rows */
+        text-align: center;
+        gap: 2.5rem;
+    }
+    .sl-cta-action-box {
+        justify-content: center;
+    }
+    .btn-sl-cta-action {
+        margin: 0 auto;
+    }
+    .sl-cta-floating-badge {
+        display: none; /* Purge complex graphic decorative overlays on tablets to optimize runtime performance */
+    }
+}
+
+@media (max-width: 480px) {
+    .sl-cta-headline { font-size: 1.6rem; }
+    .btn-sl-cta-action {
+        width: 100%;
+        max-width: 100%; /* Expands buttons full-width across touchscreen aspect ratios */
+    }
+}
+
+</style>
+
+<script>
+        // --- PARALLAX POSITION SHIFTING LOGIC FOR 1-LINE CTA ---
+    const singleLineCta = document.querySelector(".single-line-cta-section");
+    const slCtaImage = document.querySelector(".sl-cta-bg-image");
+
+    if (singleLineCta && slCtaImage) {
+        window.addEventListener("scroll", () => {
+            const sectionRect = singleLineCta.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+
+            // Compute physics modifiers exclusively when elements exist inside active window boundaries
+            if (sectionRect.top < viewHeight && sectionRect.bottom > 0) {
+                const calculatedRatio = (viewHeight - sectionRect.top) / (viewHeight + sectionRect.height);
+                slCtaImage.style.transform = `scale(1.04) translateY(${(calculatedRatio * -20) + 10}px)`;
+            }
+        }, { passive: true });
+    }
+
+</script>
+
+<footer class="portfolio-footer">
+    
+    <!-- Unified Horizontal Content Layout Deck -->
+    <div class="footer-main-grid">
+        
+        <!-- BLOCK 1: Brand Info Column (Locked firmly into the far left corner) -->
+              <!-- BLOCK 1: Brand Info Column -->
+        <div class="footer-brand-column">
+            <a href="#" class="footer-brand" id="footer-logo-top" title="Scroll Back to Top">
+                <!-- Live Image Tag for Brand Logo Graphic Asset -->
+                <img src="./assests/photography portfolio logo.webp" alt="🌱 Stackly" class="footer-logo-img">
+            </a>
+            <p class="footer-brand-description">Connecting local field telemetry with advanced cloud data analytics to optimize crop health, conserve water assets, and maximize seasonal yields responsibly.</p>
+
+            <!-- Location metadata -->
+            <div class="footer-contact-address">
+                <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="location-vector">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <address class="address-text-wrapper">
+                    <strong>MMR Complex,</strong> Periyakollappatty, Chinna Thirupathi, Salem, Tamil Nadu 636008
+                </address>
+            </div>
+
+            <!-- MOVED: Social Media Links Row grouped directly below address under Stackly -->
+                       <!-- Highly Visible Social Vector Icons Group Routing to 404.html -->
+            <div class="footer-social-row">
+                <!-- Facebook Vector -->
+                <a href="404.html" class="social-icon-btn" aria-label="Facebook Profile Page">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.95z"/>
+                    </svg>
+                </a>
+                <!-- Instagram Vector -->
+                <a href="404.html" class="social-icon-btn" aria-label="Instagram Profile Page">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051c-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0 3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                    </svg>
+                </a>
+                <!-- Twitter/𝕏 Vector -->
+                <a href="404.html" class="social-icon-btn" aria-label="Twitter X Profile Page">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <!-- YouTube Vector -->
+                <a href="404.html" class="social-icon-btn" aria-label="YouTube Channel Page">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- BLOCK 2: Right-Shifted Operational Link Deck (Centered to Right Side) -->
+        <div class="footer-links-wrapper">
+            
+            <!-- Quick Links Column -->
+            <div class="footer-directory-col">
+                <h4 class="footer-headline">Quick Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="404.html">Shop Systems</a></li>
+                    <li><a href="404.html">New Arrivals</a></li>
+                    <li><a href="404.html">Tier Offers</a></li>
+                    <li><a href="404.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Support Hub Column -->
+            <div class="footer-directory-col">
+                <h4 class="footer-headline">Support Hub</h4>
+                <ul class="footer-links-list">
+                    <li><a href="404.html">Artisan Warranty</a></li>
+                    <li><a href="404.html">Easy Booking Portal</a></li>
+                    <li><a href="404.html">Help & FAQ Center</a></li>
+                    <li><a href="404.html">Press Resources</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter Dispatch Subscription Column -->
+            <div class="footer-directory-col subscribe-box-col">
+                <h4 class="footer-headline">The Canopy Dispatch</h4>
+                <p class="subscribe-text">Subscribe to unlock premium custom blueprint designs and private production launches.</p>
+                
+                <form id="footer-subscribe-form" class="subscribe-form-field">
+                    <input type="email" id="subscribe-email" placeholder="Enter your email..." aria-label="Email address for dispatch" autocomplete="off">
+                    <button type="submit" class="subscribe-submit-btn" aria-label="Submit subscribe field">
+                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="send-icon"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </form>
+                <p id="subscribe-error-msg" class="form-error-toast"></p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bottom Attribution Segment -->
+    <div class="footer-bottom-bar">
+        <p class="copyright-string">&copy; 2026 Stackly Industries. All rights reserved.</p>
+        
+        <div class="footer-legal-links">
+            <a href="404.html">Privacy Policy</a>
+            <a href="404.html">Terms of Service</a>
+            <a href="404.html">Cookie Management</a>
+        </div>
+
+        <button id="back-to-top-btn" class="scroll-top-trigger" aria-label="Scroll Back to Top">
+            <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-up-icon"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+        </button>
+    </div>
+</footer>
+
+<style>
+
+    /* --- LEFT SIDE ALIGNED SOCIAL VECTOR ROW --- */
+.footer-social-row {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-start;
+}
+
+.social-icon-btn {
+    text-decoration: none;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                background-color 0.3s ease, 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease;
+}
+
+/* Strict SVG dimensional scaling limits inside circular anchors */
+.social-icon-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: #9aa0a6; /* Premium readable contrast ash grey base */
+    transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+/* --- INTERACTIVE CURSOR HOVER EFFECTS --- */
+.social-icon-btn:hover {
+    background-color: #ffffff;
+    border-color: var(--agri-glow); /* Connects with active neon-green agricultural theme token */
+    transform: translateY(-3px); /* Subtle smooth upward bounce vector */
+    box-shadow: 0 0 12px var(--agri-glow); /* Casts a glowing perimeter around the container */
+}
+
+/* Swaps internal path color values to bright neon green on hover */
+.social-icon-btn:hover svg {
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 3px var(--agri-glow));
+}
+
+    /* --- BRAND LOGO IMAGE SPECIFIC CONTROLS --- */
+.footer-brand {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-brand:hover {
+    transform: scale(1.03); /* Subtle pop scaling on cursor interaction grids */
+}
+
+.footer-logo-img {
+    height: 42px;           /* Pinned height matching navigation header symmetry profiles */
+    width: auto;            /* Auto scales width natively to protect original aspect ratio */
+    object-fit: contain;    /* Completely prevents pixelated squishing across narrow screen states */
+    border-radius: 4px;
+    transition: filter 0.3s ease, box-shadow 0.3s ease;
+
+    /* High-contrast design rules to handle clean alternative text formatting if path drops out */
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+/* Bright green glowing illumination aura casting when hovered */
+.footer-brand:hover .footer-logo-img {
+    filter: drop-shadow(0 0 8px var(--agri-glow));
+}
+
+  /* --- PREMIUM HORIZONTAL AGRICULTURE FOOTER --- */
+.portfolio-footer {
+    position: relative;
+    width: 100%;
+    padding: 50px 2rem 25px 2rem;
+    background-color: #0f1115; /* Charcoal black footer base */
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* MASTER SPLIT GRID SYSTEM */
+.footer-main-grid {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr; 
+    gap: 5rem;
+    align-items: start;
+    padding-bottom: 3rem;
+}
+
+/* FAR LEFT BRAND COLUMN */
+.footer-brand-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.footer-brand {
+    text-decoration: none;
+    display: inline-flex;
+}
+
+.footer-digital-logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.footer-brand-description {
+    font-size: 0.95rem;
+    color: #9aa0a6;
+    line-height: 1.6;
+    margin: 1.25rem 0 1.75rem 0;
+    max-width: 380px;
+}
+
+.footer-contact-address {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: #9aa0a6;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 340px;
+    margin-bottom: 1.75rem; /* Space before social icons row */
+}
+
+.address-text-wrapper strong {
+    color: #ffffff;
+}
+
+.location-vector {
+    width: 18px;
+    height: 18px;
+    stroke: var(--agri-glow); /* Neon Green theme token */
+    filter: drop-shadow(0 0 3px var(--agri-glow));
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* LEFT SIDE ALIGNED SOCIAL ICONS ROW */
+.footer-social-row {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-start;
+}
+
+.social-icon-btn {
+    text-decoration: none;
+    width: 34px;
+    height: 34px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    color: #9aa0a6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.social-icon-btn:hover {
+    background-color: #ffffff;
+    color: #0f1115;
+    border-color: var(--agri-glow);
+    box-shadow: 0 0 10px var(--agri-glow);
+    transform: translateY(-3px);
+}
+
+/* CENTER TO RIGHT SUB-GRID HOLDER */
+.footer-links-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.3fr;
+    gap: 3rem;
+    width: 100%;
+}
+
+.footer-directory-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-headline {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.footer-headline::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 25px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.footer-links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.footer-links-list a {
+    text-decoration: none;
+    color: #9aa0a6;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+
+.footer-links-list a:hover {
+    color: var(--agri-glow);
+    padding-left: 4px;
+}
+
+/* Subscription Field Box */
+.subscribe-text {
+    font-size: 0.95rem;
+    color: #9aa0a6;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+}
+
+.subscribe-form-field {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.subscribe-form-field input {
+    width: 100%;
+    padding: 0.95rem 3.5rem 0.95rem 1.25rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    font-size: 0.95rem;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.subscribe-form-field input:focus {
+    outline: none;
+    border-color: var(--agri-glow);
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.25);
+}
+
+.subscribe-submit-btn {
+    position: absolute;
+    right: 6px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background-color: #f05454; /* Reference red button color code */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease;
+}
+
+.send-icon { width: 14px; height: 16px; stroke: #ffffff; }
+.subscribe-submit-btn:hover { background-color: #ff6b6b; transform: scale(1.05); }
+.form-error-toast { margin-top: 0.5rem; font-size: 0.85rem; color: #ffd600; display: none; }
+
+/* --- BOTTOM TRADEMARK BAR --- */
+.footer-bottom-bar {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright-string, .footer-legal-links a {
+    font-size: 0.85rem;
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.footer-legal-links { display: flex; gap: 2rem; }
+.footer-legal-links a:hover { color: #ffffff; }
+
+.scroll-top-trigger {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.arrow-up-icon { width: 16px; height: 16px; stroke: #ffffff; }
+
+/* --- RESPONSIVE MOBILE BREAKPOINTS --- */
+@media (max-width: 992px) {
+    .portfolio-footer { padding: 30px 1.5rem 20px 1.5rem; } 
+    .footer-main-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-brand-description, .footer-contact-address { max-width: 100%; }
+    .footer-links-wrapper { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .subscribe-box-col { grid-column: span 2; }
+}
+
+@media (max-width: 580px) {
+    .footer-links-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    .subscribe-box-col { grid-column: span 1; }
+    .footer-bottom-bar { flex-direction: column-reverse; gap: 1.25rem; text-align: center; }
+    .footer-legal-links { flex-direction: column; gap: 0.6rem; }
+}
+
+
+</style>
+
+<script>
+ document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- SMOOTH SCROLL BACK TO TOP ---
+    const logoBtn = document.getElementById("footer-logo-top");
+    const topBtn = document.getElementById("back-to-top-btn");
+
+    function smoothScrollTop(event) {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    if (logoBtn) logoBtn.addEventListener("click", smoothScrollTop);
+    if (topBtn) topBtn.addEventListener("click", smoothScrollTop);
+
+    // --- SUBSCRIPTION FORM ERROR VALIDATION ---
+    const form = document.getElementById("footer-subscribe-form");
+    const email = document.getElementById("subscribe-email");
+    const toast = document.getElementById("subscribe-error-msg");
+
+    if (form && email && toast) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (email.value.trim() === "") {
+                toast.style.display = "block";
+                toast.textContent = "⚠️ Please fill out the email field before transmitting!";
+                setTimeout(() => { toast.style.display = "none"; }, 4000);
+            } else {
+                toast.style.display = "none";
+                window.location.href = "404.html"; // Routes entries safely to target 404 resource
+            }
+        });
+    }
+});
+
+</script>
+</body>
+</html>
