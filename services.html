@@ -1,0 +1,3364 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Cultivating Innovation</title>
+    <!-- Link to the separate CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <!-- Dedicated Screen-Anchored Fixed Preloader Layer Mask -->
+<div class="preloader-screen-mask" id="global-preloader">
+    <div class="preload-wrapper">
+        <!-- SVG Vector Container -->
+        <div class="icon-container">
+            <div class="vector-ring"></div>
+            <svg class="sprout-svg" viewBox="0 0 24 24">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,5A1,1 0 0,1 13,6A1,1 0 0,1 12,7A1,1 0 0,1 11,6A1,1 0 0,1 12,5M12,18C10.5,18 9,17.2 8,16C9,14.5 10.5,13.5 12,13.5C13.5,13.5 15,14.5 16,16C15,17.2 13.5,18 12,18M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"/>
+            </svg>
+        </div>
+
+        <!-- Typography -->
+        <h1 class="brand-name">Stackly</h1>
+        <div class="brand-tagline">Smart Agriculture</div>
+
+        <!-- Loader Component -->
+        <div class="progress-box">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+            <span class="counter-text" id="counter-value">0%</span>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Link to the separate JavaScript file -->
+  <script>
+   document.addEventListener("DOMContentLoaded", () => {
+    const fill = document.getElementById("progress-fill");
+    const counter = document.getElementById("counter-value");
+    const mainHeader = document.querySelector(".main-header");
+    const heroSection = document.querySelector(".hero-section");
+    const preloaderScreen = document.getElementById("global-preloader"); // Target new layout wrapper mask
+
+    let count = 0;
+
+    const loaderInterval = setInterval(() => {
+        count += Math.floor(Math.random() * 4) + 2; 
+        
+        if (count >= 100) {
+            count = 100;
+            clearInterval(loaderInterval);
+            
+            setTimeout(() => {
+                // Fade out the entire overlay wrapper screen mask at once
+                if (preloaderScreen) {
+                    preloaderScreen.style.opacity = '0';
+                    preloaderScreen.style.pointerEvents = 'none';
+                    
+                    // Pull off DOM tree completely after transition animation finishes
+                    setTimeout(() => {
+                        preloaderScreen.style.display = 'none';
+                    }, 600);
+                }
+
+                // Unlock application components seamlessly into position
+                if (mainHeader) { mainHeader.classList.add("revealed"); }
+                if (heroSection) { heroSection.classList.add("revealed"); }
+            }, 400);
+        }
+        if (fill) fill.style.width = `${count}%`;
+        if (counter) counter.textContent = `${count}%`;
+    }, 80);
+
+    /* (Keep your remaining logo buttons and hamburger drawer logic completely unchanged below this point) */
+});
+
+  </script>
+
+<!-- Fixed Navigation Header -->
+<header class="main-header">
+    <div class="header-container">
+        
+        <!-- Left Side: Refreshable Brand Logo Container -->
+              <!-- Left Side: Refreshable Brand Logo Container -->
+        <div class="header-left">
+            <a href="#" class="logo-link" id="brand-logo-btn" title="Refresh Page">
+                <!-- Live Image Tag for Brand Logo Graphic Asset -->
+                <img src="https://placehold.co" alt="🌱 Stackly" class="brand-logo-img">
+            </a>
+        </div>
+
+
+        <!-- Center Space: Main Navigation Items (5 Menus) -->
+        <nav class="desktop-nav">
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="about.html" class="nav-item">About</a></li>
+                <li><a href="services.html" class="nav-item active">Services</a></li>
+                <li><a href="blog.html" class="nav-item">Blog</a></li>
+                <li><a href="contact.html" class="nav-item">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Right Side: Auth Button Control Layout -->
+        <div class="header-right">
+            <a href="login.html" class="btn-auth">Login</a>
+            
+            <!-- Mobile Hamburger Trigger Button (Visible only on smaller displays) -->
+            <button class="hamburger-btn" id="mobile-menu-trigger" aria-label="Open Navigation">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
+        </div>
+
+    </div>
+</header>
+
+<!-- Mobile Overlay Navigation Draw Menu (75% Responsive Profile Width) -->
+<div class="mobile-overlay-menu" id="mobile-drawer">
+    <!-- Explicit close button positioned inside the drawer layout itself -->
+    <button class="drawer-close-btn" id="mobile-menu-close" aria-label="Close Navigation">&times;</button>
+    
+    <ul class="mobile-nav-links">
+        <li><a href="index.html" class="mobile-nav-item">Home</a></li>
+        <li><a href="about.html" class="mobile-nav-item">About</a></li>
+        <li><a href="services.html" class="mobile-nav-item">Services</a></li>
+        <li><a href="blog.html" class="mobile-nav-item">Blog</a></li>
+        <li><a href="contact.html" class="mobile-nav-item">Contact</a></li>
+        <li><a href="login.html" class="mobile-nav-item mobile-btn-auth">Login</a></li>
+    </ul>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    // --- PRELOADER ANIMATION LOOP ---
+    const fill = document.getElementById("progress-fill");
+    const counter = document.getElementById("counter-value");
+    const mainHeader = document.querySelector(".main-header");
+    let count = 0;
+
+    const loaderInterval = setInterval(() => {
+        count += Math.floor(Math.random() * 4) + 2; 
+        
+        if (count >= 100) {
+            count = 100;
+            clearInterval(loaderInterval);
+            
+            setTimeout(() => {
+                const wrapper = document.querySelector('.preload-wrapper');
+                if (wrapper) {
+                    wrapper.style.opacity = '0';
+                    wrapper.style.transform = 'scale(0.9)';
+                    setTimeout(() => { wrapper.style.display = 'none'; }, 500);
+                }
+                // Reveal header after loading terminates cleanly
+                if (mainHeader) { mainHeader.classList.add("revealed"); }
+            }, 400);
+        }
+        if (fill) fill.style.width = `${count}%`;
+        if (counter) counter.textContent = `${count}%`;
+    }, 80);
+
+    // --- BRAND LOGO REFRESH ACTION ---
+    const logoBtn = document.getElementById("brand-logo-btn");
+    if (logoBtn) {
+        logoBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            window.location.reload();
+        });
+    }
+
+    // --- MOBILE DRAWER CLOSURE ENGINE ---
+    const openMenuBtn = document.getElementById("mobile-menu-trigger");
+    const closeMenuBtn = document.getElementById("mobile-menu-close");
+    const navDrawer = document.getElementById("mobile-drawer");
+    const bodyElement = document.body;
+    const mobileLinks = document.querySelectorAll(".mobile-nav-item");
+
+    // Action function to open drawer interface state parameters
+    function openMobileDrawer() {
+        navDrawer.classList.add("is-active");
+        bodyElement.classList.add("no-scroll");
+    }
+
+    // Action function to close drawer interface state parameters
+    function closeMobileDrawer() {
+        navDrawer.classList.remove("is-active");
+        bodyElement.classList.remove("no-scroll");
+    }
+
+    // Event bindings for standard trigger frameworks
+    if (openMenuBtn) { openMenuBtn.addEventListener("click", openMobileDrawer); }
+    if (closeMenuBtn) { closeMenuBtn.addEventListener("click", closeMobileDrawer); }
+
+    // Auto-closes mobile drawer layer whenever a navigation choice link is tapped
+    mobileLinks.forEach(link => {
+        link.addEventListener("click", closeMobileDrawer);
+    });
+});
+
+</script>
+
+<!-- Simple Clean Services Page Hero Section Landmark -->
+<section class="services-hero-section">
+    <!-- Visual background accent grid blur overlay pass -->
+    <div class="services-hero-blur-backdrop"></div>
+
+    <div class="services-hero-container">
+        
+        <!-- Left Side: Content Presentation & Action Triggers -->
+        <div class="services-hero-content">
+            <span class="services-hero-badge">
+                <svg class="srv-badge-vector" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A1.5,1.5 0 0,1 13.5,5.5A1.5,1.5 0 0,1 12,7A1.5,1.5 0 0,1 10.5,5.5A1.5,1.5 0 0,1 12,4M12,18C10.5,18 9,17.2 8,16C9,14.5 10.5,13.5 12,13.5C13.5,13.5 15,14.5 16,16C15,17.2 13.5,18 12,18M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"/></svg>
+                <span>Advanced Capabilities</span>
+            </span>
+            <h1 class="services-hero-title">Precision Infrastructure <br><span class="srv-glow-accent">As A Service</span></h1>
+            <p class="services-hero-description">Explore our full suite of automated agronomy services. From real-time telemetry node clustering to predictive microclimate forecasting, we deliver the tools needed to maximize yield densities across any field scale.</p>
+            
+            <div class="services-hero-cta-group">
+                <a href="#services-grid" class="btn-services-primary">View Solutions</a>
+                <a href="#contact" class="btn-services-secondary">Request Custom Audit</a>
+            </div>
+        </div>
+
+        <!-- Right Side: Layered Imagery Panel Grid -->
+        <div class="services-hero-media">
+            <div class="services-hero-graphics-wrapper">
+                <div class="services-hero-orb-aura"></div>
+                
+                <!-- Main Frame Image -->
+                <div class="services-hero-image-box srv-main-frame">
+                    <img src="./Assests/green infra.webp" alt="Sustainable modern farm field rows ecosystem" class="services-hero-img">
+                </div>
+
+                <!-- Floating Data Card Sub-Image Asset -->
+                <div class="services-hero-image-box srv-float-card">
+                    <img src="./Assests/dashboard analytics agri.webp" alt="Tablet reviewing cloud soil diagnostics analytics" class="services-hero-img">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* --- SERVICES HERO ARCHITECTURE --- */
+.services-hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 70vh;
+    /* SPECIFIED PADDING CONSTRAINT: 50px top/bottom desktop breathing safe zones */
+    padding: 150px 2rem;
+    background-color: var(--bg-bright); /* Inherits base bright light green canvas token */
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Ambient glow drop backdrop element behind the grid systems */
+.services-hero-blur-backdrop {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.05) 0%, transparent 70%);
+    right: -100px;
+    top: -100px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.services-hero-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr; /* Asymmetric balanced proportions allocation */
+    gap: 5rem;
+    align-items: center;
+    z-index: 2;
+}
+
+/* --- LEFT COLUMN: DETAILS PRESENTATION --- */
+.services-hero-content {
+    width: 100%;
+}
+
+.services-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(27, 94, 32, 0.06);
+    color: var(--text-dark);
+    padding: 0.45rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(27, 94, 32, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.srv-badge-vector {
+    width: 16px;
+    height: 16px;
+    fill: var(--text-dark);
+}
+
+.services-hero-title {
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-dark);
+    margin-bottom: 1.25rem;
+    letter-spacing: -1px;
+}
+
+.srv-glow-accent {
+    color: var(--text-dark);
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+/* Underlying theme color glow accent bar */
+.srv-glow-accent::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: var(--agri-glow);
+    z-index: -1;
+    opacity: 0.6;
+    border-radius: 4px;
+    box-shadow: 0 0 12px var(--agri-glow);
+}
+
+.services-hero-description {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    opacity: 0.85;
+    line-height: 1.65;
+    margin-bottom: 2.2rem;
+    max-width: 640px;
+}
+
+/* Call-to-Action Group */
+.services-hero-cta-group {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+.btn-services-primary {
+    text-decoration: none;
+    background-color: var(--text-dark);
+    color: var(--white);
+    padding: 0.95rem 2.2rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.15);
+}
+
+.btn-services-primary:hover {
+    background-color: var(--agri-glow);
+    color: var(--text-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0, 230, 118, 0.45); /* Bright theme glow drops */
+}
+
+.btn-services-secondary {
+    text-decoration: none;
+    color: var(--text-dark);
+    background-color: transparent;
+    padding: 0.95rem 2.2rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    border: 2px solid var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+.btn-services-secondary:hover {
+    background-color: rgba(27, 94, 32, 0.04);
+    border-color: var(--agri-glow);
+    transform: translateY(-2px);
+}
+
+/* --- RIGHT COLUMN: LAYERED GRAPHICS DISPLAY --- */
+.services-hero-media {
+    width: 100%;
+}
+
+.services-hero-graphics-wrapper {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.services-hero-orb-aura {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.2) 0%, transparent 70%);
+    filter: blur(35px);
+    z-index: 1;
+    animation: srvOrbMotion 6s ease-in-out infinite alternate;
+}
+
+.services-hero-image-box {
+    position: absolute;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(27, 94, 32, 0.08);
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.services-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.srv-main-frame {
+    width: 76%;
+    height: 340px;
+    left: 0;
+    top: 20px;
+    z-index: 2;
+}
+
+.srv-float-card {
+    width: 48%;
+    height: 200px;
+    right: 0;
+    bottom: 20px;
+    z-index: 3;
+    animation: srvCardBounce 4s ease-in-out infinite alternate;
+}
+
+/* Interactive Card Glow and Scale Transformations on Hover */
+.services-hero-image-box:hover {
+    transform: scale(1.04) translateY(-6px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 22px 45px rgba(0, 230, 118, 0.35);
+    z-index: 4; /* Floats active target cleanly over adjoining elements */
+}
+
+/* --- HARDWARE-ACCELERATED KEYFRAMES ANIMATIONS --- */
+@keyframes srvCardBounce { 0% { transform: translateY(0); } 100% { transform: translateY(-12px); } }
+@keyframes srvOrbMotion { 0% { transform: translate(0) scale(1); } 100% { transform: translate(10px, -5px) scale(1.1); } }
+
+/* --- RESPONSIVE ENGINEERING VIEWPORT BREAKPOINTS --- */
+@media (max-width: 1200px) {
+    .services-hero-title { font-size: 2.8rem; }
+    .services-hero-container { gap: 3rem; }
+}
+
+@media (max-width: 992px) {
+    .services-hero-section {
+        /* SPECIFIED CONSTRAINT: Gracefully collapses layout padding cushions directly down to 30px rules */
+        padding: 30px 1.5rem;
+    }
+    .services-hero-container {
+        grid-template-columns: 1fr; /* Toggle layout columns into uniform linear stacks */
+        text-align: center;
+        gap: 3.5rem;
+    }
+    .services-hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .services-hero-description { margin-left: auto; margin-right: auto; }
+    .services-hero-graphics-wrapper {
+        height: 360px;
+        max-width: 550px;
+        margin: 0 auto;
+    }
+    .srv-main-frame { height: 300px; }
+    .srv-float-card { height: 170px; }
+}
+
+@media (max-width: 480px) {
+    .services-hero-title { font-size: 2.1rem; }
+    .services-hero-graphics-wrapper { height: 260px; }
+    .srv-main-frame { height: 220px; left: 0; }
+    .srv-float-card { height: 120px; right: 0; bottom: 10px; }
+    .services-hero-cta-group {
+        flex-direction: column; /* Stacks primary and secondary buttons cleanly on mobile touch viewports */
+        width: 100%;
+        gap: 1rem;
+    }
+    .btn-services-primary, .btn-services-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+</style>
+
+<!-- Creative Operational Pipeline Landmark Section -->
+<section id="pipeline" class="pipeline-section">
+    <!-- Deep vector geometric background contour line layer -->
+    <div class="pipeline-bg-grid-texture"></div>
+
+    <div class="pipeline-container">
+        
+        <!-- Section Header Text Layer -->
+        <div class="pipeline-header">
+            <span class="pipeline-badge">⚙️ Service Integration</span>
+            <h2 class="pipeline-title">From Telemetry to Automation</h2>
+            <p class="pipeline-subtitle">Explore how Stackly transforms raw ground physics into automated field assets through our three-tier integration blueprint cycle.</p>
+        </div>
+
+        <!-- Horizontal Connected Pipeline Cards Map Track -->
+        <div class="pipeline-flow-track">
+            
+            <!-- Step 1: Analytics Scan -->
+            <div class="pipeline-glow-card">
+                <div class="pipeline-num-marker">01</div>
+                <div class="pipeline-media-box">
+                    <img src="./Assests/tractor.webp" alt="Telemetry mapping sensors scanning subsurface clay grounds" class="pipeline-card-img">
+                    <div class="pipeline-card-glow-aura"></div>
+                </div>
+                <div class="pipeline-body">
+                    <div class="pipeline-vector-shield">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A1.5,1.5 0 0,1 13.5,5.5A1.5,1.5 0 0,1 12,7A1.5,1.5 0 0,1 10.5,5.5A1.5,1.5 0 0,1 12,4M12,18C10.5,18 9,17.2 8,16C9,14.5 10.5,13.5 12,13.5C13.5,13.5 15,14.5 16,16C15,17.2 13.5,18 12,18M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"/>
+                        </svg>
+                    </div>
+                    <h3>Topographical Auditing</h3>
+                    <p>Our agronomists execute full core surveys, mapping existing alkali baselines and drainage block constraints across your fields.</p>
+                </div>
+            </div>
+
+            <!-- Step 2: Mesh Deployment -->
+            <div class="pipeline-glow-card">
+                <div class="pipeline-num-marker">02</div>
+                <div class="pipeline-media-box">
+                    <img src="./Assests/IoT.webp" alt="Securely sinking IoT node hardware spikes into crop roots" class="pipeline-card-img">
+                    <div class="pipeline-card-glow-aura"></div>
+                </div>
+                <div class="pipeline-body">
+                    <div class="pipeline-vector-shield">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M21,2H3A2,2 0 0,0 1,4V20A2,2 0 0,0 3,22H21A2,2 0 0,0 23,20V4A2,2 0 0,0 21,2M21,7H3V4H21V7M21,11H3V9H21V11M21,20H3V13H21V20Z"/>
+                        </svg>
+                    </div>
+                    <h3>Grid Instrumentation</h3>
+                    <p>We install pre-calibrated carbon-spike hardware nodes, linking them into an offline radio frequency network across all acreage.</p>
+                </div>
+            </div>
+
+            <!-- Step 3: Closed-Loop Automation -->
+            <div class="pipeline-glow-card">
+                <div class="pipeline-num-marker">03</div>
+                <div class="pipeline-media-box">
+                    <img src="./Assests/Irrigation.webp" alt="Autonomous computer vision irrigation valve systems running online" class="pipeline-card-img">
+                    <div class="pipeline-card-glow-aura"></div>
+                </div>
+                <div class="pipeline-body">
+                    <div class="pipeline-vector-shield">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+                        </svg>
+                    </div>
+                    <h3>Ecosystem Automation</h3>
+                    <p>Telemetry data is routed to cloud servers, driving smart water valve switches and monitoring crop health parameters autonomously.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* --- CREATIVE PIPELINE MASTER ARCHITECTURE --- */
+.pipeline-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: 50px top/bottom desktop breathing safe zones */
+    padding: 50px 2rem;
+    background-color: #ffffff; /* Contrast alternating background canvas layer */
+    overflow: hidden;
+}
+
+.pipeline-bg-grid-texture {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 50% 10%, rgba(0, 230, 118, 0.03) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.pipeline-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+/* --- SECTION TYPOGRAPHY HEADERS --- */
+.pipeline-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem auto;
+}
+
+.pipeline-badge {
+    display: inline-block;
+    background-color: var(--bg-bright);
+    color: var(--text-dark);
+    padding: 0.4rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(27, 94, 32, 0.1);
+}
+
+.pipeline-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.pipeline-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* --- PIPELINE DYNAMIC TRACK SYSTEM --- */
+.pipeline-flow-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 connected step vectors across display lines */
+    gap: 2.5rem;
+    position: relative;
+}
+
+.pipeline-glow-card {
+    background-color: var(--bg-bright);
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(27, 94, 32, 0.03);
+    box-shadow: 0 10px 30px rgba(27, 94, 32, 0.02);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                border-color 0.4s ease, 
+                background-color 0.3s ease;
+}
+
+/* Creative numeric index indicators background layer */
+.pipeline-num-marker {
+    position: absolute;
+    top: -15px;
+    right: 15px;
+    font-size: 5.5rem;
+    font-weight: 900;
+    color: var(--text-dark);
+    opacity: 0.05;
+    line-height: 1;
+    z-index: 1;
+    user-select: none;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+/* Image framing box context */
+.pipeline-media-box {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.pipeline-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pipeline-card-glow-aura {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 230, 118, 0.25) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Card Body Content Layout Blocks */
+.pipeline-body {
+    padding: 2rem;
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Vector positioning and sizing settings */
+.pipeline-vector-shield {
+    width: 46px;
+    height: 46px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 4px 15px rgba(27, 94, 32, 0.03);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.pipeline-vector-shield svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-dark);
+    transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+.pipeline-body h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.pipeline-body p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.75;
+    line-height: 1.55;
+}
+
+/* --- INTERACTIVE HOVER & NEON GLOW ENGINE --- */
+.pipeline-glow-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--agri-glow);
+    background-color: #ffffff;
+    /* Project vivid neon green bounding aura shadows on cursor interactions */
+    box-shadow: 0 20px 45px rgba(0, 230, 118, 0.25);
+}
+
+.pipeline-glow-card:hover .pipeline-card-img {
+    transform: scale(1.05); /* Hardware-accelerated dynamic image zoom */
+}
+
+.pipeline-glow-card:hover .pipeline-card-glow-aura {
+    opacity: 1;
+}
+
+.pipeline-glow-card:hover .pipeline-num-marker {
+    opacity: 0.12;
+    color: var(--agri-glow);
+}
+
+/* Elevate and toggle operational process vectors color tokens */
+.pipeline-glow-card:hover .pipeline-vector-shield {
+    background-color: var(--text-dark);
+    transform: scale(1.05);
+}
+
+.pipeline-glow-card:hover .pipeline-vector-shield svg {
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 4px var(--agri-glow));
+}
+
+.pipeline-glow-card:hover .pipeline-body h3 {
+    color: var(--agri-glow);
+}
+
+/* --- HIGH-PERFORMANCE RESPONSIVE VIEWPORT BREAKPOINTS --- */
+@media (max-width: 1100px) {
+    .pipeline-flow-track { gap: 1.5rem; }
+    .pipeline-title { font-size: 2.2rem; }
+}
+
+@media (max-width: 992px) {
+    .pipeline-section {
+        /* SPECIFIED CONSTRAINT: Drops layout safe zones smoothly to 30px profiles on small devices */
+        padding: 30px 1.5rem;
+    }
+    .pipeline-flow-track {
+        grid-template-columns: 1fr; /* Drop asymmetric configurations into stacked grids */
+        gap: 2.5rem;
+    }
+    .pipeline-glow-card { max-width: 580px; width: 100%; margin: 0 auto; }
+}
+
+@media (max-width: 480px) {
+    .pipeline-title { font-size: 1.8rem; }
+    .pipeline-media-box { height: 160px; }
+    .pipeline-body { padding: 1.5rem; }
+}
+
+</style>
+
+<!-- Interactive Services Matrix Landmark Section -->
+<section id="services-matrix" class="matrix-section">
+    <!-- Subtle environment background layer acting as a deep overlay texture pass -->
+    <div class="matrix-bg-contour-pattern"></div>
+
+    <div class="matrix-container">
+        
+        <!-- Section Header Text Layer -->
+        <div class="matrix-header">
+            <span class="matrix-badge">📊 Capability Matrix</span>
+            <h2 class="matrix-title">Compare Integration Packages</h2>
+            <p class="matrix-subtitle">Review the granular data checkpoints, sensor telemetry boundaries, and automation payloads provided across our service infrastructure tiers.</p>
+        </div>
+
+        <!-- Asymmetrical Two-Column Matrix Layout Grid -->
+        <div class="matrix-layout-grid">
+            
+            <!-- Left Side: Interactive High-Glow Visual Asset Card -->
+            <div class="matrix-visual-column">
+                <div class="matrix-glow-image-card">
+                    <img src="./Assests/seed.webp" alt="Farmer checking smart soil diagnostic sensor instrumentation data" class="matrix-card-img">
+                    <div class="matrix-image-overlay-glow"></div>
+                    <div class="matrix-floating-stat-box">
+                        <div class="matrix-stat-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6H13V12H11V6M11,14H13V16H11V14Z"/></svg>
+                        </div>
+                        <div>
+                            <h4>Real-Time Analytics</h4>
+                            <p>Data refreshing every 15 seconds safely.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Clean Structured Technical Comparison Grid -->
+            <div class="matrix-table-column">
+                <div class="matrix-table-box">
+                    
+                    <!-- Table Header Row -->
+                    <div class="matrix-table-row table-header-row">
+                        <div class="matrix-cell cell-feature">Core Deliverables</div>
+                        <div class="matrix-cell cell-tier">Pilot</div>
+                        <div class="matrix-cell cell-tier tier-highlight">Acreage Pro</div>
+                    </div>
+
+                    <!-- Row 1 -->
+                    <div class="matrix-table-row">
+                        <div class="matrix-cell cell-feature">Ground Moisture Telemetry</div>
+                        <div class="matrix-cell cell-tier">
+                            <svg class="matrix-check-vector" viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>
+                        </div>
+                        <div class="matrix-cell cell-tier tier-highlight">
+                            <svg class="matrix-check-vector active-glow" viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="matrix-table-row">
+                        <div class="matrix-cell cell-feature">Subsurface Alkali Diagnostics</div>
+                        <div class="matrix-cell cell-tier">─</div>
+                        <div class="matrix-cell cell-tier tier-highlight">
+                            <svg class="matrix-check-vector active-glow" viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="matrix-table-row">
+                        <div class="matrix-cell cell-feature">Automated Valve Control APIs</div>
+                        <div class="matrix-cell cell-tier">─</div>
+                        <div class="matrix-cell cell-tier tier-highlight">
+                            <svg class="matrix-check-vector active-glow" viewBox="0 0 24 24"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- Row 4 -->
+                    <div class="matrix-table-row">
+                        <div class="matrix-cell cell-feature">96-Hour Predictive Weather AI</div>
+                        <div class="matrix-cell cell-tier">Basic</div>
+                        <div class="matrix-cell cell-tier tier-highlight">Advanced</div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* --- SERVICES MATRIX SECTION MASTER ARCHITECTURE --- */
+.matrix-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: Matches requested 50px top/bottom desktop breathing safe zones */
+    padding: 50px 2rem;
+    background-color: var(--bg-bright); /* Alternates clean canvas backdrop layers smoothly */
+    overflow: hidden;
+}
+
+.matrix-bg-contour-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 90% 50%, rgba(0, 230, 118, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.matrix-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+/* --- SECTION TYPOGRAPHY HEADERS --- */
+.matrix-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3.5rem auto;
+}
+
+.matrix-badge {
+    display: inline-block;
+    background-color: rgba(27, 94, 32, 0.08);
+    color: var(--text-dark);
+    padding: 0.4rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(27, 94, 32, 0.1);
+}
+
+.matrix-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.matrix-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* --- ASYMMETRIC GRID ENGINE --- */
+.matrix-layout-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr; /* Dynamic asymmetric column split */
+    gap: 4rem;
+    align-items: center;
+}
+
+/* --- LEFT COLUMN: IMAGE DISPLAY PANELS --- */
+.matrix-visual-column { width: 100%; }
+
+.matrix-glow-image-card {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    height: 380px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(27, 94, 32, 0.06);
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+}
+
+.matrix-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.matrix-image-overlay-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 230, 118, 0.15) 0%, transparent 80%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+/* Floating interactive stat widget submodule overlay */
+.matrix-floating-stat-box {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    background-color: #ffffff;
+    padding: 1.2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 3;
+    animation: matrixFloatBounce 4s ease-in-out infinite alternate;
+}
+
+.matrix-stat-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-bright);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.matrix-stat-icon svg { width: 22px; height: 22px; fill: var(--text-dark); }
+.matrix-floating-stat-box h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.15rem; }
+.matrix-floating-stat-box p { font-size: 0.85rem; color: var(--text-dark); opacity: 0.7; line-height: 1.3; }
+
+/* Interactive Hover Visual Effects */
+.matrix-glow-image-card:hover {
+    transform: scale(1.02) translateY(-6px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 20px 40px rgba(0, 230, 118, 0.28);
+}
+.matrix-glow-image-card:hover .matrix-card-img { transform: scale(1.04); }
+.matrix-glow-image-card:hover .matrix-image-overlay-glow { opacity: 1; }
+
+/* --- RIGHT COLUMN: TECHNICAL COMPARISON TABLE --- */
+.matrix-table-column { width: 100%; }
+
+.matrix-table-box {
+    background-color: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(27, 94, 32, 0.03);
+    border: 1px solid rgba(27, 94, 32, 0.05);
+}
+
+.matrix-table-row {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr; /* Rigid clean columns mapping */
+    align-items: center;
+    border-bottom: 1px solid rgba(27, 94, 32, 0.06);
+    transition: background-color 0.3s ease;
+}
+
+.matrix-table-row:last-child { border-bottom: none; }
+
+.matrix-cell {
+    padding: 1.25rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* Feature column locks text left, tier columns lock alignments center */
+.cell-feature { text-align: left; }
+.cell-tier { text-align: center; display: flex; justify-content: center; align-items: center; }
+
+/* Table Header Styles */
+.table-header-row {
+    background-color: var(--text-dark);
+}
+.table-header-row .matrix-cell {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+/* Highlighted Column Styles for "Acreage Pro" package */
+.cell-tier.tier-highlight {
+    background-color: rgba(0, 230, 118, 0.03);
+    font-weight: 700;
+}
+
+/* Vector check alignment sizes */
+.matrix-check-vector {
+    width: 20px;
+    height: 20px;
+    fill: var(--text-dark);
+    opacity: 0.6;
+    transition: fill 0.3s ease, filter 0.3s ease, opacity 0.3s ease;
+}
+
+.matrix-check-vector.active-glow {
+    fill: var(--text-dark);
+    opacity: 1;
+}
+
+/* --- HOVER INTERACTION & GLOW FEEDBACK ENGINE --- */
+.matrix-table-row:not(.table-header-row):hover {
+    background-color: rgba(0, 230, 118, 0.05);
+}
+
+.matrix-table-row:hover .matrix-check-vector.active-glow {
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 3px var(--agri-glow));
+}
+
+/* --- HARDWARE-ACCELERATED KEYFRAMES --- */
+@keyframes matrixFloatBounce { 0% { transform: translateY(0); } 100% { transform: translateY(-8px); } }
+
+/* --- HIGH-PERFORMANCE RESPONSIVE VIEWPORT BREAKPOINTS --- */
+@media (max-width: 1200px) {
+    .matrix-title { font-size: 2.1rem; }
+    .matrix-layout-grid { gap: 2.5rem; }
+}
+
+@media (max-width: 992px) {
+    .matrix-section {
+        /* SPECIFIED CONSTRAINT: Drops layout safe zones smoothly to 30px profiles on small devices */
+        padding: 30px 1.5rem;
+    }
+    .matrix-layout-grid {
+        grid-template-columns: 1fr; /* Collapse fields into single column tracks layout stacks */
+        gap: 3.5rem;
+    }
+    .matrix-visual-column { max-width: 520px; margin: 0 auto; }
+    .matrix-glow-image-card { height: 320px; }
+}
+
+@media (max-width: 540px) {
+    .matrix-cell { padding: 1rem 0.75rem; font-size: 0.85rem; }
+    .table-header-row .matrix-cell { font-size: 0.9rem; }
+    .matrix-floating-stat-box { display: none; } /* Pull off complex overlay panels on extra-narrow displays */
+}
+
+</style>
+
+<!-- Interactive Onboarding & System Setup Landmark Section -->
+<section id="onboarding" class="onboard-section">
+    <!-- Overlay layout layer acting as a deep geometric field background mesh -->
+    <div class="onboard-bg-mesh-grid"></div>
+
+    <div class="onboard-container">
+        
+        <!-- Left Side: Content Presentation & Progress Checkpoint Track -->
+        <div class="onboard-content">
+            <span class="onboard-badge">🚀 Immediate Deployment</span>
+            <h2 class="onboard-title">Activate Your Grid In Three Simple Steps</h2>
+            <p class="onboard-text">
+                Deploying smart agriculture nodes should not require complex programming or manual system updates. Our synchronized pipeline ensures that your acreage transitions into a real-time data tracking engine instantly.
+            </p>
+
+            <!-- Onboarding Step List with Custom Theme Icons -->
+            <div class="onboard-steps-stack">
+                
+                <!-- Step 1 Card -->
+                <div class="onboard-glow-card">
+                    <div class="onboard-vector-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A1.5,1.5 0 0,1 13.5,5.5A1.5,1.5 0 0,1 12,7A1.5,1.5 0 0,1 10.5,5.5A1.5,1.5 0 0,1 12,4M12,18C10.5,18 9,17.2 8,16C9,14.5 10.5,13.5 12,13.5C13.5,13.5 15,14.5 16,16C15,17.2 13.5,18 12,18M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"/>
+                        </svg>
+                    </div>
+                    <div class="onboard-text-wrapper">
+                        <h3>1. Register Field Nodes</h3>
+                        <p>Scan the unique vector QR code printed on your ground spike instrument container. This links the hardware directly to your cloud infrastructure profile in seconds.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 Card -->
+                <div class="onboard-glow-card">
+                    <div class="onboard-vector-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19,3H5C3.89,3 3,3.89 3,5V19C3,20.11 3.89,21 5,21H19C20.11,21 21,20.11 21,19V5C21,3.89 20.11,3 19,3M19,19H5V5H19V19M11,7H13V9H11V7M11,11H13V17H11V11Z"/>
+                        </svg>
+                    </div>
+                    <div class="onboard-text-wrapper">
+                        <h3>2. Ground Spike Placement</h3>
+                        <p>Sink the structural carbon-spikes directly into target soil sectors. The internal micro-solar panels automatically power up and connect to adjacent mesh trackers.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 Card -->
+                
+
+            </div>
+        </div>
+
+        <!-- Right Side: Interactive Layered Imagery Panels with Glow Foundations -->
+        <div class="onboard-graphics">
+            <div class="onboard-aura-orb"></div>
+            
+            <!-- Main Corporate Blueprint Image Frame -->
+            <div class="onboard-image-card primary-onboard-frame">
+                <img src="./Assests/soil nutrition.webp" alt="Farmer holding tablet displaying crop data summaries in greenhouse field" class="onboard-img">
+            </div>
+
+            <!-- Floating Dynamic Sub-Card Sensor Image Asset -->
+            <div class="onboard-image-card secondary-onboard-frame">
+                <img src="./Assests/tractor 1.webp" alt="Close-up of smart soil diagnostic sensory hardware tools" class="onboard-img">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* --- CREATIVE ONBOARDING SECTION MASTER ARCHITECTURE --- */
+.onboard-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: 50px top/bottom desktop breathing safe zones */
+    padding: 50px 2rem;
+    background-color: #ffffff; /* Clean alternating contrast canvas backdrop layer */
+    overflow: hidden;
+}
+
+.onboard-bg-mesh-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 10% 90%, rgba(0, 230, 118, 0.02) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.onboard-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr; /* Dynamic asymmetric horizontal split layout weights */
+    gap: 5rem;
+    align-items: center;
+    z-index: 2;
+}
+
+/* --- LEFT COLUMN: TYPOGRAPHY & INTERACTIVE ACCORDION STEP CARDS --- */
+.onboard-content {
+    width: 100%;
+}
+
+.onboard-badge {
+    display: inline-block;
+    background-color: var(--bg-bright);
+    color: var(--text-dark);
+    padding: 0.4rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(27, 94, 32, 0.1);
+}
+
+.onboard-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-dark);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.5px;
+}
+
+.onboard-text {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Vertical Checkpoint Stack */
+.onboard-steps-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.onboard-glow-card {
+    background-color: var(--bg-bright);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(27, 94, 32, 0.03);
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.onboard-vector-icon {
+    width: 44px;
+    height: 44px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.02);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.onboard-vector-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-dark);
+    transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+.onboard-text-wrapper h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.35rem;
+    transition: color 0.3s ease;
+}
+
+.onboard-text-wrapper p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.75;
+    line-height: 1.55;
+}
+
+/* --- INTERACTIVE HOVER & NEON GLOW ENGINE --- */
+.onboard-glow-card:hover {
+    transform: translateY(-4px);
+    background-color: #ffffff;
+    border-color: var(--agri-glow);
+    /* Cast neon green perimeter lighting lines bounding glows */
+    box-shadow: 0 12px 30px rgba(0, 230, 118, 0.22);
+}
+
+.onboard-glow-card:hover .onboard-vector-icon {
+    background-color: var(--text-dark);
+    transform: scale(1.05);
+}
+
+.onboard-glow-card:hover .onboard-vector-icon svg {
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 3px var(--agri-glow));
+}
+
+.onboard-glow-card:hover .onboard-text-wrapper h3 {
+    color: var(--agri-glow);
+}
+
+/* --- RIGHT COLUMN: LAYERED PORTFOLIO IMAGERY --- */
+.onboard-graphics {
+    position: relative;
+    width: 100%;
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ambient glow orb backdrop behind the picture frames */
+.onboard-aura-orb {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.22) 0%, transparent 70%);
+    filter: blur(40px);
+    z-index: 1;
+    animation: onboardOrbMotion 6s ease-in-out infinite alternate;
+}
+
+.onboard-image-card {
+    position: absolute;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(27, 94, 32, 0.08);
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.onboard-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.primary-onboard-frame {
+    width: 74%;
+    height: 380px;
+    left: 10px;
+    top: 20px;
+    z-index: 2;
+}
+
+.secondary-onboard-frame {
+    width: 46%;
+    height: 220px;
+    right: 10px;
+    bottom: 20px;
+    z-index: 3;
+    animation: onboardCardBounce 4s ease-in-out infinite alternate;
+}
+
+/* Interactive Image Card Glow and Scale Transformations on Hover */
+.onboard-image-card:hover {
+    transform: scale(1.04) translateY(-6px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 22px 45px rgba(0, 230, 118, 0.35);
+    z-index: 4; /* Floats active target cleanly over adjoining elements */
+}
+
+/* --- HARDWARE-ACCELERATED KEYFRAMES ANIMATIONS --- */
+@keyframes onboardCardBounce { 0% { transform: translateY(0); } 100% { transform: translateY(-12px); } }
+@keyframes onboardOrbMotion { 0% { transform: translate(0) scale(1); } 100% { transform: translate(12px, -6px) scale(1.1); } }
+
+/* --- HIGH-PERFORMANCE RESPONSIVE VIEWPORT BREAKPOINTS --- */
+@media (max-width: 1200px) {
+    .onboard-title { font-size: 2.1rem; }
+    .onboard-container { gap: 3rem; }
+}
+
+@media (max-width: 992px) {
+    .onboard-section {
+        /* CRITICAL REQUIREMENT: Gracefully collapses vertical cushions down to tight 30px bounds */
+        padding: 30px 1.5rem;
+    }
+    .onboard-container {
+        grid-template-columns: 1fr; /* Switch directly into stacked single grid configurations */
+        gap: 3.5rem;
+    }
+    .onboard-graphics {
+        height: 380px;
+        max-width: 550px;
+        margin: 0 auto;
+    }
+    .primary-onboard-frame { height: 320px; }
+    .secondary-onboard-frame { height: 180px; }
+}
+
+@media (max-width: 480px) {
+    .onboard-title { font-size: 1.8rem; }
+    .onboard-graphics { display: none; } /* Drop complex graphics overlay stack layers on mobile touch viewports */
+    .onboard-glow-card { padding: 1.25rem; gap: 1rem; }
+}
+
+</style>
+
+<section class="cta-section">
+    <!-- Img tag layer acting as a deep parallax background framework -->
+    <img src="./Assests/green infra.webp" alt="Vast bright green agricultural crop landscape fields background" class="cta-bg-image-layer">
+    <div class="cta-overlay-tint"></div>
+
+    <div class="cta-container">
+        
+        <!-- Left Structural Column: Clean 2-Line Headline Block -->
+        <div class="cta-content-column">
+            <h2 class="cta-headline">
+                Ready to Automate Your Harvest Fields? <br>
+                <span class="cta-glow-subtext">Join Over 5,000+ Modern Digital Farmers Today.</span>
+            </h2>
+            <p class="cta-description">Deploy secure sensor clusters across your soil layouts in minutes. No complex programming or data engineering background required.</p>
+        </div>
+
+        <!-- Right Structural Column: Interactive Action Trigger & Foreground Graphics -->
+        <div class="cta-action-column">
+            <div class="cta-button-glow-wrapper">
+                <a href="#contact" class="btn-cta-action">Get Started Risk Free</a>
+            </div>
+            
+            <!-- Foreground Decorative Floating Vector Image Card -->
+            <div class="cta-floating-image-wrapper">
+                <img src="./Assests/mobile sensor.webp" alt="Stackly secure mobile sensor dashboard tracking" class="cta-foreground-img">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* --- COMPREHENSIVE CTA SECTION MASTER ARCHITECTURE --- */
+.cta-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED CONSTRAINT: 50px top/bottom desktop breathing safe zones */
+    padding: 50px 2rem;
+    background-color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Background Image Layer Rendering Pipeline Controls */
+.cta-bg-image-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transform: scale(1.02);
+    filter: brightness(0.25) contrast(1.1); /* Darkens background graphics to protect content readability */
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta-overlay-tint {
+    position: absolute;
+    inset: 0;
+    /* Soft nature green ambient shading pass */
+    background: linear-gradient(135deg, rgba(27, 94, 32, 0.85), rgba(0, 230, 118, 0.2));
+    z-index: 2;
+    pointer-events: none;
+}
+
+.cta-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Balanced distribution giving priority to the text stream */
+    gap: 4rem;
+    align-items: center;
+    z-index: 3;
+}
+
+/* --- LEFT COLUMN: 2-LINE HEADLINE ENGINE --- */
+.cta-content-column {
+    width: 100%;
+}
+
+.cta-headline {
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1.25;
+    color: var(--white);
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.cta-glow-subtext {
+    color: var(--agri-glow);
+    text-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+    font-weight: 800;
+    display: inline-block;
+}
+
+.cta-description {
+    font-size: 1.1rem;
+    color: var(--white);
+    opacity: 0.85;
+    line-height: 1.6;
+    max-width: 680px;
+}
+
+/* --- RIGHT COLUMN: ACTIVE ACTION BUTTONS & FOREGROUND GRAPHICS --- */
+.cta-action-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    position: relative;
+    width: 100%;
+}
+
+/* Pulsing ambient neon field backdrop behind button */
+.cta-button-glow-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.btn-cta-action {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    background-color: var(--agri-glow);
+    color: var(--text-dark);
+    padding: 1.1rem 2rem;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 20px rgba(0, 230, 118, 0.4);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Foreground Floating Card Submodule Image Graphic Frame */
+.cta-floating-image-wrapper {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    right: -20px;
+    top: -90px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    z-index: 5;
+    pointer-events: none; /* Allows cursor inputs to drop down straight onto button paths */
+    animation: ctaFloatMotion 4s ease-in-out infinite alternate;
+}
+
+.cta-foreground-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- HOVER INTERACTION OVERRIDES --- */
+.cta-section:hover .cta-bg-image-layer {
+    transform: scale(1.05); /* Soft, cinematic zoom reaction when working the container layout space */
+}
+
+.btn-cta-action:hover {
+    background-color: var(--white);
+    color: var(--text-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.5), 0 0 25px var(--agri-glow);
+}
+
+/* --- HARDWARE-ACCELERATED KEYFRAMES ANIMATIONS --- */
+@keyframes ctaFloatMotion {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-12px) rotate(2deg); }
+}
+
+/* --- RIGID RESPONSIVE BREAKPOINT INTERPOLATION LAYERS --- */
+@media (max-width: 1200px) {
+    .cta-headline { font-size: 2.3rem; }
+    .cta-container { gap: 2.5rem; }
+}
+
+@media (max-width: 992px) {
+    .cta-section {
+        /* SPECIFIED CONSTRAINT: Drops layout cushions smoothly to a tight 30px frame structure */
+        padding: 30px 1.5rem;
+    }
+    .cta-container {
+        grid-template-columns: 1fr; /* Toggle layout columns directly into unified blocks */
+        text-align: center;
+        gap: 3rem;
+    }
+    .cta-content-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .cta-action-column {
+        align-items: center;
+    }
+    .btn-cta-action {
+        margin: 0 auto;
+    }
+    .cta-floating-image-wrapper {
+        display: none; /* Purge decorative float layers on medium viewports to save screen real estate */
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-headline { font-size: 1.8rem; }
+    .btn-cta-action {
+        width: 100%;
+        max-width: 100%; /* Expands buttons full-width across extra-small touchscreen displays */
+    }
+}
+
+</style>
+
+<script>
+        // --- PARALLAX OPTIMIZATION SCROLL EFFECT FOR CTA IMAGE ---
+    const ctaSectionElement = document.querySelector(".cta-section");
+    const ctaBackgroundImage = document.querySelector(".cta-bg-image-layer");
+
+    if (ctaSectionElement && ctaBackgroundImage) {
+        window.addEventListener("scroll", () => {
+            const sectionBoundingRect = ctaSectionElement.getBoundingClientRect();
+            const viewScreenHeight = window.innerHeight;
+
+            // Run calculations exclusively when the section box bounds occupy screen coordinate tracks
+            if (sectionBoundingRect.top < viewScreenHeight && sectionBoundingRect.bottom > 0) {
+                const scrollPercentageOffset = (viewScreenHeight - sectionBoundingRect.top) / (viewScreenHeight + sectionBoundingRect.height);
+                // Subtle matrix calculation to handle deep structural shifting profiles safely
+                ctaBackgroundImage.style.transform = `scale(1.05) translateY(${(scrollPercentageOffset * -25) + 12}px)`;
+            }
+        }, { passive: true }); // Passive tagging locks thread resources away from interface scrolling lags
+    }
+
+</script>
+
+<!-- Interactive Telemetry Dashboard Mockup Landmark Section -->
+<section id="dashboard-showcase" class="dash-showcase-section">
+    <!-- Overlay layout layer acting as an environmental background grid -->
+    <div class="dash-bg-grid-mesh"></div>
+
+    <div class="dash-showcase-container">
+        
+        <!-- Left Side: Interactive UI Simulation Panel Grid -->
+        <div class="dash-graphics-column">
+            <div class="dash-aurora-glow"></div>
+            
+            <!-- Main Software Interface Card Frame -->
+            <div class="dash-mockup-frame main-interface-card">
+                <img src="./Assests/dashboard analytics agri.webp" alt="Stackly software analytics data dashboard overlay grid backdrop" class="dash-mockup-img">
+                
+                <!-- Floating live interface UI card component -->
+                <div class="ui-widget-overlay-box">
+                    <div class="ui-widget-header">
+                        <div class="ui-pulse-indicator"></div>
+                        <strong>Live Telemetry: Sector 4B</strong>
+                    </div>
+                    <div class="ui-widget-metrics">
+                        <div class="metric-ui-item">
+                            <span class="m-label">Soil Volumetric Water Content</span>
+                            <span class="m-value text-green-glow">34.2%</span>
+                        </div>
+                        <div class="metric-ui-item">
+                            <span class="m-label">Nitrogen Mineralization</span>
+                            <span class="m-value">Optimal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating Accessory Analytical Graph Image Card -->
+            <div class="dash-mockup-frame secondary-graph-card">
+                <img src="./Assests/radar.webp" alt="Analytical soil diagnostic tracking curves" class="dash-mockup-img">
+            </div>
+        </div>
+
+        <!-- Right Side: Content Presentation & High-Glow Feature Matrix -->
+        <div class="dash-content-column">
+            <span class="dash-badge">📊 Interface Preview</span>
+            <h2 class="dash-showcase-title">Your Fields, Completely Deciphered</h2>
+            <p class="dash-showcase-desc">
+                The Stackly customer portal translates raw electrical resistance spikes into actionable farming workflows. Access centralized field health conditions, historical hydration trends, and telemetry metrics from any desktop or mobile browser window.
+            </p>
+            
+            <div class="dash-features-list-box">
+                <!-- Point 1 -->
+                <div class="dash-list-glow-item">
+                    <div class="dash-vector-shield">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,7H13V9H11V7M11,11H13V17H11V11Z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4>Custom Sensor Alerts</h4>
+                        <p>Configure tailored push parameters to text or email networks the moment soil hydration levels drop beneath designated baselines.</p>
+                    </div>
+                </div>
+
+                <!-- Point 2 -->
+                <div class="dash-list-glow-item">
+                    <div class="dash-vector-shield">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12,6A6,6 0 0,1 18,12C18,14.25 16.74,16.21 14.88,17.18L14,17.64V21H10V17.64L9.12,17.18C7.26,16.21 6,14.25 6,12A6,6 0 0,1 12,6M12,2A10,10 0 0,0 2,12A10,10 0 0,0 7,20.66V22H17V20.66A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4>Predictive Yield Analysis</h4>
+                        <p>Leverage machine learning regression tracks to project seasonal harvest multipliers weeks ahead of standard crop schedules.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* --- DASHBOARD SHOWCASE SECTION MASTER ARCHITECTURE --- */
+.dash-showcase-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: 50px top/bottom desktop breathing safe zones */
+    padding: 50px 2rem;
+    background-color: var(--bg-bright); /* Alternates canvas layers cleanly */
+    overflow: hidden;
+}
+
+.dash-bg-grid-mesh {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 50% 50%, rgba(0, 230, 118, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.dash-showcase-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr; /* Dynamic asymmetric column split */
+    gap: 5rem;
+    align-items: center;
+    z-index: 2;
+}
+
+/* --- LEFT COLUMN: INTERACTIVE GRAPHICS ENGINE --- */
+.dash-graphics-column {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dash-aurora-glow {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.22) 0%, transparent 70%);
+    filter: blur(40px);
+    z-index: 1;
+}
+
+.dash-mockup-frame {
+    position: absolute;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(27, 94, 32, 0.08);
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.dash-mockup-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.main-interface-card {
+    width: 76%;
+    height: 400px;
+    left: 0;
+    top: 20px;
+    z-index: 2;
+}
+
+/* Floating interface widget item layout properties */
+/* --- CORRECTED INTERFACE WIDGET OVERLAY OVERRIDES --- */
+.ui-widget-overlay-box {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    background-color: rgba(15, 17, 21, 0.92); /* Rich, high-contrast dark slate background */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid rgba(255, 255, 255, 0.08); /* Clean structural bounding container line */
+    padding: 1.25rem;
+    border-radius: 16px;
+    z-index: 3;
+    pointer-events: auto; /* Ensures cross-browser pointer layers remain interactively reachable */
+    
+    /* FIX: Force opacity to 1 on initial load so text assets never hide behind layers */
+    opacity: 1 !important; 
+    transform: translateY(0);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* --- TYPOGRAPHY TEXT BLOCKS (FORCED VISIBILITY) --- */
+.ui-widget-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #ffffff !important; /* Forces premium clean visibility */
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+}
+
+.ui-pulse-indicator {
+    width: 9px;
+    height: 9px;
+    background-color: var(--agri-glow); /* Connects with active bright neon green theme token */
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--agri-glow);
+    animation: liveMarkerPulse 2s infinite ease-in-out;
+    flex-shrink: 0;
+}
+
+.ui-widget-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.metric-ui-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #9aa0a6 !important; /* Premium readable contrast ash grey description */
+}
+
+/* Target specific metric measurements inside row cells */
+.metric-ui-item .m-value {
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.metric-ui-item .m-value.text-green-glow {
+    color: var(--agri-glow) !important;
+    text-shadow: 0 0 8px rgba(0, 230, 118, 0.5); /* Cast constant gentle green pop highlights */
+}
+
+/* --- DYNAMIC TARGETED HOVER EFFECT FIX --- */
+/* Instead of hiding/revealing text elements, hovering now triggers a premium neon aura transformation boundary */
+.main-interface-card:hover .ui-widget-overlay-box {
+    border-color: var(--agri-glow); /* Seamlessly shifts tracking outline line to green */
+    transform: translateY(-3px); /* Elegant smooth micro upward bounce adjustment */
+    box-shadow: 0 10px 25px rgba(0, 230, 118, 0.35); /* PROJECTS GLOW SUBMODULES PERIMETER UNDER THE CARD */
+}
+
+/* --- HARDWARE-ACCELERATED MARKER KEYFRAMES --- */
+@keyframes liveMarkerPulse {
+    0% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 6px var(--agri-glow); }
+    50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 14px var(--agri-glow); }
+    100% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 6px var(--agri-glow); }
+}
+
+
+.ui-widget-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.ui-pulse-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: var(--agri-glow);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--agri-glow);
+    animation: srvPulse 2s infinite;
+}
+
+.ui-widget-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.metric-ui-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #9aa0a6;
+}
+
+.metric-ui-item .m-value {
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.metric-ui-item .m-value.text-green-glow {
+    color: var(--agri-glow);
+    text-shadow: 0 0 6px var(--agri-glow);
+}
+
+.secondary-graph-card {
+    width: 46%;
+    height: 220px;
+    right: 0;
+    bottom: 20px;
+    z-index: 4;
+    animation: dashCardBounce 4s ease-in-out infinite alternate;
+}
+
+/* Card Glow and Scale Transformations on Hover */
+.dash-mockup-frame:hover {
+    transform: scale(1.03) translateY(-6px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 22px 45px rgba(0, 230, 118, 0.35);
+    z-index: 5;
+}
+
+/* --- RIGHT COLUMN: TYPOGRAPHY PRESENTATION --- */
+.dash-content-column {
+    width: 100%;
+}
+
+.dash-badge {
+    display: inline-block;
+    background-color: rgba(27, 94, 32, 0.08);
+    color: var(--text-dark);
+    padding: 0.4rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(27, 94, 32, 0.1);
+}
+
+.dash-showcase-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-dark);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.5px;
+}
+
+.dash-showcase-desc {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 2.2rem;
+}
+
+/* Vertical Core Feature List Stack */
+.dash-features-list-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.dash-list-glow-item {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(27, 94, 32, 0.04);
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dash-vector-shield {
+    width: 44px;
+    height: 44px;
+    background-color: var(--bg-bright);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dash-vector-shield svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--text-dark);
+    transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+.dash-list-glow-item h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.35rem;
+    transition: color 0.3s ease;
+}
+
+.dash-list-glow-item p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.75;
+    line-height: 1.55;
+}
+
+/* --- HOVER INTERACTION & NEON GLOW ENGINE --- */
+.dash-list-glow-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 12px 30px rgba(0, 230, 118, 0.18);
+}
+
+.dash-list-glow-item:hover .dash-vector-shield {
+    background-color: var(--text-dark);
+    transform: scale(1.05);
+}
+
+.dash-list-glow-item:hover .dash-vector-shield svg {
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 3px var(--agri-glow));
+}
+
+.dash-list-glow-item:hover h4 {
+    color: var(--agri-glow);
+}
+
+/* --- HARDWARE-ACCELERATED KEYFRAMES ANIMATIONS --- */
+@keyframes dashCardBounce { 0% { transform: translateY(0); } 100% { transform: translateY(-12px); } }
+@keyframes srvPulse { 0% { transform: scale(0.95); opacity: 0.5; } 50% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.5; } }
+
+/* --- HIGH-PERFORMANCE RESPONSIVE VIEWPORT BREAKPOINTS --- */
+@media (max-width: 1200px) {
+    .dash-showcase-title { font-size: 2.1rem; }
+    .dash-showcase-container { gap: 3rem; }
+}
+
+@media (max-width: 992px) {
+    .dash-showcase-section {
+        /* CRITICAL REQUIREMENT: Gracefully collapses vertical cushions down to tight 30px bounds */
+        padding: 30px 1.5rem;
+    }
+    .dash-showcase-container {
+        grid-template-columns: 1fr; /* Switch directly into stacked single grid configurations */
+        gap: 3.5rem;
+    }
+    .dash-graphics-column {
+        height: 420px;
+        max-width: 550px;
+        margin: 0 auto;
+    }
+    .main-interface-card { height: 350px; }
+    .secondary-graph-card { height: 190px; }
+}
+
+@media (max-width: 480px) {
+    .dash-showcase-title { font-size: 1.8rem; }
+    .dash-graphics-column { display: none; } /* Drop complex graphics overlay stack layers on mobile touch viewports */
+    .dash-list-glow-item { padding: 1.25rem; gap: 1rem; }
+}
+
+</style>
+
+<!-- Interactive Network Architecture Landmark Section -->
+<section id="infrastructure" class="infra-section">
+    <!-- Deep grid wire landscape backdrop layer -->
+    <div class="infra-bg-mesh-pattern"></div>
+
+    <div class="infra-container">
+        
+        <!-- Left Side: Content Presentation & High-Glow Infrastructure Breakdown Stack -->
+        <div class="infra-content-column">
+            <span class="infra-badge">🛰️ Mesh Backbone</span>
+            <h2 class="infra-title">Secure, High-Availability Telemetry Architecture</h2>
+            <p class="infra-desc">
+                Our electronic system layouts operate over deep redundant network layers. We secure data routing from the ground up, utilizing multi-channel edge processing pipelines to protect field monitoring configurations against remote downtime parameters.
+            </p>
+            
+            <!-- Infrastructure Tracking Row Items Block -->
+            <div class="infra-cards-stack">
+                
+                <!-- Card 1: Multi-Channel Network Security -->
+                <div class="infra-glow-card">
+                    <div class="infra-vector-shield">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7A3,3 0 0,1 15,10C15,11.3 14.1,12.42 12.9,12.86L13.4,17H10.6L11.1,12.86C9.9,12.42 9,11.3 9,10A3,3 0 0,1 12,7Z"/>
+                        </svg>
+                    </div>
+                    <div class="infra-text-wrapper">
+                        <h3>Encrypted Edge Hardware</h3>
+                        <p>Every node spike processes data points using AES-256 hardware cryptographic loops, preventing malicious interception loops across local data paths.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Low-Earth Orbit Satellite Backup -->
+                <div class="infra-glow-card">
+                    <div class="infra-vector-shield">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5,12A7,7 0 0,0 12,19C14.93,19 17.5,17.2 18.5,14.6L16.3,13.6C15.7,15.1 14,16.2 12,16.2A4.2,4.2 0 0,1 7.8,12c0-2 1.7-3.7 3.7-3.7c1.45,0 2.7,1 3.5,2.3l2.2-1C16.1,7.4 14.2,6 12,6A6.9,6 0 0,0 5,12M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2z"/>
+                        </svg>
+                    </div>
+                    <div class="infra-text-wrapper">
+                        <h3>Satellite Routing Overlays</h3>
+                        <p>Integrate automated low-earth orbit fallback paths to preserve tracking pipelines, even during extreme weather cellular infrastructure drops.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Right Side: Interactive Stacked Image Panels with Glow Foundations -->
+        <div class="infra-graphics-column">
+            <div class="infra-aura-orb"></div>
+            
+            <!-- Main Infrastructure Image Frame -->
+            <div class="infra-image-card primary-infra-frame">
+                <img src="./Assests/dashboard analytics agri.webp" alt="High-tech server nodes tracking multi-scale environmental variables" class="infra-img">
+            </div>
+
+            <!-- Floating Sub-Card Microcircuitry Image Asset -->
+            <div class="infra-image-card secondary-infra-frame">
+                <img src="./Assests/drone.webp" alt="Close-up of smart telemetry firmware hardware circuits" class="infra-img">
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* --- INFRASTRUCTURE SECTION MASTER ARCHITECTURE --- */
+.infra-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: 50px top/bottom desktop breathing safe zones */
+    padding: 50px 2rem;
+    background-color: #ffffff; /* Clean alternating contrast canvas backdrop layer */
+    overflow: hidden;
+}
+
+.infra-bg-mesh-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 10% 50%, rgba(0, 230, 118, 0.02) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.infra-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    /* Inverted layout distribution to provide continuous grid symmetry balance */
+    grid-template-columns: 1.05fr 0.95fr; 
+    gap: 5rem;
+    align-items: center;
+    z-index: 2;
+}
+
+/* --- LEFT COLUMN: TYPOGRAPHY & GLOW CARD STACK --- */
+.infra-content-column {
+    width: 100%;
+}
+
+.infra-badge {
+    display: inline-block;
+    background-color: var(--bg-bright);
+    color: var(--text-dark);
+    padding: 0.4rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(27, 94, 32, 0.1);
+}
+
+.infra-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-dark);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.5px;
+}
+
+.infra-desc {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Vertical Stack Card System */
+.infra-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.infra-glow-card {
+    background-color: var(--bg-bright);
+    padding: 1.75rem;
+    border-radius: 16px;
+    border: 1px solid rgba(27, 94, 32, 0.03);
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.infra-vector-shield {
+    width: 44px;
+    height: 44px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.02);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.infra-vector-shield svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-dark);
+    transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+.infra-text-wrapper h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.35rem;
+    transition: color 0.3s ease;
+}
+
+.infra-text-wrapper p {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.75;
+    line-height: 1.55;
+}
+
+/* --- RIGHT COLUMN: LAYERED HARDWARE IMAGERY SYSTEM --- */
+.infra-graphics-column {
+    position: relative;
+    width: 100%;
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ambient glow orb behind target graphic frames */
+.infra-aura-orb {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.22) 0%, transparent 70%);
+    filter: blur(40px);
+    z-index: 1;
+    animation: infraOrbMotion 6s ease-in-out infinite alternate;
+}
+
+.infra-image-card {
+    position: absolute;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(27, 94, 32, 0.08);
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.infra-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.primary-infra-frame {
+    width: 74%;
+    height: 380px;
+    right: 10px;
+    top: 20px;
+    z-index: 2;
+}
+
+.secondary-infra-frame {
+    width: 46%;
+    height: 220px;
+    left: 10px;
+    bottom: 20px;
+    z-index: 3;
+    animation: infraCardBounce 4s ease-in-out infinite alternate;
+}
+
+/* --- INTERACTIVE HOVER & NEON GLOW ENGINE --- */
+.infra-glow-card:hover {
+    transform: translateY(-4px);
+    background-color: #ffffff;
+    border-color: var(--agri-glow);
+    /* Cast neon green perimeter lighting lines bounding glows */
+    box-shadow: 0 12px 30px rgba(0, 230, 118, 0.22);
+}
+
+.infra-glow-card:hover .infra-vector-shield {
+    background-color: var(--text-dark);
+    transform: scale(1.05);
+}
+
+.infra-glow-card:hover .infra-vector-shield svg {
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 3px var(--agri-glow));
+}
+
+.infra-glow-card:hover .infra-text-wrapper h3 {
+    color: var(--agri-glow);
+}
+
+/* Interactive Image Card Glow and Scale Transformations on Hover */
+.infra-image-card:hover {
+    transform: scale(1.04) translateY(-6px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 22px 45px rgba(0, 230, 118, 0.35);
+    z-index: 4;
+}
+
+/* --- HARDWARE-ACCELERATED KEYFRAMES ANIMATIONS --- */
+@keyframes infraCardBounce { 0% { transform: translateY(0); } 100% { transform: translateY(-12px); } }
+@keyframes infraOrbMotion { 0% { transform: translate(0) scale(1); } 100% { transform: translate(-12px, 6px) scale(1.1); } }
+
+/* --- HIGH-PERFORMANCE RESPONSIVE VIEWPORT BREAKPOINTS --- */
+@media (max-width: 1200px) {
+    .infra-title { font-size: 2.1rem; }
+    .infra-container { gap: 3rem; }
+}
+
+@media (max-width: 992px) {
+    .infra-section {
+        /* CRITICAL REQUIREMENT: Gracefully collapses vertical cushions down to tight 30px bounds */
+        padding: 30px 1.5rem;
+    }
+    .infra-container {
+        grid-template-columns: 1fr; /* Switch directly into stacked single grid configurations */
+        gap: 3.5rem;
+    }
+    .infra-graphics-column {
+        height: 380px;
+        max-width: 550px;
+        margin: 0 auto;
+        grid-row: 2; /* Forces images to sit under copy streams inside vertical grids */
+    }
+    .primary-infra-frame { height: 320px; }
+    .secondary-infra-frame { height: 180px; }
+}
+
+@media (max-width: 480px) {
+    .infra-title { font-size: 1.8rem; }
+    .infra-graphics-column { display: none; } /* Drop complex graphics overlay stack layers on mobile touch viewports */
+    .infra-glow-card { padding: 1.25rem; gap: 1rem; }
+}
+
+</style>
+
+<section class="testimonials-section">
+    <div class="testimonials-container">
+        
+        <!-- Heading Title Header Blocks -->
+        <div class="testimonials-header">
+            <span class="testimonials-badge">🤝 Trusted Networks</span>
+            <h2 class="testimonials-title">What Our Farmers Say</h2>
+            <p class="testimonials-subtitle">Real metrics, real recovery records, and verified operational data transparency reported directly from active field partners.</p>
+        </div>
+
+        <!-- 3-Column Testimonial Layout Cards Grid -->
+        <div class="testimonials-grid">
+            
+            <!-- Card 1 -->
+            <div class="testimonial-glow-card">
+                <div class="quote-vector-box">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"/>
+                    </svg>
+                </div>
+                <p class="testimonial-quote">"Stackly completely transformed our water resource overhead. We reduced standard automated irrigation consumption values by a clean 28% in under 90 days."</p>
+                <div class="testimonial-profile">
+                    <div class="profile-avatar-circle">
+                        <img src="https://unsplash.com" alt="Marcus Vance profile frame">
+                    </div>
+                    <div class="profile-details">
+                        <h4>Marcus Vance</h4>
+                        <p>Vance Grain Co. (450 Acres)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="testimonial-glow-card">
+                <div class="quote-vector-box">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"/>
+                    </svg>
+                </div>
+                <p class="testimonial-quote">"The leaf diagnosis scanner algorithm flagged a multi-bacterial spot development across our secondary greenhouses two weeks before physical indicators surfaced."</p>
+                <div class="testimonial-profile">
+                    <div class="profile-avatar-circle">
+                        <img src="https://unsplash.com" alt="Elena Rostova profile frame">
+                    </div>
+                    <div class="profile-details">
+                        <h4>Elena Rostova</h4>
+                        <p>BioCanopy Organics Ltd.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="testimonial-glow-card">
+                <div class="quote-vector-box">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14,17H17L19,13V7H13V13H16M6,17H9L11,13V7H5V13H8L6,17Z"/>
+                    </svg>
+                </div>
+                <p class="testimonial-quote">"Operating an autonomous tractor fleet tracking setup used to cause configuration conflicts constantly. Stackly telemetry synced everything flawlessly."</p>
+                <div class="testimonial-profile">
+                    <div class="profile-avatar-circle">
+                        <img src="https://unsplash.com" alt="Devon Miller profile frame">
+                    </div>
+                    <div class="profile-details">
+                        <h4>Devon Miller</h4>
+                        <p>Miller Crest Estates</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* --- TESTIMONIALS SECTION MASTER ARCHITECTURE --- */
+.testimonials-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: 50px top/bottom desktop breathing safe zones */
+    padding: 50px 2rem;
+    background-color: var(--bg-bright);
+    overflow: hidden;
+}
+
+.testimonials-container { width: 100%; max-width: 1400px; margin: 0 auto; }
+.testimonials-header { text-align: center; max-width: 700px; margin: 0 auto 3.5rem auto; }
+
+.testimonials-badge {
+    display: inline-block;
+    background-color: rgba(27, 94, 32, 0.08);
+    color: var(--text-dark);
+    padding: 0.4rem 1.1rem;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(27, 94, 32, 0.1);
+}
+
+.testimonials-title { font-size: 2.6rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1rem; letter-spacing: -0.5px; }
+.testimonials-subtitle { font-size: 1.05rem; color: var(--text-dark); opacity: 0.8; line-height: 1.6; }
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial-glow-card {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(27, 94, 32, 0.04);
+    box-shadow: 0 10px 30px rgba(27, 94, 32, 0.03);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                border-color 0.4s ease;
+}
+
+.quote-vector-box { width: 36px; height: 36px; margin-bottom: 1rem; }
+.quote-vector-box svg { width: 100%; height: 100%; fill: rgba(27, 94, 32, 0.15); transition: fill 0.3s ease; }
+
+.testimonial-quote {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text-dark);
+    opacity: 0.85;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.testimonial-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid rgba(27, 94, 32, 0.08);
+    padding-top: 1.25rem;
+}
+
+.profile-avatar-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: var(--bg-bright);
+    flex-shrink: 0;
+}
+
+.profile-avatar-circle img { width: 100%; height: 100%; object-fit: cover; }
+.profile-details h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.15rem; }
+.profile-details p { font-size: 0.85rem; color: var(--text-dark); opacity: 0.65; font-weight: 600; }
+
+.testimonial-glow-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 15px 35px rgba(0, 230, 118, 0.22);
+}
+
+.testimonial-glow-card:hover .quote-vector-box svg {
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 3px var(--agri-glow));
+}
+
+@media (max-width: 992px) {
+    .testimonials-section { padding: 30px 1.5rem; }
+    .testimonials-title { font-size: 2.1rem; }
+    .testimonials-header { margin-bottom: 2.5rem; }
+}
+@media (max-width: 480px) {
+    .testimonials-title { font-size: 1.8rem; }
+    .testimonial-glow-card { padding: 1.75rem; }
+}
+
+</style>
+
+<!-- Interactive 1-Line Call To Action Landmark -->
+<section class="single-line-cta-section">
+    <!-- Img tag layer acting as a deep parallax background asset -->
+    <img src="./Assests/seed pack.webp" alt="Vast sustainable green agricultural crop landscape fields background" class="sl-cta-bg-image">
+    <div class="sl-cta-overlay-tint"></div>
+
+    <div class="sl-cta-container">
+        
+        <!-- Left Side: High-Impact 1-Line Headline & Brief Detail -->
+        <div class="sl-cta-content-box">
+            <h2 class="sl-cta-headline">
+                Ready to transform your fields with <span class="sl-cta-glow-text">Smart Precision Automation?</span>
+            </h2>
+            <p class="sl-cta-subtext">Deploy secure sensor clusters across your soil layouts in minutes. No data engineering background required.</p>
+        </div>
+
+        <!-- Right Side: Action Trigger & Decorative Foreground Vector Image -->
+        <div class="sl-cta-action-box">
+            <a href="#contact" class="btn-sl-cta-action">Get Started Risk Free</a>
+            
+            <!-- Foreground Decorative Floating Vector Image Card -->
+       
+        </div>
+
+    </div>
+</section>
+<style>
+    /* --- COMPREHENSIVE 1-LINE CTA SECTION MASTER ARCHITECTURE --- */
+.single-line-cta-section {
+    position: relative;
+    width: 100%;
+    /* SPECIFIED PADDING CONSTRAINT: Matches required 50px top/bottom desktop profile */
+    padding: 50px 2rem;
+    background-color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Background Image Layer Rendering Pipeline Controls */
+.sl-cta-bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transform: scale(1.02);
+    filter: brightness(0.22) contrast(1.15); /* Darkens imagery to maximize text readability */
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.sl-cta-overlay-tint {
+    position: absolute;
+    inset: 0;
+    /* Rich nature forest green ambient shading pass */
+    background: linear-gradient(135deg, rgba(27, 94, 32, 0.85), rgba(0, 230, 118, 0.25));
+    z-index: 2;
+    pointer-events: none;
+}
+
+.sl-cta-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr; /* Spatial optimization grid layout rules */
+    gap: 3.5rem;
+    align-items: center;
+    z-index: 3;
+}
+
+/* --- LEFT SIDE: 1-LINE HEADLINE STYLE --- */
+.sl-cta-content-box {
+    width: 100%;
+}
+
+.sl-cta-headline {
+    font-size: 2.3rem; /* Spatially optimized for comfortable 1-line desktop scan flows */
+    font-weight: 900;
+    line-height: 1.3;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.sl-cta-glow-text {
+    color: var(--agri-glow);
+    text-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+    font-weight: 800;
+}
+
+.sl-cta-subtext {
+    font-size: 1.05rem;
+    color: var(--white);
+    opacity: 0.85;
+    font-weight: 500;
+}
+
+/* --- RIGHT SIDE: ACTIVE BUTTON ACTIONS & FLOATING VECTOR --- */
+.sl-cta-action-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    position: relative;
+    width: 100%;
+}
+
+.btn-sl-cta-action {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+    background-color: var(--agri-glow);
+    color: var(--text-dark);
+    padding: 1.1rem 1.8rem;
+    border-radius: 14px;
+    font-weight: 800;
+    font-size: 1.05rem;
+    box-shadow: 0 5px 20px rgba(0, 230, 118, 0.35);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 4;
+}
+
+/* Foreground Floating Card Submodule Image Graphic Frame */
+.sl-cta-floating-badge {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    right: 20px;
+    top: -75px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    z-index: 5;
+    pointer-events: none; /* Allows mouse tracking to glide through onto action button layers */
+    animation: slCtaFloatMotion 4s ease-in-out infinite alternate;
+}
+
+.sl-cta-foreground-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- HOVER INTERACTION OVERRIDES --- */
+.single-line-cta-section:hover .sl-cta-bg-image {
+    transform: scale(1.04); /* Cinematic slow-zoom feedback on mouseenter */
+}
+
+.btn-sl-cta-action:hover {
+    background-color: var(--white);
+    color: var(--text-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4), 0 0 20px var(--agri-glow);
+}
+
+/* --- HARDWARE-ACCELERATED KEYFRAMES ANIMATIONS --- */
+@keyframes slCtaFloatMotion {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-10px) rotate(2.5deg); }
+}
+
+/* --- RESPONSIVE ENGINEERING MEDIA BREAKPOINTS --- */
+@media (max-width: 1200px) {
+    .sl-cta-headline { font-size: 2rem; }
+    .sl-cta-container { gap: 2rem; }
+    .sl-cta-floating-badge { width: 90px; height: 90px; top: -65px; }
+}
+
+@media (max-width: 992px) {
+    .single-line-cta-section {
+        /* SPECIFIED CONSTRAINT: Drops layout safe zones smoothly to 30px profiles on small devices */
+        padding: 30px 1.5rem;
+    }
+    .sl-cta-container {
+        grid-template-columns: 1fr; /* Force columns to break instantly into linear stack rows */
+        text-align: center;
+        gap: 2.5rem;
+    }
+    .sl-cta-action-box {
+        justify-content: center;
+    }
+    .btn-sl-cta-action {
+        margin: 0 auto;
+    }
+    .sl-cta-floating-badge {
+        display: none; /* Purge complex graphic decorative overlays on tablets to optimize runtime performance */
+    }
+}
+
+@media (max-width: 480px) {
+    .sl-cta-headline { font-size: 1.6rem; }
+    .btn-sl-cta-action {
+        width: 100%;
+        max-width: 100%; /* Expands buttons full-width across touchscreen aspect ratios */
+    }
+}
+
+</style>
+
+<script>
+        // --- PARALLAX POSITION SHIFTING LOGIC FOR 1-LINE CTA ---
+    const singleLineCta = document.querySelector(".single-line-cta-section");
+    const slCtaImage = document.querySelector(".sl-cta-bg-image");
+
+    if (singleLineCta && slCtaImage) {
+        window.addEventListener("scroll", () => {
+            const sectionRect = singleLineCta.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+
+            // Compute physics modifiers exclusively when elements exist inside active window boundaries
+            if (sectionRect.top < viewHeight && sectionRect.bottom > 0) {
+                const calculatedRatio = (viewHeight - sectionRect.top) / (viewHeight + sectionRect.height);
+                slCtaImage.style.transform = `scale(1.04) translateY(${(calculatedRatio * -20) + 10}px)`;
+            }
+        }, { passive: true });
+    }
+
+</script>
+
+<footer class="portfolio-footer">
+    
+    <!-- Unified Horizontal Content Layout Deck -->
+    <div class="footer-main-grid">
+        
+        <!-- BLOCK 1: Brand Info Column (Locked firmly into the far left corner) -->
+              <!-- BLOCK 1: Brand Info Column -->
+        <div class="footer-brand-column">
+            <a href="#" class="footer-brand" id="footer-logo-top" title="Scroll Back to Top">
+                <!-- Live Image Tag for Brand Logo Graphic Asset -->
+                <img src="./assests/photography portfolio logo.webp" alt="🌱 Stackly" class="footer-logo-img">
+            </a>
+            <p class="footer-brand-description">Connecting local field telemetry with advanced cloud data analytics to optimize crop health, conserve water assets, and maximize seasonal yields responsibly.</p>
+
+            <!-- Location metadata -->
+            <div class="footer-contact-address">
+                <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="location-vector">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <address class="address-text-wrapper">
+                    <strong>MMR Complex,</strong> Periyakollappatty, Chinna Thirupathi, Salem, Tamil Nadu 636008
+                </address>
+            </div>
+
+            <!-- MOVED: Social Media Links Row grouped directly below address under Stackly -->
+                       <!-- Highly Visible Social Vector Icons Group Routing to 404.html -->
+            <div class="footer-social-row">
+                <!-- Facebook Vector -->
+                <a href="404.html" class="social-icon-btn" aria-label="Facebook Profile Page">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.95z"/>
+                    </svg>
+                </a>
+                <!-- Instagram Vector -->
+                <a href="404.html" class="social-icon-btn" aria-label="Instagram Profile Page">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051c-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0 3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                    </svg>
+                </a>
+                <!-- Twitter/𝕏 Vector -->
+                <a href="404.html" class="social-icon-btn" aria-label="Twitter X Profile Page">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+                <!-- YouTube Vector -->
+                <a href="404.html" class="social-icon-btn" aria-label="YouTube Channel Page">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- BLOCK 2: Right-Shifted Operational Link Deck (Centered to Right Side) -->
+        <div class="footer-links-wrapper">
+            
+            <!-- Quick Links Column -->
+            <div class="footer-directory-col">
+                <h4 class="footer-headline">Quick Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="404.html">Shop Systems</a></li>
+                    <li><a href="404.html">New Arrivals</a></li>
+                    <li><a href="404.html">Tier Offers</a></li>
+                    <li><a href="404.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Support Hub Column -->
+            <div class="footer-directory-col">
+                <h4 class="footer-headline">Support Hub</h4>
+                <ul class="footer-links-list">
+                    <li><a href="404.html">Artisan Warranty</a></li>
+                    <li><a href="404.html">Easy Booking Portal</a></li>
+                    <li><a href="404.html">Help & FAQ Center</a></li>
+                    <li><a href="404.html">Press Resources</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter Dispatch Subscription Column -->
+            <div class="footer-directory-col subscribe-box-col">
+                <h4 class="footer-headline">The Canopy Dispatch</h4>
+                <p class="subscribe-text">Subscribe to unlock premium custom blueprint designs and private production launches.</p>
+                
+                <form id="footer-subscribe-form" class="subscribe-form-field">
+                    <input type="email" id="subscribe-email" placeholder="Enter your email..." aria-label="Email address for dispatch" autocomplete="off">
+                    <button type="submit" class="subscribe-submit-btn" aria-label="Submit subscribe field">
+                        <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="send-icon"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </form>
+                <p id="subscribe-error-msg" class="form-error-toast"></p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bottom Attribution Segment -->
+    <div class="footer-bottom-bar">
+        <p class="copyright-string">&copy; 2026 Stackly Industries. All rights reserved.</p>
+        
+        <div class="footer-legal-links">
+            <a href="404.html">Privacy Policy</a>
+            <a href="404.html">Terms of Service</a>
+            <a href="404.html">Cookie Management</a>
+        </div>
+
+        <button id="back-to-top-btn" class="scroll-top-trigger" aria-label="Scroll Back to Top">
+            <svg xmlns="http://w3.org" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="arrow-up-icon"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+        </button>
+    </div>
+</footer>
+
+<style>
+
+    /* --- LEFT SIDE ALIGNED SOCIAL VECTOR ROW --- */
+.footer-social-row {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-start;
+}
+
+.social-icon-btn {
+    text-decoration: none;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                background-color 0.3s ease, 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease;
+}
+
+/* Strict SVG dimensional scaling limits inside circular anchors */
+.social-icon-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: #9aa0a6; /* Premium readable contrast ash grey base */
+    transition: fill 0.3s ease, filter 0.3s ease;
+}
+
+/* --- INTERACTIVE CURSOR HOVER EFFECTS --- */
+.social-icon-btn:hover {
+    background-color: #ffffff;
+    border-color: var(--agri-glow); /* Connects with active neon-green agricultural theme token */
+    transform: translateY(-3px); /* Subtle smooth upward bounce vector */
+    box-shadow: 0 0 12px var(--agri-glow); /* Casts a glowing perimeter around the container */
+}
+
+/* Swaps internal path color values to bright neon green on hover */
+.social-icon-btn:hover svg {
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 3px var(--agri-glow));
+}
+
+    /* --- BRAND LOGO IMAGE SPECIFIC CONTROLS --- */
+.footer-brand {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-brand:hover {
+    transform: scale(1.03); /* Subtle pop scaling on cursor interaction grids */
+}
+
+.footer-logo-img {
+    height: 42px;           /* Pinned height matching navigation header symmetry profiles */
+    width: auto;            /* Auto scales width natively to protect original aspect ratio */
+    object-fit: contain;    /* Completely prevents pixelated squishing across narrow screen states */
+    border-radius: 4px;
+    transition: filter 0.3s ease, box-shadow 0.3s ease;
+
+    /* High-contrast design rules to handle clean alternative text formatting if path drops out */
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+/* Bright green glowing illumination aura casting when hovered */
+.footer-brand:hover .footer-logo-img {
+    filter: drop-shadow(0 0 8px var(--agri-glow));
+}
+
+  /* --- PREMIUM HORIZONTAL AGRICULTURE FOOTER --- */
+.portfolio-footer {
+    position: relative;
+    width: 100%;
+    padding: 50px 2rem 25px 2rem;
+    background-color: #0f1115; /* Charcoal black footer base */
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* MASTER SPLIT GRID SYSTEM */
+.footer-main-grid {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr; 
+    gap: 5rem;
+    align-items: start;
+    padding-bottom: 3rem;
+}
+
+/* FAR LEFT BRAND COLUMN */
+.footer-brand-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.footer-brand {
+    text-decoration: none;
+    display: inline-flex;
+}
+
+.footer-digital-logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.footer-brand-description {
+    font-size: 0.95rem;
+    color: #9aa0a6;
+    line-height: 1.6;
+    margin: 1.25rem 0 1.75rem 0;
+    max-width: 380px;
+}
+
+.footer-contact-address {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: #9aa0a6;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 340px;
+    margin-bottom: 1.75rem; /* Space before social icons row */
+}
+
+.address-text-wrapper strong {
+    color: #ffffff;
+}
+
+.location-vector {
+    width: 18px;
+    height: 18px;
+    stroke: var(--agri-glow); /* Neon Green theme token */
+    filter: drop-shadow(0 0 3px var(--agri-glow));
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* LEFT SIDE ALIGNED SOCIAL ICONS ROW */
+.footer-social-row {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-start;
+}
+
+.social-icon-btn {
+    text-decoration: none;
+    width: 34px;
+    height: 34px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    color: #9aa0a6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.social-icon-btn:hover {
+    background-color: #ffffff;
+    color: #0f1115;
+    border-color: var(--agri-glow);
+    box-shadow: 0 0 10px var(--agri-glow);
+    transform: translateY(-3px);
+}
+
+/* CENTER TO RIGHT SUB-GRID HOLDER */
+.footer-links-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.3fr;
+    gap: 3rem;
+    width: 100%;
+}
+
+.footer-directory-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-headline {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.footer-headline::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 25px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.footer-links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.footer-links-list a {
+    text-decoration: none;
+    color: #9aa0a6;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+
+.footer-links-list a:hover {
+    color: var(--agri-glow);
+    padding-left: 4px;
+}
+
+/* Subscription Field Box */
+.subscribe-text {
+    font-size: 0.95rem;
+    color: #9aa0a6;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+}
+
+.subscribe-form-field {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.subscribe-form-field input {
+    width: 100%;
+    padding: 0.95rem 3.5rem 0.95rem 1.25rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    font-size: 0.95rem;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.subscribe-form-field input:focus {
+    outline: none;
+    border-color: var(--agri-glow);
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.25);
+}
+
+.subscribe-submit-btn {
+    position: absolute;
+    right: 6px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background-color: #f05454; /* Reference red button color code */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease;
+}
+
+.send-icon { width: 14px; height: 16px; stroke: #ffffff; }
+.subscribe-submit-btn:hover { background-color: #ff6b6b; transform: scale(1.05); }
+.form-error-toast { margin-top: 0.5rem; font-size: 0.85rem; color: #ffd600; display: none; }
+
+/* --- BOTTOM TRADEMARK BAR --- */
+.footer-bottom-bar {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.copyright-string, .footer-legal-links a {
+    font-size: 0.85rem;
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.footer-legal-links { display: flex; gap: 2rem; }
+.footer-legal-links a:hover { color: #ffffff; }
+
+.scroll-top-trigger {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.arrow-up-icon { width: 16px; height: 16px; stroke: #ffffff; }
+
+/* --- RESPONSIVE MOBILE BREAKPOINTS --- */
+@media (max-width: 992px) {
+    .portfolio-footer { padding: 30px 1.5rem 20px 1.5rem; } 
+    .footer-main-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-brand-description, .footer-contact-address { max-width: 100%; }
+    .footer-links-wrapper { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .subscribe-box-col { grid-column: span 2; }
+}
+
+@media (max-width: 580px) {
+    .footer-links-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    .subscribe-box-col { grid-column: span 1; }
+    .footer-bottom-bar { flex-direction: column-reverse; gap: 1.25rem; text-align: center; }
+    .footer-legal-links { flex-direction: column; gap: 0.6rem; }
+}
+
+
+</style>
+
+<script>
+ document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- SMOOTH SCROLL BACK TO TOP ---
+    const logoBtn = document.getElementById("footer-logo-top");
+    const topBtn = document.getElementById("back-to-top-btn");
+
+    function smoothScrollTop(event) {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    if (logoBtn) logoBtn.addEventListener("click", smoothScrollTop);
+    if (topBtn) topBtn.addEventListener("click", smoothScrollTop);
+
+    // --- SUBSCRIPTION FORM ERROR VALIDATION ---
+    const form = document.getElementById("footer-subscribe-form");
+    const email = document.getElementById("subscribe-email");
+    const toast = document.getElementById("subscribe-error-msg");
+
+    if (form && email && toast) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (email.value.trim() === "") {
+                toast.style.display = "block";
+                toast.textContent = "⚠️ Please fill out the email field before transmitting!";
+                setTimeout(() => { toast.style.display = "none"; }, 4000);
+            } else {
+                toast.style.display = "none";
+                window.location.href = "404.html"; // Routes entries safely to target 404 resource
+            }
+        });
+    }
+});
+
+</script>
+</body>
+</html>
