@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Create Agri-Portal Account</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+
+    <main class="signup-wrapper">
+        <!-- Ambient background soft grid blur texture overlay -->
+        <div class="signup-bg-contour-mesh"></div>
+        
+        <!-- Central Registration Container Card -->
+        <div class="signup-card-panel">
+            
+            <!-- Top Navigation Context Bar -->
+            <div class="signup-top-nav">
+                <div class="portal-brand-title">Stackly</div>
+                <!-- Links back to the master login landing page layout -->
+                <a href="login.html" class="btn-return-login-link">
+                    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/></svg>
+                    <span>Back to Log In</span>
+                </a>
+            </div>
+
+            <!-- Header Text Layout Blocks -->
+            <div class="signup-welcome-header">
+                <h1>Create <span class="text-organic-green">Account.</span></h1>
+                <p>Register your operational profile to open your customized sandbox farming project registry dashboard and track order milestones.</p>
+            </div>
+
+            <!-- Interactive Onboarding Self-Validating Form Frame -->
+            <form id="portal-secure-registration" class="portal-core-form" novalidate>
+                
+                <!-- Field 1: Full Name -->
+                <div class="portal-input-field-wrapper">
+                    <label for="reg-usr-name">Your Full Name</label>
+                    <input type="text" id="reg-usr-name" placeholder="Enter your full name..." required autocomplete="off">
+                </div>
+
+                <!-- Field 2: Email Address -->
+                <div class="portal-input-field-wrapper">
+                    <label for="reg-usr-email">Email Address</label>
+                    <input type="email" id="reg-usr-email" placeholder="you@example.com" required autocomplete="off">
+                </div>
+
+                <!-- Field 3: Mobile Number -->
+                <div class="portal-input-field-wrapper">
+                    <label for="reg-usr-mobile">10-Digit Mobile Number</label>
+                    <input type="text" id="reg-usr-mobile" placeholder="10-digit mobile number" maxlength="10" required autocomplete="off">
+                </div>
+
+                <!-- Field 4: Password Key -->
+                <div class="portal-input-field-wrapper">
+                    <label for="reg-usr-password">Password Key</label>
+                    <div class="password-input-composite">
+                        <input type="password" id="reg-usr-password" placeholder="••••••••" required>
+                        <button type="button" class="btn-toggle-password-visibility" data-target="reg-usr-password" aria-label="Toggle password view representation display">
+                            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17Z"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Field 5: Confirm Password Key -->
+                <div class="portal-input-field-wrapper">
+                    <label for="reg-usr-confirm">Confirm Password Key</label>
+                    <div class="password-input-composite">
+                        <input type="password" id="reg-usr-confirm" placeholder="••••••••" required>
+                        <button type="button" class="btn-toggle-password-visibility" data-target="reg-usr-confirm" aria-label="Toggle password view representation display">
+                            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17Z"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Injected defensive validation layout warning window boxes -->
+                <div id="portal-validation-toast" class="portal-toast-alert-window error-state">⚠️ Please fill out all required configuration fields accurately!</div>
+                <div id="portal-success-toast" class="portal-toast-alert-window success-state">🌱 You have successfully signed up! Use credentials for login...</div>
+
+                <!-- Principal Secure Sign Up Click Action Component -->
+                <button type="submit" class="btn-portal-secure-signup">Sign Up &rarr;</button>
+
+            </form>
+
+            <!-- Alternative Pathway Context Redirection Notice Footer Deck -->
+            <div class="portal-card-footer-notice">
+                <span>Already have an account? <a href="login.html">Log In</a></span>
+            </div>
+
+        </div>
+    </main>
+
+   <style>
+    /* --- PREMIUM LIGHT AGRICULTURE REGISTRATION PORTAL DESIGN STYLES --- */
+:root {
+    --bg-bright: #f1f8e9;      /* Natural soft foliage background wash layer pass */
+    --text-dark: #1b5e20;      /* Rigid premium forest green primary text color string */
+    --agri-glow: #4caf50;      /* Grass green validation active track glow accent token */
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.signup-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 1.5rem;
+    background-color: var(--bg-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.signup-bg-contour-mesh {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 50% 50%, rgba(76, 175, 80, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Master Core Registration Form Card Geometry */
+.signup-card-panel {
+    position: relative;
+    width: 100%;
+    max-width: 520px; /* Rigid alignment matrix matching reference layout specifications */
+    background-color: var(--white);
+    padding: 3rem 2.5rem;
+    border-radius: 24px;
+    border: 1px solid rgba(27, 94, 32, 0.06);
+    box-shadow: 0 20px 45px rgba(27, 94, 32, 0.05);
+    z-index: 2;
+}
+
+/* --- TOP BRAND HEADER BAR NAVIGATION PATHWAY --- */
+.signup-top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.portal-brand-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+}
+
+.btn-return-login-link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 1rem;
+    background-color: var(--bg-bright);
+    border-radius: 20px;
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    transition: all 0.25s ease;
+}
+
+.btn-return-login-link svg {
+    fill: var(--text-dark);
+    transition: transform 0.25s ease;
+}
+
+.btn-return-login-link:hover {
+    background-color: var(--text-dark);
+    color: var(--white);
+}
+
+.btn-return-login-link:hover svg {
+    fill: var(--white);
+    transform: translateX(-2px); /* Reference-matched micro-interaction trajectory tracking */
+}
+
+/* --- TYPOGRAPHY HEADER STYLES --- */
+.signup-welcome-header h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #000000;
+    line-height: 1.15;
+    margin-bottom: 0.6rem;
+    letter-spacing: -1px;
+}
+
+.text-organic-green {
+    color: var(--agri-glow);
+}
+
+.signup-welcome-header p {
+    font-size: 0.95rem;
+    color: #555555;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
+/* --- SYSTEM INPUT CORE DATA FIELDS GROUPS --- */
+.portal-core-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.portal-input-field-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.portal-input-field-wrapper label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.portal-core-form input[type="text"],
+.portal-core-form input[type="email"],
+.portal-core-form input[type="password"] {
+    width: 100%;
+    padding: 1rem 1.15rem;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: #222222;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.portal-core-form input::placeholder {
+    color: #9e9e9e;
+}
+
+.portal-core-form input:focus {
+    outline: none;
+    border-color: var(--agri-glow);
+    box-shadow: 0 0 12px rgba(76, 175, 80, 0.18);
+}
+
+/* Visibility composites toggle layout mappings boundaries */
+.password-input-composite {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-composite input {
+    padding-right: 3.5rem !important;
+}
+
+.btn-toggle-password-visibility {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    border-radius: 6px;
+}
+
+.btn-toggle-password-visibility svg {
+    fill: #9e9e9e;
+    transition: fill 0.2s ease;
+}
+
+.btn-toggle-password-visibility:hover svg {
+    fill: var(--text-dark);
+}
+
+/* Principal Secure Sign Up Click Action Component */
+.btn-portal-secure-signup {
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    padding: 1.1rem;
+    background-color: #4caf50; /* Grass Green theme color hex token matched exactly to reference screenshot specs */
+    color: #ffffff;
+    border-radius: 30px; /* Circular rounded input submit component capsule */
+    font-weight: 800;
+    font-size: 1.05rem;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.25);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    margin-top: 0.5rem;
+}
+
+.btn-portal-secure-signup:hover {
+    background-color: var(--text-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(27, 94, 32, 0.3);
+}
+
+/* Dynamic toast window message warning alert container fields properties */
+.portal-toast-alert-window {
+    padding: 0.9rem 1.15rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: none;
+    line-height: 1.4;
+}
+
+/* Bounding properties tracking error state entries failures loops */
+.portal-toast-alert-window.error-state {
+    background-color: rgba(240, 84, 84, 0.04);
+    border: 1px solid #f05454;
+    color: #f05454;
+}
+
+/* Bounding properties tracking success transitions confirmation slots loops */
+.portal-toast-alert-window.success-state {
+    background-color: rgba(76, 175, 80, 0.04);
+    border: 1px solid var(--agri-glow);
+    color: var(--text-dark);
+}
+
+/* --- CARD LINK ALTERNATIVE NOTICE FOOTER DECK --- */
+.portal-card-footer-notice {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #666666;
+    font-weight: 600;
+    margin-top: 1.75rem;
+}
+
+.portal-card-footer-notice a {
+    color: var(--text-dark);
+    text-decoration: underline;
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+
+.portal-card-footer-notice a:hover {
+    color: var(--agri-glow);
+}
+
+/* --- PORTAL HIGH-PERFORMANCE RESPONSIVE VIEWPORT BREAKPOINTS --- */
+@media (max-width: 580px) {
+    .signup-card-panel {
+        padding: 2rem 1.5rem;
+        border-radius: 16px;
+    }
+    .signup-welcome-header h1 { font-size: 1.8rem; }
+}
+
+   </style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    
+    // Select verified target input nodes within the current scope structure
+    const signupForm = document.getElementById("portal-secure-registration");
+    const nameInput = document.getElementById("reg-usr-name");
+    const mobileInput = document.getElementById("reg-usr-mobile");
+    const emailInput = document.getElementById("reg-usr-email");
+    const passwordInput = document.getElementById("reg-usr-password");
+    const confirmInput = document.getElementById("reg-usr-confirm");
+    
+    const visibilityToggles = document.querySelectorAll(".btn-toggle-password-visibility");
+    const errorToast = document.getElementById("portal-validation-toast");
+    const successToast = document.getElementById("portal-success-toast");
+
+    // --- 1. STRIKE NUMERIC CHARACTER STRINGS FROM NAME INPUT CODES ---
+    if (nameInput) {
+        nameInput.addEventListener("input", (event) => {
+            // RegEx cuts out all numbers [0-9] instantly on raw text generation loops
+            const modifiedValue = event.target.value.replace(/[0-9]/g, "");
+            if (event.target.value !== modifiedValue) {
+                event.target.value = modifiedValue;
+            }
+        });
+    }
+
+    // --- 2. STRIKE CHARACTER ALPHABETS FROM MOBILE CHANNELS MATRIX ---
+    if (mobileInput) {
+        mobileInput.addEventListener("input", (event) => {
+            // RegEx removes alphabetical strings and characters on active keystrokes
+            const modifiedValue = event.target.value.replace(/[^0-9]/g, "");
+            if (event.target.value !== modifiedValue) {
+                event.target.value = modifiedValue;
+            }
+        });
+    }
+
+    // --- 3. DUAL-FIELD COMPOSITE PASSWORD TEXT VISIBILITY MECHANICS ---
+    visibilityToggles.forEach((buttonNode) => {
+        buttonNode.addEventListener("click", () => {
+            const targetedFieldId = buttonNode.getAttribute("data-target");
+            const targetedInputField = document.getElementById(targetedFieldId);
+
+            if (targetedInputField) {
+                const currentFieldType = targetedInputField.getAttribute("type");
+                if (currentFieldType === "password") {
+                    targetedInputField.setAttribute("type", "text");
+                    buttonNode.style.opacity = "0.6";
+                } else {
+                    targetedInputField.setAttribute("type", "password");
+                    buttonNode.style.opacity = "1";
+                }
+            }
+        });
+    });
+
+    // --- 4. SECURE ACCOUNT VALIDATION & ON-SUBMIT ROUTING REDIRECTIONS ---
+    if (signupForm && errorToast && successToast) {
+        signupForm.addEventListener("submit", (event) => {
+            event.preventDefault(); // Intercept raw data stream transmission traps
+
+            const rawName = nameInput.value.trim();
+            const rawEmail = emailInput.value.trim();
+            const rawMobile = mobileInput.value.trim();
+            const rawPassword = passwordInput.value.trim();
+            const rawConfirm = confirmInput.value.trim();
+
+            // Evaluate configuration wells for un-filled data wells slots loops
+            if (rawName === "" || rawEmail === "" || rawMobile === "" || rawPassword === "" || rawConfirm === "") {
+                successToast.style.display = "none";
+                errorToast.style.display = "block";
+                errorToast.textContent = "⚠️ Please fill out all required configuration fields before checking in!";
+                return;
+            }
+
+            // Perform check mapping size limits boundaries parameters over mobile values
+            if (rawMobile.length !== 10) {
+                successToast.style.display = "none";
+                errorToast.style.display = "block";
+                errorToast.textContent = "⚠️ Mobile tracking lines require an exact 10-digit configuration sequence.";
+                return;
+            }
+
+            // Verify strict text string identity matching metrics across password values slots
+            if (rawPassword !== rawConfirm) {
+                successToast.style.display = "none";
+                errorToast.style.display = "block";
+                errorToast.textContent = "⚠️ Security password keys mismatch! Verify data strings align.";
+                return;
+            }
+
+            // Inputs pass baseline criteria checks -> Open success confirmation window toast overlay panel
+            errorToast.style.display = "none";
+            successToast.style.display = "block";
+
+            // Automatically lock execution routines context and trigger programmatic routing redirection to login.html
+            setTimeout(() => {
+                successToast.style.display = "none";
+                window.location.href = "login.html"; // Routes user straight back to login screen smoothly
+            }, 3000); // Clamped to 3 seconds for safe human scan timing loops frames
+        });
+    }
+});
+
+</script>
+</body>
+</html>

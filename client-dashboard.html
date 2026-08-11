@@ -1,0 +1,3113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Field Partner Console</title>
+    <link rel="stylesheet" href="partner-dashboard.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        
+        <!-- --- MODULE 1: INTERACTIVE SIDEBAR NAVIGATION --- -->
+              <!-- --- MODULE 1: INTERACTIVE SIDEBAR NAVIGATION --- -->
+        <aside class="sidebar-wrapper" id="dashboard-sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-brand-box">
+                    <!-- Refresh function brand anchor pulling the page state cleanly -->
+                    <a href="javascript:void(0);" onclick="window.location.reload();" class="sidebar-brand" title="Refresh Dashboard Engine">
+                        <img src="./Assests/logo agri farming.webp" alt="🌱 Stackly" class="sidebar-logo-img">
+                    </a>
+                </div>
+                <!-- Close menu trigger button for mobile screen boundaries -->
+                <button class="btn-close-sidebar" id="sidebar-close-trigger" aria-label="Close layout navigation bar">×</button>
+            </div>
+
+            <!-- Sidebar Navigation Links List (Professional SVG Vectors Built-in) -->
+            <nav class="sidebar-navigation">
+                <ul class="nav-links-list">
+                    <li>
+                        <a href="javascript:void(0);" class="nav-item-link active" data-target="estate-overview">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/></svg>
+                            <span>Estate Overview</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="nav-item-link" data-target="yield-projections">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16,6l4,4-8,8-4-4L16,6M16,2L10,8,6,4,2,8v14H22V2L16,2z"/></svg>
+                            <span>Yield Projections</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="nav-item-link" data-target="water-accounting">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17Z"/></svg>
+                            <span>Water Assets</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="nav-item-link" data-target="order-history">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.11,3 19,3M19,19H5V5H19V19M7,7H17V9H7V7M7,11H17V13H7V11M7,15H14V17H7V15Z"/></svg>
+                            <span>Hardware Orders</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="nav-item-link" data-target="billing-statements">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5,6H19V18H5V6M5,4A2,2 0 0,0 3,6V18A2,2 0 0,0 5,20H19A2,2 0 0,0 21,18V6A2,2 0 0,0 19,4H5M7,8H11V11H7V8M7,13H17V15H7V13M13,8H17V10H13V8Z"/></svg>
+                            <span>Billing Statements</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Bottom Positioned Log Out Key Section -->
+            <div class="sidebar-bottom-actions">
+                <button class="btn-sidebar-logout" id="portal-logout-trigger">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.08,15.59L16.66,13H7V11H16.66L14.08,8.41L15.5,7L20.5,12L15.5,17L14.08,15.59M19,3A2,2 0 0,1 21,5V9.67L19,7.67V5H5V19H19V16.33L21,14.33V19A2,2 0 0,1 19,21H5C3.89,21 3,20.11 3,19V5C3,3.89 3.89,3 5,3H14.08Z"/></svg>
+                    <span>Log Out</span>
+                </button>
+            </div>
+        </aside>
+
+
+        <!-- --- MODULE 2: RE-ENGINEERED PRIMARY DASHBOARD BODY --- -->
+               <div class="dashboard-main-wrapper">
+            
+            <!-- Central Dynamic Dashboard Top Header -->
+            <header class="dashboard-header-bar">
+                <!-- Hamburger Icon Layout Block Button Component for Mobile Access -->
+                <button class="hamburger-menu-trigger" id="mobile-hamburger-btn" aria-label="Open sidebar menu channels">
+                    <svg viewBox="0 0 24 24" width="24" height="24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/></svg>
+                </button>
+
+                <div class="header-left-greeting">
+                    <span>Estate Registry Console / <strong>Client Management Deck</strong></span>
+                </div>
+
+                <!-- Right Side Profile Actions Group Layout -->
+                <div class="header-right-actions">
+                    <!-- Bell Alert Notification Anchor -->
+                 <button 
+    class="header-utility-btn" 
+    aria-label="Open notifications summary drawer"
+    onclick="window.location.href='404.html';"
+>
+    <div class="alert-unread-dot"></div>
+
+    <svg viewBox="0 0 24 24" width="22" height="22">
+        <path d="M12,2A2,2 0 0,0 10,4A2,2 0,0,0 10,4.29C7.12,5.14 5,7.82 5,11V17L3,19V20H21V19L19,17V11C19,7.82 16.88,5.14 14,4.29A2,2 0,0,0 12,2M12,22A2,2 0 0,0 14,20H10A2,2 0 0,0 12,22Z"/>
+    </svg>
+</button>
+
+                    <!-- Profile Account Capsule (Extracts clean string nicknames dynamically) -->
+                    <div class="header-profile-badge">
+                        <div class="profile-avatar-circle">C</div>
+                        <!-- Dynamic User Session Identifier Container Tag -->
+                        <span class="profile-username-string" id="dashboard-user-display">Loading Client...</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- --- MODULE 3: SECTION TITLE VIEWPORTS (PLACEHOLDERS) --- -->
+            <main class="dashboard-content-viewport">
+                
+               <!-- Enhanced Estate Command Deck & Overview Section -->
+<section class="viewport-section-card active" id="estate-overview">
+    
+    <!-- GRID ROW 1: Real-Time Land Analytics & Asset Cards -->
+    <div class="estate-dashboard-metrics">
+        
+        <!-- Metric Card 1: Acreage Footprint -->
+        <div class="estate-data-tile">
+            <div class="tile-upper-row">
+                <span class="tile-label-tag">Cultivated Footprint</span>
+                <div class="tile-vector-badge bg-soft-green">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,7H13V12H11V7M11,14H13V16H11V14Z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="tile-major-value">1,450 <span class="tile-unit">Acres</span></div>
+            <div class="tile-indicator-track">
+                <div class="tile-indicator-fill grass-green" style="width: 88%;"></div>
+            </div>
+            <p class="tile-footer-caption">88% Active crop grid utilization</p>
+        </div>
+
+        <!-- Metric Card 2: NDVI Index -->
+        <div class="estate-data-tile">
+            <div class="tile-upper-row">
+                <span class="tile-label-tag">Vegetation Index (NDVI)</span>
+                <div class="tile-vector-badge bg-soft-blue">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17Z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="tile-major-value">0.78 <span class="tile-unit">Index</span></div>
+            <div class="tile-indicator-track">
+                <div class="tile-indicator-fill healthy-blue" style="width: 78%;"></div>
+            </div>
+            <p class="tile-footer-caption">High photosynthetic canopy density</p>
+        </div>
+
+        <!-- Metric Card 3: Financial Budget -->
+        <div class="estate-data-tile">
+            <div class="tile-upper-row">
+                <span class="tile-label-tag">Operational Budget Flux</span>
+                <div class="tile-vector-badge bg-soft-amber">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5,6H19V18H5V6M5,4A2,2 0 0,0 3,6V18A2,2 0 0,0 5,20H19A2,2 0 0,0 21,18V6A2,2 0 0,0 19,4H5M7,8H11V11H7V8M7,13H17V15H7V13M13,8H17V10H13V8Z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="tile-major-value">₹42,500</div>
+            <div class="tile-indicator-track">
+                <div class="tile-indicator-fill warm-amber" style="width: 45%;"></div>
+            </div>
+            <p class="tile-footer-caption">45% Managed below seasonal ceiling</p>
+        </div>
+
+    </div>
+
+    <!-- GRID ROW 2: Drone Infrared Map & Active Interactive Radar Scan Panel -->
+    <div class="estate-aerial-scanner-card">
+        <div class="scanner-card-header">
+            <h3>Foliage Density Drone Infrared Scan</h3>
+            <span class="live-sat-link-pill"><span class="pulsing-beacon-dot"></span>LEO Satellite Stream Active</span>
+        </div>
+        
+        <div class="scanner-map-container">
+            <!-- High-definition drone infrared canopy image asset layout -->
+            <img src="./Assests/Irrigation.webp" alt="Drone infrared agricultural field analysis mapping layout" class="scanner-backdrop-map-img">
+            
+            <!-- Interactive Field Plot Marker 1 -->
+            <div class="interactive-plot-marker plot-zone-alpha">
+                <div class="marker-radar-ping"></div>
+                <div class="marker-floating-data-bubble">
+                    <strong>Zone Block Alpha</strong>
+                    <span>Crop: Premium Wine Grapes</span>
+                    <span>NDVI Health: 0.82 (Optimal)</span>
+                </div>
+            </div>
+
+            <!-- Interactive Field Plot Marker 2 -->
+            <div class="interactive-plot-marker plot-zone-delta">
+                <div class="marker-radar-ping warning-orange-ping"></div>
+                <div class="marker-floating-data-bubble">
+                    <strong>Zone Block Delta</strong>
+                    <span>Crop: Organic Virginia Peanuts</span>
+                    <span class="alert-danger-string">NDVI Health: 0.45 (Stressed)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRID ROW 3: Granular Crop Sector Analysis Data Table Registry -->
+    <div class="estate-spatial-registry-box">
+        <div class="registry-title-row">
+            <h3>Granular Sector Spatial Metrics</h3>
+        </div>
+        
+        <div class="table-scroll-shield-wrapper">
+            <table class="estate-data-registry-table">
+                <thead>
+                    <tr>
+                        <th>Block Quadrant ID</th>
+                        <th>Cultivated Crop Variant</th>
+                        <th>Acreage Footprint</th>
+                        <th>Avg Soil Saturation</th>
+                        <th>Harvest Readiness</th>
+                        <th>Ecosystem Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Zone Block Alpha</strong></td>
+                        <td>Premium Wine Grapes</td>
+                        <td>420 Acres</td>
+                        <td>34.2% VWC</td>
+                        <td>72% Progress</td>
+                        <td><span class="status-badge-chip state-optimal">Optimal Growth</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zone Block Beta</strong></td>
+                        <td>Alfonso Mango Orchard</td>
+                        <td>350 Acres</td>
+                        <td>31.5% VWC</td>
+                        <td>15% Progress</td>
+                        <td><span class="status-badge-chip state-optimal">Optimal Growth</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zone Block Delta</strong></td>
+                        <td>Organic Virginia Peanuts</td>
+                        <td>280 Acres</td>
+                        <td class="alert-danger-string heavy-weight-text">18.2% VWC</td>
+                        <td>94% Progress</td>
+                        <td><span class="status-badge-chip state-deficit">Moisture Deficit</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zone Block Gamma</strong></td>
+                        <td>Hybrid Maize Stalks</td>
+                        <td>400 Acres</td>
+                        <td>41.8% VWC</td>
+                        <td>45% Progress</td>
+                        <td><span class="status-badge-chip state-saturated">Saturated Bed</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+<style>
+    /* ==========================================================================
+   MODULE 6: ELABORATED ESTATE OVERVIEW FIELD COMPONENTS
+   ========================================================================== */
+
+/* --- 1. UPPER STRIP SUMMARY ASSETS CARDS GRID --- */
+.estate-dashboard-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.estate-data-tile {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tile-upper-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.85rem;
+}
+
+.tile-label-tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tile-vector-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tile-vector-badge svg { width: 18px; height: 18px; }
+
+/* Micro color design asset token mappings */
+.tile-vector-badge.bg-soft-green { background-color: var(--bg-bright); fill: var(--text-dark); }
+.tile-vector-badge.bg-soft-blue { background-color: #e3f2fd; fill: #1e88e5; }
+.tile-vector-badge.bg-soft-amber { background-color: #fff8e1; fill: #e65100; }
+
+.tile-major-value {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--dark-slate);
+    line-height: 1;
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.5px;
+}
+.tile-major-value .tile-unit { font-size: 0.95rem; font-weight: 700; color: #777777; }
+
+/* In-line horizontal data metrics progress bars tracks */
+.tile-indicator-track {
+    width: 100%;
+    height: 6px;
+    background-color: #f0f2f5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+}
+
+.tile-indicator-fill {
+    height: 100%;
+    border-radius: 10px;
+}
+.tile-indicator-fill.grass-green { background-color: var(--agri-glow); }
+.tile-indicator-fill.healthy-blue { background-color: #2196f3; }
+.tile-indicator-fill.warm-amber { background-color: #ff9100; }
+
+.tile-footer-caption { font-size: 0.8rem; font-weight: 600; color: #888888; }
+
+/* Summary Tile Hover Illumination Glows */
+.estate-data-tile:hover {
+    transform: translateY(-4px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 10px 25px rgba(27, 94, 32, 0.08);
+}
+
+/* --- 2. MIDDLE ROW DRONE CANOPY RADAR TRACKER PANEL --- */
+.estate-aerial-scanner-card {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.scanner-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+.scanner-card-header h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-slate); }
+
+.live-sat-link-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background-color: #f4f7f5;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #444444;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.pulsing-beacon-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #e65100;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #e65100;
+    animation: satelliteBeaconPulse 2s infinite ease-in-out;
+}
+
+.scanner-map-container {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.scanner-backdrop-map-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.75) contrast(1.15) saturate(1.05);
+}
+
+/* Layered Cross-Section Interactive Plot Overlays Mappings */
+.interactive-plot-marker {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.interactive-plot-marker.plot-zone-alpha { left: 30%; top: 25%; }
+.interactive-plot-marker.plot-zone-delta { right: 25%; bottom: 30%; }
+
+.marker-radar-ping {
+    width: 14px;
+    height: 14px;
+    background-color: var(--agri-glow);
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--agri-glow);
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.marker-radar-ping.warning-orange-ping {
+    background-color: #ff9100;
+    box-shadow: 0 0 10px #ff9100;
+}
+
+.marker-floating-data-bubble {
+    background-color: rgba(28, 35, 33, 0.96); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    opacity: 0.85;
+    transform: translateY(2px);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.marker-floating-data-bubble strong { font-size: 0.85rem; color: #ffffff; }
+.marker-floating-data-bubble span { font-size: 0.75rem; color: #94a3b8; font-weight: 600; }
+.alert-danger-string { color: #ff9100 !important; }
+
+.interactive-plot-marker:hover .marker-radar-ping { transform: scale(1.3); }
+.interactive-plot-marker:hover .marker-floating-data-bubble { opacity: 1; transform: translateY(0); border-color: var(--agri-glow); box-shadow: 0 8px 25px rgba(0, 230, 118, 0.2); }
+
+/* --- 3. BOTTOM CROP SPATIAL REGISTRY DATA TABLE --- */
+.estate-spatial-registry-box {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    padding: 1.75rem;
+    width: 100%;
+}
+
+.registry-title-row { margin-bottom: 1.25rem; }
+.registry-title-row h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-slate); }
+
+.table-scroll-shield-wrapper { width: 100%; overflow-x: auto; }
+
+.estate-data-registry-table { width: 100%; border-collapse: collapse; text-align: left; }
+.estate-data-registry-table th, .estate-data-registry-table td { padding: 1rem 1.25rem; font-size: 0.9rem; font-weight: 600; border-bottom: 1px solid #f0f2f5; }
+
+.estate-data-registry-table th {
+    background-color: #f4f7f5;
+    color: #555555;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+}
+
+.estate-data-registry-table tbody tr { transition: background-color 0.2s ease; }
+.estate-data-registry-table tbody tr:hover { background-color: var(--bg-bright); }
+
+.heavy-weight-text { font-weight: 800 !important; }
+
+/* Status status pill badge chips */
+.status-badge-chip {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.status-badge-chip.state-optimal { background-color: rgba(76, 175, 80, 0.1); color: #2e7d32; }
+.status-badge-chip.state-deficit { background-color: rgba(255, 145, 0, 0.1); color: #e65100; }
+.status-badge-chip.state-saturated { background-color: rgba(33, 150, 243, 0.1); color: #2196f3; }
+
+/* --- BEACON AND ENTRANCE KEYFRAMES --- */
+@keyframes satelliteBeaconPulse { 0% { transform: scale(0.95); opacity: 0.5; } 50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 12px #e65100; } 100% { transform: scale(0.95); opacity: 0.5; } }
+
+/* ==========================================================================
+   MODULE 7: DEEPER BREAKPOINT OVERRIDES FOR INNER METRICS
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .estate-dashboard-metrics { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .estate-data-tile:last-child { grid-column: span 2; }
+}
+
+@media (max-width: 768px) {
+    .estate-dashboard-metrics { grid-template-columns: 1fr; gap: 1rem; }
+    .estate-data-tile:last-child { grid-column: span 1; }
+    .scanner-map-container { height: 240px; }
+    .interactive-plot-marker.plot-zone-alpha { left: 10%; top: 20%; }
+    .interactive-plot-marker.plot-zone-delta { right: 10%; bottom: 15%; }
+    .marker-floating-data-bubble { padding: 0.5rem 0.75rem; }
+}
+
+@media (max-width: 520px) {
+    .scanner-card-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .estate-data-registry-table th, .estate-data-registry-table td { padding: 0.85rem 0.6rem; font-size: 0.8rem; }
+    .marker-floating-data-bubble { display: none; } 
+}
+
+</style>
+<script>
+        // Verify your links collection hooks to the client targets correctly
+    const clientNavLinks = document.querySelectorAll(".nav-item-link");
+    const clientPanels = document.querySelectorAll(".viewport-section-card");
+
+    clientNavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            const currentTargetCode = link.getAttribute("data-target");
+            console.log(`[NAVIGATION] Switching client panel view focus to: ${currentTargetCode}`);
+        });
+    });
+
+</script>
+
+             <!-- Enhanced Seasonal Harvest Yield Projections Section -->
+<section class="viewport-section-card" id="yield-projections">
+    
+    <!-- GRID ROW 1: Predictive Efficiency Index Tiles Matrix -->
+    <div class="yield-analysis-metrics-grid">
+        
+        <!-- Index Card 1 -->
+        <div class="yield-stat-tile">
+            <div class="yield-tile-header">
+                <span class="yield-tile-label">Projected Gross Yield</span>
+                <div class="yield-vector-box color-green">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M16,6l4,4-8,8-4-4L16,6M16,2L10,8,6,4,2,8v14H22V2L16,2z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="yield-tile-major">4,820 <span class="yield-sub-unit">Metric Tons</span></div>
+            <div class="yield-mini-progress">
+                <div class="yield-progress-fill match-green" style="width: 82%;"></div>
+            </div>
+            <p class="yield-tile-caption">+12.4% Increase from 2025 seasonal baseline</p>
+        </div>
+
+        <!-- Index Card 2 -->
+        <div class="yield-stat-tile">
+            <div class="yield-tile-header">
+                <span class="yield-tile-label">Confidence Accuracy Index</span>
+                <div class="yield-vector-box color-blue">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,7H13V12H11V7M11,14H13V16H11V14Z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="yield-tile-major">94.8% <span class="yield-sub-unit">ML Model</span></div>
+            <div class="yield-mini-progress">
+                <div class="yield-progress-fill match-blue" style="width: 94%;"></div>
+            </div>
+            <p class="yield-tile-caption">Calibrated via live ground telemetry spikes</p>
+        </div>
+
+        <!-- Index Card 3 -->
+        <div class="yield-stat-tile">
+            <div class="yield-tile-header">
+                <span class="yield-tile-label">Est Market Valuation</span>
+                <div class="yield-vector-box color-amber">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5,6H19V18H5V6M5,4A2,2 0 0,0 3,6V18A2,2 0 0,0 5,20H19A2,2 0 0,0 21,18V6A2,2 0 0,0 19,4H5M7,8H11V11H7V8M7,13H17V15H7V13M13,8H17V10H13V8Z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="yield-tile-major">₹2.84 <span class="yield-sub-unit">Crores</span></div>
+            <div class="yield-mini-progress">
+                <div class="yield-progress-fill match-amber" style="width: 65%;"></div>
+            </div>
+            <p class="yield-tile-caption">Based on futures trends pricing indices</p>
+        </div>
+
+    </div>
+
+    <!-- GRID ROW 2: Simulated Visual Harvest Timeline Regression Tracker -->
+    <div class="yield-regression-graph-card">
+        <div class="regression-card-header">
+            <h3>Crop Sector Maturation Timeline</h3>
+            <span class="ml-status-pill"><span class="ml-pulse-beacon"></span>Regression Nodes Running</span>
+        </div>
+        
+        <div class="regression-visual-track-container">
+            <!-- Simulated background map crop rows metric graphic overlay asset -->
+            <img src="./Assests/dashboard analytics agri.webp" alt="Topographical matrix predictive timelines graph" class="regression-backdrop-img">
+            
+            <!-- Timeline Station Node 1 -->
+            <div class="timeline-station position-node-1">
+                <div class="station-ring-ping"></div>
+                <div class="station-details-bubble">
+                    <strong>Stage: Flowering Phase</strong>
+                    <span>Sector 4A • Wine Grapes</span>
+                    <span>Est Harvest window: 24 Days</span>
+                </div>
+            </div>
+
+            <!-- Timeline Station Node 2 -->
+            <div class="timeline-station position-node-2">
+                <div class="station-ring-ping delay-blue-ping"></div>
+                <div class="station-details-bubble">
+                    <strong>Stage: Ripening Peak</strong>
+                    <span>Sector 2C • Hybrid Maize</span>
+                    <span class="text-optimal-green">Est Harvest window: 08 Days</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRID ROW 3: Responsive Crop Estimation Ledger Table -->
+    <div class="yield-ledger-table-box">
+        <div class="ledger-title-row">
+            <h3>Predictive Harvest Output Estimation Ledger</h3>
+        </div>
+        
+        <div class="ledger-table-overflow-containment">
+            <table class="yield-raw-estimation-table">
+                <thead>
+                    <tr>
+                        <th>Crop Variant Profile</th>
+                        <th>Estate Sector Zone</th>
+                        <th>Est Output Mass</th>
+                        <th>VWC Saturation Target</th>
+                        <th>Target Harvest Date</th>
+                        <th>Model Risk Evaluation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Premium Wine Grapes</strong></td>
+                        <td>Zone Block Alpha</td>
+                        <td>1,240 Metric Tons</td>
+                        <td>34.2% VWC</td>
+                        <td>Sept 04, 2026</td>
+                        <td><span class="risk-badge-pill risk-low">Minimal Risk</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alfonso Mango Orchard</strong></td>
+                        <td>Zone Block Beta</td>
+                        <td>980 Metric Tons</td>
+                        <td>31.5% VWC</td>
+                        <td>Oct 12, 2026</td>
+                        <td><span class="risk-badge-pill risk-low">Minimal Risk</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Organic Virginia Peanuts</strong></td>
+                        <td>Zone Block Delta</td>
+                        <td>850 Metric Tons</td>
+                        <td class="text-risk-warning font-heavy">18.2% VWC</td>
+                        <td>Oct 28, 2026</td>
+                        <td><span class="risk-badge-pill risk-high">Hydration Stress</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hybrid Maize Stalks</strong></td>
+                        <td>Zone Block Gamma</td>
+                        <td>1,750 Metric Tons</td>
+                        <td>41.8% VWC</td>
+                        <td>Aug 19, 2026</td>
+                        <td><span class="risk-badge-pill risk-optimal">Harvest Ready</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+<style>
+    /* ==========================================================================
+   MODULE 8: PREDICTIVE HARVEST YIELD PROJECTIONS PANELS
+   ========================================================================== */
+
+/* --- 1. UPPER PREDICTIVE EFFICIENCY INDEX TILES GRID --- */
+.yield-analysis-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.yield-stat-tile {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.yield-tile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.85rem;
+}
+
+.yield-tile-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.yield-vector-box {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.yield-vector-box svg { width: 18px; height: 18px; }
+
+/* Dynamic color assignment tokens */
+.yield-vector-box.color-green { background-color: var(--bg-bright); fill: var(--text-dark); }
+.yield-vector-box.color-blue { background-color: #e3f2fd; fill: #1e88e5; }
+.yield-vector-box.color-amber { background-color: #fff8e1; fill: #e65100; }
+
+.yield-tile-major {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--dark-slate);
+    line-height: 1;
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.5px;
+}
+.yield-tile-major .yield-sub-unit { font-size: 0.95rem; font-weight: 700; color: #777777; }
+
+.yield-mini-progress {
+    width: 100%;
+    height: 6px;
+    background-color: #f0f2f5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+}
+
+.yield-progress-fill { height: 100%; border-radius: 10px; }
+.yield-progress-fill.match-green { background-color: var(--agri-glow); }
+.yield-progress-fill.match-blue { background-color: #2196f3; }
+.yield-progress-fill.match-amber { background-color: #ff9100; }
+
+.yield-tile-caption { font-size: 0.8rem; font-weight: 600; color: #888888; }
+
+.yield-stat-tile:hover {
+    transform: translateY(-4px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 10px 25px rgba(27, 94, 32, 0.08);
+}
+
+/* --- 2. MIDDLE ROW HARVEST TIMELINE REGREASSION TRACKER PANEL --- */
+.yield-regression-graph-card {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.regression-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+.regression-card-header h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-slate); }
+
+.ml-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background-color: #f4f7f5;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #444444;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.ml-pulse-beacon {
+    width: 8px;
+    height: 8px;
+    background-color: #2196f3;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #2196f3;
+    animation: timelineBeaconPulse 2s infinite ease-in-out;
+}
+
+.regression-visual-track-container {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.regression-backdrop-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) contrast(1.2) saturate(0.85);
+}
+
+/* Timeline tracking stations positioning maps */
+.timeline-station {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.timeline-station.position-node-1 { left: 25%; top: 35%; }
+.timeline-station.position-node-2 { right: 30%; bottom: 30%; }
+
+.station-ring-ping {
+    width: 14px;
+    height: 14px;
+    background-color: #4caf50;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #4caf50;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.station-ring-ping.delay-blue-ping {
+    background-color: #2196f3;
+    box-shadow: 0 0 10px #2196f3;
+}
+
+.station-details-bubble {
+    background-color: rgba(28, 35, 33, 0.96); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    opacity: 0.85;
+    transform: translateY(2px);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.station-details-bubble strong { font-size: 0.85rem; color: #ffffff; }
+.station-details-bubble span { font-size: 0.75rem; color: #94a3b8; font-weight: 600; }
+.text-optimal-green { color: var(--agri-glow) !important; font-weight: 800; }
+
+.timeline-station:hover .station-ring-ping { transform: scale(1.3); }
+.timeline-station:hover .station-details-bubble { opacity: 1; transform: translateY(0); border-color: var(--agri-glow); box-shadow: 0 8px 25px rgba(0, 230, 118, 0.2); }
+
+/* --- 3. BOTTOM CROP LEDGER TABLE MODULE --- */
+.yield-ledger-table-box {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    padding: 1.75rem;
+    width: 100%;
+}
+
+.ledger-title-row { margin-bottom: 1.25rem; }
+.ledger-title-row h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-slate); }
+
+.ledger-table-overflow-containment { width: 100%; overflow-x: auto; }
+
+.yield-raw-estimation-table { width: 100%; border-collapse: collapse; text-align: left; }
+.yield-raw-estimation-table th, .yield-raw-estimation-table td { padding: 1rem 1.25rem; font-size: 0.9rem; font-weight: 600; border-bottom: 1px solid #f0f2f5; }
+
+.yield-raw-estimation-table th {
+    background-color: #f4f7f5;
+    color: #555555;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+}
+
+.yield-raw-estimation-table tbody tr { transition: background-color 0.2s ease; }
+.yield-raw-estimation-table tbody tr:hover { background-color: var(--bg-bright); }
+
+.text-risk-warning { color: #e65100 !important; }
+.font-heavy { font-weight: 800 !important; }
+
+/* Status pill indicator chips mapping */
+.risk-badge-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.risk-badge-pill.risk-low { background-color: rgba(76, 175, 80, 0.1); color: #2e7d32; }
+.risk-badge-pill.risk-high { background-color: rgba(255, 145, 0, 0.1); color: #e65100; }
+.risk-badge-pill.risk-optimal { background-color: rgba(33, 150, 243, 0.1); color: #2196f3; border: 1px solid rgba(33, 150, 243, 0.15); }
+
+/* --- TIMELINE RADAR PULSING ENGINE KEYFRAMES --- */
+@keyframes timelineBeaconPulse { 0% { transform: scale(0.95); opacity: 0.5; } 50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 12px #2196f3; } 100% { transform: scale(0.95); opacity: 0.5; } }
+
+/* --- RESPONSIVE MEDIA GRID CLOSURES OVERRIDES --- */
+@media (max-width: 1200px) {
+    .yield-analysis-metrics-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .yield-stat-tile:last-child { grid-column: span 2; }
+}
+
+@media (max-width: 768px) {
+    .yield-analysis-metrics-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .yield-stat-tile:last-child { grid-column: span 1; }
+    .regression-visual-track-container { height: 240px; }
+    .timeline-station.position-node-1 { left: 10%; top: 20%; }
+    .timeline-station.position-node-2 { right: 10%; bottom: 15%; }
+    .station-details-bubble { padding: 0.5rem 0.75rem; }
+}
+
+@media (max-width: 520px) {
+    .regression-card-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .yield-raw-estimation-table th, .yield-raw-estimation-table td { padding: 0.85rem 0.6rem; font-size: 0.8rem; }
+    .station-details-bubble { display: none; } /* Drop heavy interactive overlays on extra narrow touchscreen views */
+}
+
+</style>
+
+                <!-- Section Block 3: Water Assets -->
+              <!-- Enhanced Water Assets Accounting Registry Section -->
+<section class="viewport-section-card" id="water-accounting">
+    
+    <!-- GRID ROW 1: Volumetric Asset Monitoring Tiles Matrix -->
+    <div class="water-accounting-metrics-grid">
+        
+        <!-- Water Asset Card 1 -->
+        <div class="water-stat-tile">
+            <div class="water-tile-header">
+                <span class="water-tile-label">Total Volume Retained</span>
+                <div class="water-vector-box aqua-blue-theme">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17Z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="water-tile-major">4.82 <span class="water-sub-unit">M Gallons</span></div>
+            <div class="water-mini-progress">
+                <div class="water-progress-fill match-blue" style="width: 78%;"></div>
+            </div>
+            <p class="water-tile-caption">78% Reservoir storage threshold capacity</p>
+        </div>
+
+        <!-- Water Asset Card 2 -->
+        <div class="water-stat-tile">
+            <div class="water-tile-header">
+                <span class="water-tile-label">Daily Conservation Index</span>
+                <div class="water-vector-box organic-green-theme">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,7H13V12H11V7M11,14H13V16H11V14Z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="water-tile-major">34,500 <span class="water-sub-unit">G / Day</span></div>
+            <div class="water-mini-progress">
+                <div class="water-progress-fill match-green" style="width: 92%;"></div>
+            </div>
+            <p class="water-tile-caption">Saved globally via smart closed-loop valves</p>
+        </div>
+
+        <!-- Water Asset Card 3 -->
+        <div class="water-stat-tile">
+            <div class="water-tile-header">
+                <span class="water-tile-label">Irrigation Overhead Run</span>
+                <div class="water-vector-box warning-amber-theme">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12,2c-5.52,0-10,4.48-10,10s4.48,10,10,10,10-4.48,10-10-4.48-10-10-10zm0,18c-4.41,0-8-3.59-8-8s3.59-8,8-8,8,3.59,8,8-3.59,8-8,8zm-1-13h2v6h-2zm0,8h2v2h-2z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="water-tile-major">4.2 <span class="water-sub-unit">Hours Avg</span></div>
+            <div class="water-mini-progress">
+                <div class="water-progress-fill match-amber" style="width: 35%;"></div>
+            </div>
+            <p class="water-tile-caption">-18% Reduction from static timer baselines</p>
+        </div>
+
+    </div>
+
+    <!-- GRID ROW 2: Interactive Irrigation Cross-Section & Strata Management Panel -->
+    <div class="water-aquifer-scanner-card">
+        <div class="aquifer-card-header">
+            <h3>Subsurface Aquifer & Saturation Strata Map</h3>
+            <span class="probe-link-pill"><span class="probe-pulse-beacon"></span>Telemetry Core Streaming</span>
+        </div>
+        
+        <div class="aquifer-map-container">
+            <!-- Simulated high-definition subsurface moisture grid background asset -->
+            <img src="./Assests/microbiology.webp" alt="Subsurface hydro geological aquifer scan mapping layout" class="aquifer-backdrop-map-img">
+            
+            <!-- Interactive Aquifer Node Marker 1 -->
+            <div class="interactive-aquifer-marker aquifer-zone-topsoil">
+                <div class="aquifer-radar-ping"></div>
+                <div class="aquifer-floating-data-bubble">
+                    <strong>Topsoil Feed Layer (0-15cm)</strong>
+                    <span>Saturation: 28.5% VWC</span>
+                    <span>State: Evaporation Exposure</span>
+                </div>
+            </div>
+
+            <!-- Interactive Aquifer Node Marker 2 -->
+            <div class="interactive-aquifer-marker aquifer-zone-rootzone">
+                <div class="aquifer-radar-ping safe-blue-ping"></div>
+                <div class="aquifer-floating-data-bubble">
+                    <strong>Active Root Matrix Layer (15-45cm)</strong>
+                    <span>Saturation: 36.8% VWC</span>
+                    <span class="text-optimal-green">State: Optimal Moisture Pool</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRID ROW 3: Granular Sector Hydration Audit Ledger Data Table -->
+    <div class="water-audit-registry-box">
+        <div class="w-registry-title-row">
+            <h3>Granular Sector Hydration Audit Ledger</h3>
+        </div>
+        
+        <div class="w-table-scroll-shield-wrapper">
+            <table class="water-data-registry-table">
+                <thead>
+                    <tr>
+                        <th>Asset Sector Zone</th>
+                        <th>Active Valve Nodes</th>
+                        <th>Irrigation Delivery Method</th>
+                        <th>Acre-Feet Dispatched</th>
+                        <th>Soil Absorption Efficiency</th>
+                        <th>Hydration Audit Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sector 4A - Upper Ridge</strong></td>
+                        <td>4 Active (SOL-04A)</td>
+                        <td>Precision Micro-Drip lines</td>
+                        <td>12.4 AF</td>
+                        <td>94.2%</td>
+                        <td><span class="water-badge-chip state-optimal">Optimal Audit</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sector 12B - Low Hotbed</strong></td>
+                        <td>0 Standby (SOL-12B)</td>
+                        <td>Subsurface Capillary Mesh</td>
+                        <td>2.1 AF</td>
+                        <td>88.5%</td>
+                        <td><span class="water-badge-chip state-deficit">Deficit Lock</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sector 2C - Greenhouse</strong></td>
+                        <td>2 Active (SOL-02C)</td>
+                        <td>Automated Overhead Misting</td>
+                        <td>5.8 AF</td>
+                        <td>91.7%</td>
+                        <td><span class="water-badge-chip state-optimal">Optimal Audit</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sector 8F - Orchard Grid</strong></td>
+                        <td>6 Active (SOL-08F)</td>
+                        <td>Pulsed Root Spikes</td>
+                        <td>18.6 AF</td>
+                        <td class="text-alert-saturated heavy-weight-text">74.1%</td>
+                        <td><span class="water-badge-chip state-saturated">Saturated Run</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+<style>
+    /* ==========================================================================
+   MODULE 9: ELABORATED WATER ASSETS ACCOUNTING COMPONENTS
+   ========================================================================== */
+
+/* --- 1. UPPER VOLUMETRIC ASSET TILES GRID --- */
+.water-accounting-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.water-stat-tile {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.water-tile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.85rem;
+}
+
+.water-tile-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.water-vector-box {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.water-vector-box svg { width: 18px; height: 18px; }
+
+/* Theme mapping definitions codes for vector frames */
+.water-vector-box.aqua-blue-theme { background-color: #e3f2fd; fill: #1e88e5; }
+.water-vector-box.organic-green-theme { background-color: var(--bg-bright); fill: var(--text-dark); }
+.water-vector-box.warning-amber-theme { background-color: #fff8e1; fill: #e65100; }
+
+.water-tile-major {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--dark-slate);
+    line-height: 1;
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.5px;
+}
+.water-tile-major .water-sub-unit { font-size: 0.95rem; font-weight: 700; color: #777777; }
+
+.water-mini-progress {
+    width: 100%;
+    height: 6px;
+    background-color: #f0f2f5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+}
+
+.water-progress-fill { height: 100%; border-radius: 10px; }
+.water-progress-fill.match-blue { background-color: #2196f3; }
+.water-progress-fill.match-green { background-color: var(--agri-glow); }
+.water-progress-fill.match-amber { background-color: #ff9100; }
+
+.water-tile-caption { font-size: 0.8rem; font-weight: 600; color: #888888; }
+
+/* Interactive Hover States */
+.water-stat-tile:hover {
+    transform: translateY(-4px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 10px 25px rgba(27, 94, 32, 0.08);
+}
+
+/* --- 2. MIDDLE ROW SUBSURFACE SCANNED HYDRATION PANEL --- */
+.water-aquifer-scanner-card {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.aquifer-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+.aquifer-card-header h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-slate); }
+
+.probe-link-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background-color: #f4f7f5;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #444444;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.probe-pulse-beacon {
+    width: 8px;
+    height: 8px;
+    background-color: #2196f3;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #2196f3;
+    animation: waterProbeSignalPulse 2s infinite ease-in-out;
+}
+
+.aquifer-map-container {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.aquifer-backdrop-map-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) contrast(1.2) saturate(0.9);
+}
+
+/* Layered Cross Section Aquifer Markers Layouts */
+.interactive-aquifer-marker {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.interactive-aquifer-marker.aquifer-zone-topsoil { left: 25%; top: 30%; }
+.interactive-aquifer-marker.aquifer-zone-rootzone { right: 35%; bottom: 35%; }
+
+.aquifer-radar-ping {
+    width: 14px;
+    height: 14px;
+    background-color: #ff9100;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff9100;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.aquifer-radar-ping.safe-blue-ping {
+    background-color: #2196f3;
+    box-shadow: 0 0 10px #2196f3;
+}
+
+.aquifer-floating-data-bubble {
+    background-color: rgba(28, 35, 33, 0.96); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    opacity: 0.85;
+    transform: translateY(2px);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.aquifer-floating-data-bubble strong { font-size: 0.85rem; color: #ffffff; }
+.aquifer-floating-data-bubble span { font-size: 0.75rem; color: #94a3b8; font-weight: 600; }
+.text-optimal-green { color: var(--agri-glow) !important; font-weight: 800; }
+
+.interactive-aquifer-marker:hover .aquifer-radar-ping { transform: scale(1.3); }
+.interactive-aquifer-marker:hover .aquifer-floating-data-bubble { opacity: 1; transform: translateY(0); border-color: var(--agri-glow); box-shadow: 0 8px 25px rgba(0, 230, 118, 0.2); }
+
+/* --- 3. BOTTOM AUDIT REGISTRY DATA TABLE --- */
+.water-audit-registry-box {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    padding: 1.75rem;
+    width: 100%;
+}
+
+.w-registry-title-row { margin-bottom: 1.25rem; }
+.w-registry-title-row h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-slate); }
+
+.w-table-scroll-shield-wrapper { width: 100%; overflow-x: auto; }
+
+.water-data-registry-table { width: 100%; border-collapse: collapse; text-align: left; }
+.water-data-registry-table th, .water-data-registry-table td { padding: 1rem 1.25rem; font-size: 0.9rem; font-weight: 600; border-bottom: 1px solid #f0f2f5; }
+
+.water-data-registry-table th {
+    background-color: #f4f7f5;
+    color: #555555;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+}
+
+.water-data-registry-table tbody tr { transition: background-color 0.2s ease; }
+.water-data-registry-table tbody tr:hover { background-color: var(--bg-bright); }
+
+.text-alert-saturated { color: #1e88e5 !important; }
+.heavy-weight-text { font-weight: 800 !important; }
+
+/* Status pill chip configurations codes mapping */
+.water-badge-chip {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.water-badge-chip.state-optimal { background-color: rgba(76, 175, 80, 0.1); color: #2e7d32; }
+.water-badge-chip.state-deficit { background-color: rgba(255, 145, 0, 0.1); color: #e65100; }
+.water-badge-chip.state-saturated { background-color: rgba(33, 150, 243, 0.1); color: #2196f3; }
+
+/* --- SIGNAL PULSE BLINK KEYFRAMES --- */
+@keyframes waterProbeSignalPulse { 0% { transform: scale(0.95); opacity: 0.5; } 50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 12px #2196f3; } 100% { transform: scale(0.95); opacity: 0.5; } }
+
+/* --- HIGH-PERFORMANCE RESPONSIVE VIEWPORT BREAKPOINTS BREAKDOWNS --- */
+@media (max-width: 1200px) {
+    .water-accounting-metrics-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .water-stat-tile:last-child { grid-column: span 2; }
+}
+
+@media (max-width: 768px) {
+    .water-accounting-metrics-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .water-stat-tile:last-child { grid-column: span 1; }
+    .aquifer-map-container { height: 240px; }
+    .interactive-aquifer-marker.aquifer-zone-topsoil { left: 10%; top: 20%; }
+    .interactive-aquifer-marker.aquifer-zone-rootzone { right: 10%; bottom: 15%; }
+    .aquifer-floating-data-bubble { padding: 0.5rem 0.75rem; }
+}
+
+@media (max-width: 520px) {
+    .aquifer-card-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .water-data-registry-table th, .water-data-registry-table td { padding: 0.85rem 0.6rem; font-size: 0.8rem; }
+    .aquifer-floating-data-bubble { display: none; } /* Drop heavy interactive popups on extra narrow touchscreen views */
+}
+
+</style>
+
+          <!-- Enhanced Hardware Order Procurement Logs Section -->
+<section class="viewport-section-card" id="order-history">
+    
+    <!-- GRID ROW 1: Procurement Pipeline Performance Cards Grid -->
+    <div class="order-pipeline-metrics-grid">
+        
+        <!-- Performance Card 1 -->
+        <div class="order-stat-tile">
+            <div class="order-tile-header">
+                <span class="order-tile-label">Deployed Core Nodes</span>
+                <div class="order-vector-box green-shield-theme">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,7H13V12H11V7M11,14H13V16H11V14Z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="order-tile-major">120 <span class="order-sub-unit">Units</span></div>
+            <div class="order-mini-progress">
+                <div class="order-progress-fill match-green" style="width: 80%;"></div>
+            </div>
+            <p class="order-tile-caption">80% of total estate quota instrumentation active</p>
+        </div>
+
+        <!-- Performance Card 2 -->
+        <div class="order-stat-tile">
+            <div class="order-tile-header">
+                <span class="order-tile-label">Pending In-Transit Units</span>
+                <div class="order-vector-box blue-truck-theme">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20,8H17V4H3A2,2 0 0,0 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8M6,18.5A1.5,1.5 0 1,1 7.5,17A1.5,1.5 0 0,1 6,18.5M17,12V9.5H19.5L21.4,12H17M18,18.5A1.5,1.5 0 1,1 19.5,17A1.5,1.5 0 0,1 18,18.5Z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="order-tile-major">15 <span class="order-sub-unit">Spikes</span></div>
+            <div class="order-mini-progress">
+                <div class="order-progress-fill match-blue" style="width: 40%;"></div>
+            </div>
+            <p class="order-tile-caption">En route via cold-chain transit lines</p>
+        </div>
+
+        <!-- Performance Card 3 -->
+        <div class="order-stat-tile">
+            <div class="order-tile-header">
+                <span class="order-tile-label">Total Capital Invested</span>
+                <div class="order-vector-box amber-ledger-theme">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5,6H19V18H5V6M5,4A2,2 0 0,0 3,6V18A2,2 0 0,0 5,20H19A2,2 0 0,0 21,18V6A2,2 0 0,0 19,4H5M7,8H11V11H7V8M7,13H17V15H7V13M13,8H17V10H13V8Z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="order-tile-major">₹4.25 <span class="order-sub-unit">Lakhs</span></div>
+            <div class="order-mini-progress">
+                <div class="order-progress-fill match-amber" style="width: 70%;"></div>
+            </div>
+            <p class="order-tile-caption">Includes real-time API subscription license anchors</p>
+        </div>
+
+    </div>
+
+    <!-- GRID ROW 2: Interactive Order Tracking Milestones Tracker Component -->
+    <div class="order-tracking-matrix-card">
+        <div class="tracking-card-header">
+            <h3>Active Procurement Consignment Tracker</h3>
+            <span class="dispatch-pill"><span class="dispatch-beacon"></span>GPS Node Linked</span>
+        </div>
+        
+        <div class="milestones-horizontal-axis">
+            <!-- Step 1 -->
+            <div class="axis-step step-complete">
+                <div class="step-circle">
+                    <svg viewBox="0 0 24 24" width="16" height="16"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>
+                </div>
+                <div class="step-content">
+                    <strong>Order Confirmed</strong>
+                    <span>Inv-2026-8804</span>
+                </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="axis-step step-complete">
+                <div class="step-circle">
+                    <svg viewBox="0 0 24 24" width="16" height="16"><path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>
+                </div>
+                <div class="step-content">
+                    <strong>Assembled & Calibrated</strong>
+                    <span>AES-256 Keys Burned</span>
+                </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="axis-step step-active">
+                <div class="step-circle-pulse"></div>
+                <div class="step-content">
+                    <strong>In Transit</strong>
+                    <span>Salem West Interchange</span>
+                </div>
+            </div>
+            <!-- Step 4 -->
+            <div class="axis-step step-pending">
+                <div class="step-circle"></div>
+                <div class="step-content">
+                    <strong>Estate Deployment</strong>
+                    <span>Zone Block Delta</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRID ROW 3: Responsive Procurement Order History Ledger Table -->
+    <div class="order-history-ledger-box">
+        <div class="ledger-title-row">
+            <h3>Historical Hardware Procurement Logs</h3>
+        </div>
+        
+        <div class="ledger-table-overflow-containment">
+            <table class="order-history-table">
+                <thead>
+                    <tr>
+                        <th>Invoice Reference</th>
+                        <th>Procured Asset Inventory</th>
+                        <th>Acreage Target Destination</th>
+                        <th>Order Date</th>
+                        <th>Capital Value</th>
+                        <th>Consignment Milestone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="invoice-token">STK-INV-8804</code></td>
+                        <td>15x Carbon-Spike RF Mesh Nodes</td>
+                        <td>Zone Block Delta • Peanuts</td>
+                        <td>Aug 08, 2026</td>
+                        <td>₹1,15,000</td>
+                        <td><span class="milestone-badge m-transit">In Transit</span></td>
+                    </tr>
+                    <tr>
+                        <td><code class="invoice-token">STK-INV-7412</code></td>
+                        <td>02x Automated Solenoid Gate Valves</td>
+                        <td>Zone Block Alpha • Vineyards</td>
+                        <td>July 20, 2026</td>
+                        <td>₹85,000</td>
+                        <td><span class="milestone-badge m-complete">Deployed</span></td>
+                    </tr>
+                    <tr>
+                        <td><code class="invoice-token">STK-INV-6190</code></td>
+                        <td>40x Root Core Subsurface Spikes</td>
+                        <td>Zone Block Beta • Mangoes</td>
+                        <td>June 11, 2026</td>
+                        <td>₹2,25,000</td>
+                        <td><span class="milestone-badge m-complete">Deployed</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+<style>
+    /* ==========================================================================
+   MODULE 10: PROCUREMENT AND HARDWARE HISTORY TRACKER PANEL STYLES
+   ========================================================================== */
+
+/* --- 1. UPPER PIPELINE SUMMARY MATRIX GRID --- */
+.order-pipeline-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.order-stat-tile {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-tile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.85rem;
+}
+
+.order-tile-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.order-vector-box {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.order-vector-box svg { width: 18px; height: 18px; }
+
+/* Custom themed tracking icon fills maps */
+.order-vector-box.green-shield-theme { background-color: var(--bg-bright); fill: var(--text-dark); }
+.order-vector-box.blue-truck-theme { background-color: #e3f2fd; fill: #1e88e5; }
+.order-vector-box.amber-ledger-theme { background-color: #fff8e1; fill: #e65100; }
+
+.order-tile-major {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--dark-slate);
+    line-height: 1;
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.5px;
+}
+.order-tile-major .order-sub-unit { font-size: 0.95rem; font-weight: 700; color: #777777; }
+
+.order-mini-progress {
+    width: 100%;
+    height: 6px;
+    background-color: #f0f2f5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+}
+
+.order-progress-fill { height: 100%; border-radius: 10px; }
+.order-progress-fill.match-green { background-color: var(--agri-glow); }
+.order-progress-fill.match-blue { background-color: #2196f3; }
+.order-progress-fill.match-amber { background-color: #ff9100; }
+
+.order-tile-caption { font-size: 0.8rem; font-weight: 600; color: #888888; }
+
+.order-stat-tile:hover {
+    transform: translateY(-4px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 10px 25px rgba(27, 94, 32, 0.08);
+}
+
+/* --- 2. MIDDLE ROW HORIZONTAL DISPATCH MILESTONES AXIS PANEL --- */
+.order-tracking-matrix-card {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.tracking-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.tracking-card-header h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-slate); }
+
+.dispatch-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background-color: #f4f7f5;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #444444;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.dispatch-beacon {
+    width: 8px;
+    height: 8px;
+    background-color: #1e88e5;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #1e88e5;
+    animation: orderGpsPulse 2s infinite ease-in-out;
+}
+
+/* Linear step component connector line tracks */
+.milestones-horizontal-axis {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.milestones-horizontal-axis::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 4rem;
+    right: 4rem;
+    height: 3px;
+    background-color: #e2e8f0;
+    z-index: 1;
+}
+
+.axis-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 2;
+    flex: 1;
+}
+
+.step-circle {
+    width: 32px;
+    height: 32px;
+    background-color: #ffffff;
+    border: 3px solid #cbd5e1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.step-circle svg { fill: #ffffff; }
+
+/* Dynamic state validation styles tracks loops */
+.step-complete .step-circle {
+    background-color: var(--text-dark);
+    border-color: var(--text-dark);
+}
+
+.step-active .step-circle-pulse {
+    width: 32px;
+    height: 32px;
+    background-color: #ffffff;
+    border: 4px solid #1e88e5;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(30, 136, 229, 0.4);
+    position: relative;
+    animation: activeRingBounce 2s infinite alternate;
+}
+
+.step-content {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.step-content strong { font-size: 0.9rem; color: var(--dark-slate); }
+.step-content span { font-size: 0.75rem; color: #777777; font-weight: 600; }
+
+/* 3. BOTTOM HISTORICAL PROCUREMENT LEDGER TABLE MODULE */
+.order-history-ledger-box {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    padding: 1.75rem;
+    width: 100%;
+}
+
+.ledger-title-row { margin-bottom: 1.25rem; }
+.ledger-title-row h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-slate); }
+
+.ledger-table-overflow-containment { width: 100%; overflow-x: auto; }
+
+.order-history-table { width: 100%; border-collapse: collapse; text-align: left; }
+.order-history-table th, .order-history-table td { padding: 1rem 1.25rem; font-size: 0.9rem; font-weight: 600; border-bottom: 1px solid #f0f2f5; }
+
+.order-history-table th {
+    background-color: #f4f7f5;
+    color: #555555;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+}
+
+.order-history-table tbody tr { transition: background-color 0.2s ease; }
+.order-history-table tbody tr:hover { background-color: var(--bg-bright); }
+
+.invoice-token {
+    font-family: monospace;
+    background-color: #f4f7f5;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    font-weight: bold;
+}
+
+.font-heavy { font-weight: 800 !important; }
+
+/* Milestone individual tracking status chips */
+.milestone-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.milestone-badge.m-transit { background-color: rgba(30, 136, 229, 0.1); color: #1e88e5; }
+.milestone-badge.m-complete { background-color: rgba(76, 175, 80, 0.1); color: #2e7d32; border: 1px solid rgba(76, 175, 80, 0.15); }
+
+/* --- SEAMLESS LAYOUT SIGNAL KEYFRAMES ANIMATIONS --- */
+@keyframes orderGpsPulse { 0% { transform: scale(0.95); opacity: 0.5; } 50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 10px #1e88e5; } 100% { transform: scale(0.95); opacity: 0.5; } }
+@keyframes activeRingBounce { 0% { border-color: #2196f3; } 100% { border-color: var(--text-dark); } }
+
+/* --- RESPONSIVE MEDIA GRID CLOSURES OVERRIDES --- */
+@media (max-width: 1200px) {
+    .order-pipeline-metrics-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .order-stat-tile:last-child { grid-column: span 2; }
+}
+
+@media (max-width: 992px) {
+    .milestones-horizontal-axis { flex-direction: column; gap: 1.5rem; align-items: flex-start; padding-left: 2rem; }
+    .milestones-horizontal-axis::before { left: 2.5rem; top: 0; bottom: 0; width: 3px; height: 80%; }
+    .axis-step { flex-direction: row; gap: 1.5rem; text-align: left; }
+    .step-content { margin-top: 0; }
+}
+
+@media (max-width: 768px) {
+    .order-pipeline-metrics-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .order-stat-tile:last-child { grid-column: span 1; }
+}
+
+@media (max-width: 520px) {
+    .tracking-card-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .order-history-table th, .order-history-table td { padding: 0.85rem 0.6rem; font-size: 0.8rem; }
+}
+
+</style>
+
+                <!-- Section Block 5: Billing Statements -->
+               <!-- Enhanced Billing Statements & Financial Ledgers Section -->
+<section class="viewport-section-card" id="billing-statements">
+    
+    <!-- GRID ROW 1: Financial Flux Performance Metrics Grid -->
+    <div class="billing-flux-metrics-grid">
+        
+        <!-- Budget Tile 1 -->
+        <div class="billing-stat-tile">
+            <div class="billing-tile-header">
+                <span class="billing-tile-label">Current Cycle Charges</span>
+                <div class="billing-vector-box fill-green-shield">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5,6H19V18H5V6M5,4A2,2 0 0,0 3,6V18A2,2 0 0,0 5,20H19A2,2 0 0,0 21,18V6A2,2 0 0,0 19,4H5M7,8H11V11H7V8M7,13H17V15H7V13M13,8H17V10H13V8Z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="billing-tile-major">₹14,250 <span class="billing-sub-unit">INR</span></div>
+            <div class="billing-mini-progress">
+                <div class="billing-progress-fill color-green" style="width: 45%;"></div>
+            </div>
+            <p class="billing-tile-caption">Next auto-debit window: Aug 25, 2026</p>
+        </div>
+
+        <!-- Budget Tile 2 -->
+        <div class="billing-stat-tile">
+            <div class="billing-tile-header">
+                <span class="billing-tile-label">Cloud Storage Footprint</span>
+                <div class="billing-vector-box fill-blue-cloud">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M19.35,10.04C18.67,6.59 15.64,4 12,4C9.11,4 6.6,5.64 5.35,8.04C2.34,8.36 0,10.91 0,14C0,17.1 2.55,19.65 5.65,19.65H19.35C22.15,19.65 24,17.34 24,14.65C24,11.53 21.56,9.04 19.35,10.04Z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="billing-tile-major">1.2 <span class="billing-sub-unit">Terabytes</span></div>
+            <div class="billing-mini-progress">
+                <div class="billing-progress-fill color-blue" style="width: 68%;"></div>
+            </div>
+            <p class="billing-tile-caption">68% Allocation of active storage pool quota</p>
+        </div>
+
+        <!-- Budget Tile 3 -->
+        <div class="billing-stat-tile">
+            <div class="billing-tile-header">
+                <span class="billing-tile-label">Annual Data Savings</span>
+                <div class="billing-vector-box fill-amber-growth">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M16,6l4,4-8,8-4-4L16,6M16,2L10,8,6,4,2,8v14H22V2L16,2z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="billing-tile-major">₹64,200 <span class="billing-sub-unit">Saved</span></div>
+            <div class="billing-mini-progress">
+                <div class="billing-progress-fill color-amber" style="width: 90%;"></div>
+            </div>
+            <p class="billing-tile-caption">Optimized via automated valve control script loops</p>
+        </div>
+
+    </div>
+
+    <!-- GRID ROW 2: Interactive Plan Status & License Level Settings Deck -->
+    <div class="billing-plan-management-card">
+        <div class="plan-card-header-row">
+            <div class="plan-meta-titles">
+                <h3>Active Enterprise Cloud License</h3>
+                <span class="plan-sub-tag">Account Authority ID: STK-CLN-99042</span>
+            </div>
+            <span class="license-badge-pill"><span class="license-pulse"></span>License Status: Verified</span>
+        </div>
+        
+        <div class="plan-details-asymmetric-split">
+            <div class="plan-specs-box">
+                <h4>Acreage Pro Plan Package</h4>
+                <p>Hosts multi-node LoRa radio mesh diagnostics caching, automated closed-loop valve webhooks, satellite tracking layers, and 24/7 technical help desks parameters.</p>
+            </div>
+            <div class="plan-action-box">
+                <div class="price-bubble-wrap">
+                    <span class="price-num">₹4,999</span>
+                    <span class="price-cycle">/ Month</span>
+                </div>
+                <a href="404.html" class="btn-modify-subscription">Modify Subscription Level</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRID ROW 3: Responsive Historical Invoicing Statement Grid Ledger -->
+    <div class="billing-history-ledger-box">
+        <div class="b-table-headline-row">
+            <h3>Historical Ledger Statements</h3>
+        </div>
+        
+        <div class="b-table-overflow-containment">
+            <table class="billing-statement-table">
+                <thead>
+                    <tr>
+                        <th>Statement Reference</th>
+                        <th>Cycle Billing Interval</th>
+                        <th>Payment Modality</th>
+                        <th>Dispatched Capital</th>
+                        <th>Ledger Status</th>
+                        <th>Receipt Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="ledger-token">STK-STMT-7491</code></td>
+                        <td>July 01, 2026 - July 31, 2026</td>
+                        <td>Corporate Visa •••• 4021</td>
+                        <td>₹14,250</td>
+                        <td><span class="ledger-badge-pill state-paid">Settled Success</span></td>
+                        <td>
+                            <a href="404.html" class="btn-receipt-print-download" aria-label="Download Invoice Receipt File">
+                                <svg viewBox="0 0 24 24" width="16" height="16"><path d="M5,20H19V18H5V20M19,9H15V3H9V9H5L12,16L19,9Z"/></svg>
+                                <span>PDF Receipt</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code class="ledger-token">STK-STMT-6240</code></td>
+                        <td>June 01, 2026 - June 30, 2026</td>
+                        <td>Corporate Visa •••• 4021</td>
+                        <td>₹14,250</td>
+                        <td><span class="ledger-badge-pill state-paid">Settled Success</span></td>
+                        <td>
+                            <a href="404.html" class="btn-receipt-print-download" aria-label="Download Invoice Receipt File">
+                                <svg viewBox="0 0 24 24" width="16" height="16"><path d="M5,20H19V18H5V20M19,9H15V3H9V9H5L12,16L19,9Z"/></svg>
+                                <span>PDF Receipt</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code class="ledger-token">STK-STMT-5011</code></td>
+                        <td>May 01, 2026 - May 31, 2026</td>
+                        <td>Corporate Visa •••• 4021</td>
+                        <td>₹14,250</td>
+                        <td><span class="ledger-badge-pill state-paid">Settled Success</span></td>
+                        <td>
+                            <a href="404.html" class="btn-receipt-print-download" aria-label="Download Invoice Receipt File">
+                                <svg viewBox="0 0 24 24" width="16" height="16"><path d="M5,20H19V18H5V20M19,9H15V3H9V9H5L12,16L19,9Z"/></svg>
+                                <span>PDF Receipt</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+<style>
+    /* ==========================================================================
+   MODULE 11: BILLING STATEMENTS & FINANCIAL LEDGER PANELS
+   ========================================================================== */
+
+/* --- 1. UPPER FINANCIAL FLUX PERFORMANCE METRICS GRID --- */
+.billing-flux-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.billing-stat-tile {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.billing-tile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.85rem;
+}
+
+.billing-tile-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.billing-vector-box {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.billing-vector-box svg { width: 18px; height: 18px; }
+
+/* Custom financial metric vector token fills maps */
+.billing-vector-box.fill-green-shield { background-color: var(--bg-bright); fill: var(--text-dark); }
+.billing-vector-box.fill-blue-cloud { background-color: #e3f2fd; fill: #1e88e5; }
+.billing-vector-box.fill-amber-growth { background-color: #fff8e1; fill: #e65100; }
+
+.billing-tile-major {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--dark-slate);
+    line-height: 1;
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.5px;
+}
+.billing-tile-major .billing-sub-unit { font-size: 0.95rem; font-weight: 700; color: #777777; }
+
+.billing-mini-progress {
+    width: 100%;
+    height: 6px;
+    background-color: #f0f2f5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+}
+
+.billing-progress-fill { height: 100%; border-radius: 10px; }
+.billing-progress-fill.color-green { background-color: var(--agri-glow); }
+.billing-progress-fill.color-blue { background-color: #2196f3; }
+.billing-progress-fill.color-amber { background-color: #ff9100; }
+
+.billing-tile-caption { font-size: 0.8rem; font-weight: 600; color: #888888; }
+
+.billing-stat-tile:hover {
+    transform: translateY(-4px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 10px 25px rgba(27, 94, 32, 0.08);
+}
+
+/* --- 2. MIDDLE ROW SUBSCRIPTION ACCORDION PLAN MANAGEMENT DECK --- */
+.billing-plan-management-card {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.plan-card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f2f5;
+    padding-bottom: 1rem;
+}
+
+.plan-meta-titles h3 { font-size: 1.25rem; font-weight: 800; color: var(--dark-slate); margin-bottom: 0.15rem; }
+.plan-sub-tag { font-size: 0.8rem; font-weight: 700; color: #777777; }
+
+.license-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.85rem;
+    background-color: var(--bg-bright);
+    color: var(--text-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 20px;
+    border: 1px solid rgba(76, 175, 80, 0.15);
+}
+
+.license-pulse {
+    width: 7px;
+    height: 7px;
+    background-color: var(--agri-glow);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--agri-glow);
+    animation: ledgerPulseBeacon 2s infinite ease-in-out;
+}
+
+/* Asymmetrical column distribution split */
+.plan-details-asymmetric-split {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.plan-specs-box h4 { font-size: 1.1rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.4rem; }
+.plan-specs-box p { font-size: 0.95rem; color: #555555; line-height: 1.5; }
+
+.plan-action-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.price-bubble-wrap { display: flex; align-items: baseline; gap: 0.2rem; }
+.price-bubble-wrap .price-num { font-size: 2.2rem; font-weight: 900; color: var(--dark-slate); letter-spacing: -1px; }
+.price-bubble-wrap .price-cycle { font-size: 0.9rem; font-weight: 700; color: #666666; }
+
+.btn-modify-subscription {
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--text-dark);
+    color: var(--white);
+    font-weight: 800;
+    font-size: 0.9rem;
+    border-radius: 24px;
+    box-shadow: 0 4px 15px rgba(27, 94, 32, 0.15);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.btn-modify-subscription:hover {
+    background-color: var(--agri-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+}
+
+/* --- 3. BOTTOM STATEMENT FINANCIAL RECORD MATRIX LEDGER --- */
+.billing-history-ledger-box {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    padding: 1.75rem;
+    width: 100%;
+}
+
+.b-table-headline-row { margin-bottom: 1.25rem; }
+.b-table-headline-row h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-slate); }
+
+.b-table-overflow-containment { width: 100%; overflow-x: auto; }
+
+.billing-statement-table { width: 100%; border-collapse: collapse; text-align: left; }
+.billing-statement-table th, .billing-statement-table td { padding: 1rem 1.25rem; font-size: 0.9rem; font-weight: 600; border-bottom: 1px solid #f0f2f5; }
+
+.billing-statement-table th {
+    background-color: #f4f7f5;
+    color: #555555;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+}
+
+.billing-statement-table tbody tr { transition: background-color 0.2s ease; }
+.billing-statement-table tbody tr:hover { background-color: var(--bg-bright); }
+
+.ledger-token {
+    font-family: monospace;
+    background-color: #f4f7f5;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    font-weight: bold;
+}
+
+.ledger-badge-pill {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #2e7d32;
+    border: 1px solid rgba(76, 175, 80, 0.15);
+}
+
+/* Print receipt link tags styles mapping nodes */
+.btn-receipt-print-download {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 1rem;
+    background-color: #f4f7f5;
+    border-radius: 8px;
+    color: var(--text-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid rgba(27, 94, 32, 0.05);
+    transition: all 0.25s ease;
+}
+
+.btn-receipt-print-download svg { fill: var(--text-dark); transition: transform 0.25s ease; }
+
+.btn-receipt-print-download:hover {
+    background-color: var(--text-dark);
+    color: var(--white);
+    border-color: var(--text-dark);
+}
+.btn-receipt-print-download:hover svg { fill: var(--white); transform: translateY(1px); }
+
+/* --- LEDGER SYSTEM KEYFRAMES TRANSITIONS --- */
+@keyframes ledgerPulseBeacon { 0% { transform: scale(0.95); opacity: 0.5; } 50% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.5; } }
+
+/* --- RESPONSIVE MEDIA GRID CLOSURES OVERRIDES --- */
+@media (max-width: 1200px) {
+    .billing-flux-metrics-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .billing-stat-tile:last-child { grid-column: span 2; }
+    .plan-details-asymmetric-split { grid-template-columns: 1fr; gap: 2rem; }
+    .plan-action-box { align-items: flex-start; }
+}
+
+@media (max-width: 768px) {
+    .billing-flux-metrics-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .billing-stat-tile:last-child { grid-column: span 1; }
+}
+
+@media (max-width: 520px) {
+    .plan-card-header-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .billing-statement-table th, .billing-statement-table td { padding: 0.85rem 0.6rem; font-size: 0.8rem; }
+    .btn-receipt-print-download span { display: none; } /* Pull off download text strings layout inside narrow mobile touch fields */
+    .btn-receipt-print-download { padding: 0.45rem; }
+}
+
+</style>
+
+            </main>
+
+        </div>
+    </div>
+
+ <style>
+    /* ==========================================================
+   MOBILE SIDEBAR - PREVENT BACKGROUND CONTENT SCROLL
+========================================================== */
+
+@media (max-width: 992px) {
+
+    /* Lock the dashboard content while sidebar is open */
+    body.sidebar-scroll-lock {
+        overflow: hidden !important;
+        height: 100vh !important;
+        touch-action: none;
+    }
+
+    /* Stop the main dashboard viewport from scrolling */
+    body.sidebar-scroll-lock .dashboard-content-viewport {
+        overflow: hidden !important;
+        touch-action: none;
+    }
+
+    /* Allow sidebar itself to scroll if its content is taller */
+    body.sidebar-scroll-lock .sidebar-wrapper.mobile-open {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+}
+    /* --- COMPREHENSIVE AGRICULTURE PORTAL DASHBOARD MATRIX --- */
+:root {
+    --bg-bright: #f1f8e9;      /* Natural soft foliage background wash layer pass */
+    --text-dark: #1b5e20;      /* Rigid premium forest green primary text color string */
+    --agri-glow: #4caf50;      /* Grass green validation active track glow accent token */
+    --white: #ffffff;
+    --dark-neutral: #1a1e24;   /* Deep solid charcoal slate text for structural panel grids */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f7f9fa;
+    color: var(--dark-neutral);
+    overflow: hidden;
+    height: 100vh;
+}
+
+.dashboard-layout {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* --- SIDEBAR MASTER SYSTEM DESKTOP ARCHITECTURE --- */
+.sidebar-wrapper {
+    width: 260px;
+    background-color: var(--dark-neutral); /* Reference screenshot matched solid dark side menu */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    flex-shrink: 0;
+    padding: 1.5rem;
+    z-index: 100;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.sidebar-brand-box {
+    display: inline-flex;
+}
+
+.sidebar-logo-img {
+    height: 34px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.btn-close-sidebar {
+    display: none; /* Hidden by default on wide desktop viewports layout grids */
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Sidebar Traversal Link List Formatting Rules Layers */
+.sidebar-navigation {
+    flex-grow: 1;
+}
+
+.nav-links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-links-list li { width: 100%; }
+
+.nav-item-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1.15rem;
+    border-radius: 12px;
+    color: #9aa0a6;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+
+.nav-item-link svg {
+    width: 18px;
+    height: 18px;
+    fill: #9aa0a6;
+    transition: fill 0.25s ease, filter 0.25s ease;
+}
+
+/* Active Highlight Item Styles Mapped Exactly to Domain Specs */
+.nav-item-link:hover, .nav-item-link.active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.nav-item-link.active {
+    background-color: rgba(76, 175, 80, 0.1) !important;
+    color: var(--agri-glow);
+    border: 1px solid rgba(76, 175, 80, 0.15);
+}
+
+.nav-item-link.active svg {
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 3px var(--agri-glow));
+}
+
+/* Sidebar Logout Row */
+.sidebar-bottom-actions {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.25rem;
+}
+
+.btn-sidebar-logout {
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1.15rem;
+    color: #f05454; /* Clean warning red logout action string */
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    transition: background-color 0.25s ease;
+}
+
+.btn-sidebar-logout svg {
+    width: 18px;
+    height: 18px;
+    fill: #f05454;
+}
+
+.btn-sidebar-logout:hover {
+    background-color: rgba(240, 84, 84, 0.05);
+}
+
+/* --- MAIN DASHBOARD BODY CONTENT FRAMEWORK PANEL --- */
+.dashboard-main-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f7f9fa;
+}
+
+/* --- UPPER ROW DASHBOARD TOP HEADER BAR --- */
+.dashboard-header-bar {
+    height: 70px;
+    background-color: var(--white);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.hamburger-menu-trigger {
+    display: none; /* Hidden on desktop monitors grid tracking formats */
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.hamburger-menu-trigger svg { fill: var(--dark-neutral); }
+
+.header-left-greeting {
+    font-size: 0.95rem;
+    color: #666666;
+}
+.header-left-greeting strong { color: var(--dark-neutral); }
+
+.header-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Bell Notification Elements */
+.header-utility-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    color: var(--dark-neutral);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.header-utility-btn:hover { background-color: var(--bg-bright); }
+.header-utility-btn svg { fill: var(--dark-neutral); }
+
+.alert-unread-dot {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    width: 7px;
+    height: 7px;
+    background-color: #f05454;
+    border-radius: 50%;
+}
+
+/* Profile Capsule Element Blocks Mapping Profiles */
+.header-profile-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.35rem 1rem 0.35rem 0.4rem;
+    background-color: #f7f9fa;
+    border-radius: 30px;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.profile-avatar-circle {
+    width: 32px;
+    height: 32px;
+    background-color: var(--text-dark);
+    color: var(--white);
+    font-weight: 800;
+    font-size: 0.9rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-username-string {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--dark-neutral);
+}
+
+/* --- CORE DYNAMIC CONTENT SECTION HOUSING VIEWPORTS --- */
+.dashboard-content-viewport {
+    flex-grow: 1;
+    padding: 2.5rem;
+    overflow-y: auto;
+}
+
+.viewport-section-card {
+    display: none; /* Hide out of viewport streams natively until triggered */
+    width: 100%;
+    animation: fadeInPanel 0.4s ease-out forwards;
+}
+
+.viewport-section-card.active {
+    display: block; /* Locks execution state visibility exclusively over target anchors code maps */
+}
+
+.placeholder-content-title {
+    background-color: var(--white);
+    padding: 4rem 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+    text-align: center;
+}
+
+.placeholder-content-title h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--dark-neutral);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.5px;
+}
+
+.placeholder-content-title p {
+    font-size: 1rem;
+    color: #666666;
+    font-weight: 500;
+}
+
+/* Accelerated animations maps */
+@keyframes fadeInPanel {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- RIGID RESPONSIVE BREAKPOINT INTERPOLATION CONFIGURATIONS --- */
+@media (max-width: 992px) {
+    /* Hide desktop sidebar off canvas bounds automatically inside tablet displays grids */
+    .sidebar-wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-100%); /* Displace left out of windows scope views */
+        z-index: 1000;
+        box-shadow: 20px 0 50px rgba(0,0,0,0.3);
+    }
+    
+    .sidebar-wrapper.mobile-open {
+        transform: translateX(0); /* Reveal slide structural sidebar layer */
+    }
+    
+    .btn-close-sidebar { display: block; }
+    .hamburger-menu-trigger { display: flex; }
+    .dashboard-header-bar { padding: 0 1.5rem; }
+    .dashboard-content-viewport { padding: 1.5rem; }
+}
+
+@media (max-width: 580px) {
+    .header-left-greeting { display: none; } /* Drop redundant copy tracks under heavy screens parameters contractions */
+}
+
+ </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // ==========================================================
+    // 1. USER SESSION / DISPLAY USERNAME
+    // ==========================================================
+
+    const sessionEmail = localStorage.getItem("stackly_session_user");
+    const userDisplayNode = document.getElementById("dashboard-user-display");
+
+    if (userDisplayNode) {
+
+        if (sessionEmail && sessionEmail.includes("@")) {
+
+            // Example:
+            // test@gmail.com -> test
+            const extractedNickname = sessionEmail.split("@")[0];
+
+            userDisplayNode.textContent = extractedNickname;
+
+        } else {
+
+            userDisplayNode.textContent = "Field Partner";
+
+        }
+    }
+
+
+    // ==========================================================
+    // 2. GET DASHBOARD NAVIGATION ELEMENTS
+    // ==========================================================
+
+    const navLinksCollection =
+        document.querySelectorAll(".nav-item-link");
+
+    const sectionPanelsCollection =
+        document.querySelectorAll(".viewport-section-card");
+
+
+    // ==========================================================
+    // 3. MOBILE SIDEBAR ELEMENTS
+    // ==========================================================
+
+    const hamburgerOpenBtn =
+        document.getElementById("mobile-hamburger-btn");
+
+    const hamburgerCloseBtn =
+        document.getElementById("sidebar-close-trigger");
+
+    const mobileSidebarWrapper =
+        document.getElementById("dashboard-sidebar");
+
+
+    // ==========================================================
+    // 4. DASHBOARD CONTENT VIEWPORT
+    // ==========================================================
+
+    const dashboardContentViewport =
+        document.querySelector(".dashboard-content-viewport");
+
+
+    // ==========================================================
+    // 5. FUNCTION - LOCK BACKGROUND SCROLL
+    // ==========================================================
+
+    function lockBackgroundScroll() {
+
+        // Prevent body scrolling
+        document.body.classList.add("sidebar-scroll-lock");
+
+        // Prevent dashboard content from scrolling
+        if (dashboardContentViewport) {
+            dashboardContentViewport.classList.add(
+                "dashboard-scroll-locked"
+            );
+        }
+
+    }
+
+
+    // ==========================================================
+    // 6. FUNCTION - RESTORE BACKGROUND SCROLL
+    // ==========================================================
+
+    function unlockBackgroundScroll() {
+
+        // Allow body scrolling again
+        document.body.classList.remove("sidebar-scroll-lock");
+
+        // Allow dashboard content scrolling again
+        if (dashboardContentViewport) {
+            dashboardContentViewport.classList.remove(
+                "dashboard-scroll-locked"
+            );
+        }
+
+    }
+
+
+    // ==========================================================
+    // 7. FUNCTION - OPEN MOBILE SIDEBAR
+    // ==========================================================
+
+    function openMobileSidebar() {
+
+        if (!mobileSidebarWrapper) {
+            return;
+        }
+
+        // Open sidebar
+        mobileSidebarWrapper.classList.add("mobile-open");
+
+        // Lock the dashboard behind sidebar
+        lockBackgroundScroll();
+
+    }
+
+
+    // ==========================================================
+    // 8. FUNCTION - CLOSE MOBILE SIDEBAR
+    // ==========================================================
+
+    function closeMobileSidebar() {
+
+        if (!mobileSidebarWrapper) {
+            return;
+        }
+
+        // Close sidebar
+        mobileSidebarWrapper.classList.remove("mobile-open");
+
+        // Restore dashboard scrolling
+        unlockBackgroundScroll();
+
+    }
+
+
+    // ==========================================================
+    // 9. FUNCTION TO ACTIVATE A DASHBOARD SECTION
+    // ==========================================================
+
+    function activateDashboardSection(targetId) {
+
+        if (!targetId) {
+            return;
+        }
+
+
+        // Remove active class from all navigation links
+        navLinksCollection.forEach((link) => {
+
+            link.classList.remove("active");
+
+        });
+
+
+        // Remove active class from all dashboard sections
+        sectionPanelsCollection.forEach((panel) => {
+
+            panel.classList.remove("active");
+
+        });
+
+
+        // Find navigation link belonging to selected section
+        const targetNavLink =
+            document.querySelector(
+                `.nav-item-link[data-target="${targetId}"]`
+            );
+
+
+        // Find dashboard section
+        const targetPanel =
+            document.getElementById(targetId);
+
+
+        // Activate navigation link
+        if (targetNavLink) {
+
+            targetNavLink.classList.add("active");
+
+        }
+
+
+        // Activate dashboard section
+        if (targetPanel) {
+
+            targetPanel.classList.add("active");
+
+        }
+
+    }
+
+
+    // ==========================================================
+    // 10. NAVIGATION CLICK HANDLER
+    // ==========================================================
+
+    navLinksCollection.forEach((linkAnchor) => {
+
+        linkAnchor.addEventListener("click", (event) => {
+
+            event.preventDefault();
+
+
+            // Get selected section ID
+            const targetedPanelId =
+                linkAnchor.getAttribute("data-target");
+
+
+            if (!targetedPanelId) {
+                return;
+            }
+
+
+            // --------------------------------------------------
+            // SAVE CURRENT SECTION
+            // --------------------------------------------------
+
+            sessionStorage.setItem(
+                "stackly_active_dashboard_section",
+                targetedPanelId
+            );
+
+
+            // --------------------------------------------------
+            // ACTIVATE SELECTED SECTION
+            // --------------------------------------------------
+
+            activateDashboardSection(targetedPanelId);
+
+
+            // --------------------------------------------------
+            // CLOSE MOBILE SIDEBAR
+            // --------------------------------------------------
+
+            if (
+                mobileSidebarWrapper &&
+                mobileSidebarWrapper.classList.contains("mobile-open")
+            ) {
+
+                closeMobileSidebar();
+
+            }
+
+        });
+
+    });
+
+
+    // ==========================================================
+    // 11. RESTORE LAST ACTIVE SECTION AFTER REFRESH
+    // ==========================================================
+
+    const savedSection =
+        sessionStorage.getItem(
+            "stackly_active_dashboard_section"
+        );
+
+
+    if (savedSection) {
+
+        const savedPanel =
+            document.getElementById(savedSection);
+
+        const savedNavLink =
+            document.querySelector(
+                `.nav-item-link[data-target="${savedSection}"]`
+            );
+
+
+        // Restore only when both elements exist
+        if (savedPanel && savedNavLink) {
+
+            activateDashboardSection(savedSection);
+
+        } else {
+
+            // Remove invalid saved section
+            sessionStorage.removeItem(
+                "stackly_active_dashboard_section"
+            );
+
+        }
+
+    }
+
+
+    // ==========================================================
+    // 12. MOBILE HAMBURGER OPEN
+    // ==========================================================
+
+    if (hamburgerOpenBtn) {
+
+        hamburgerOpenBtn.addEventListener(
+            "click",
+            openMobileSidebar
+        );
+
+    }
+
+
+    // ==========================================================
+    // 13. MOBILE SIDEBAR CLOSE
+    // ==========================================================
+
+    if (hamburgerCloseBtn) {
+
+        hamburgerCloseBtn.addEventListener(
+            "click",
+            closeMobileSidebar
+        );
+
+    }
+
+
+    // ==========================================================
+    // 14. CLOSE SIDEBAR WHEN CLICKING OUTSIDE
+    // ==========================================================
+
+    document.addEventListener("click", (event) => {
+
+        if (!mobileSidebarWrapper) {
+            return;
+        }
+
+
+        // Only execute when sidebar is open
+        if (
+            !mobileSidebarWrapper.classList.contains(
+                "mobile-open"
+            )
+        ) {
+            return;
+        }
+
+
+        // Ignore click inside sidebar
+        if (
+            mobileSidebarWrapper.contains(event.target)
+        ) {
+            return;
+        }
+
+
+        // Ignore hamburger button
+        if (
+            hamburgerOpenBtn &&
+            hamburgerOpenBtn.contains(event.target)
+        ) {
+            return;
+        }
+
+
+        // Close sidebar
+        closeMobileSidebar();
+
+    });
+
+
+    // ==========================================================
+    // 15. CLOSE SIDEBAR WITH ESCAPE KEY
+    // ==========================================================
+
+    document.addEventListener("keydown", (event) => {
+
+        if (event.key === "Escape") {
+
+            if (
+                mobileSidebarWrapper &&
+                mobileSidebarWrapper.classList.contains(
+                    "mobile-open"
+                )
+            ) {
+
+                closeMobileSidebar();
+
+            }
+
+        }
+
+    });
+
+
+    // ==========================================================
+    // 16. SECURE LOGOUT
+    // ==========================================================
+
+    const logoutBtn =
+        document.getElementById("portal-logout-trigger");
+
+
+    if (logoutBtn) {
+
+        logoutBtn.addEventListener("click", () => {
+
+            // Close sidebar if currently open
+            closeMobileSidebar();
+
+
+            // Remove logged-in user
+            localStorage.removeItem(
+                "stackly_session_user"
+            );
+
+
+            // Remove saved dashboard section
+            sessionStorage.removeItem(
+                "stackly_active_dashboard_section"
+            );
+
+
+            // Go to login page
+            window.location.href = "login.html";
+
+        });
+
+    }
+
+
+    // ==========================================================
+    // 17. HANDLE WINDOW RESIZE
+    // ==========================================================
+
+    window.addEventListener("resize", () => {
+
+        /*
+         * When returning from mobile/tablet to desktop,
+         * remove the mobile sidebar state and restore scrolling.
+         */
+
+        if (window.innerWidth > 992) {
+
+            if (mobileSidebarWrapper) {
+                mobileSidebarWrapper.classList.remove(
+                    "mobile-open"
+                );
+            }
+
+            unlockBackgroundScroll();
+
+        }
+
+    });
+
+});
+
+
+// ==========================================================
+// 18. REFRESH DASHBOARD WITHOUT LOSING CURRENT SECTION
+// ==========================================================
+
+function refreshDashboardState() {
+
+    // Find currently active sidebar item
+    const activeLink =
+        document.querySelector(
+            ".nav-item-link.active"
+        );
+
+
+    if (activeLink) {
+
+        const activeTarget =
+            activeLink.getAttribute("data-target");
+
+
+        if (activeTarget) {
+
+            sessionStorage.setItem(
+                "stackly_active_dashboard_section",
+                activeTarget
+            );
+
+        }
+
+    }
+
+
+    // Make sure scroll lock is removed before refresh
+    document.body.classList.remove(
+        "sidebar-scroll-lock"
+    );
+
+
+    const dashboardContentViewport =
+        document.querySelector(
+            ".dashboard-content-viewport"
+        );
+
+
+    if (dashboardContentViewport) {
+
+        dashboardContentViewport.classList.remove(
+            "dashboard-scroll-locked"
+        );
+
+    }
+
+
+    // Refresh page
+    window.location.reload();
+
+}
+</script>
+</body>
+</html>

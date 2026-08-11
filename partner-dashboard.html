@@ -1,0 +1,3126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Field Partner Console</title>
+    <link rel="stylesheet" href="partner-dashboard.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        
+        <!-- --- MODULE 1: INTERACTIVE SIDEBAR NAVIGATION --- -->
+        <aside class="sidebar-wrapper" id="dashboard-sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-brand-box">
+                    <!-- Refresh function brand anchor pulling the page state cleanly -->
+                    <a href="javascript:void(0);" onclick="window.location.reload();" class="sidebar-brand" title="Refresh Dashboard Engine">
+                        <img src="./Assests/logo agri farming.webp" alt="🌱 Stackly" class="sidebar-logo-img">
+                    </a>
+                </div>
+                <!-- Close menu trigger button for mobile screen boundaries -->
+                <button class="btn-close-sidebar" id="sidebar-close-trigger" aria-label="Close layout navigation bar">×</button>
+            </div>
+
+            <!-- Sidebar Navigation Links List (Professional SVG Vectors Built-in) -->
+            <nav class="sidebar-navigation">
+                <ul class="nav-links-list">
+                    <li>
+                        <a href="javascript:void(0);" class="nav-item-link active" data-target="telemetry-view">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.11,3 19,3M19,19H5V5H19V19M7,7H17V9H7V7M7,11H17V13H7V11M7,15H14V17H7V15Z"/></svg>
+                            <span>Telemetry Scans</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="nav-item-link" data-target="moisture-logs">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A1.5,1.5 0 0,1 13.5,5.5A1.5,1.5 0 0,1 12,7A1.5,1.5 0 0,1 10.5,5.5A1.5,1.5 0 0,1 12,4M12,18C10.5,18 9,17.2 8,16C9,14.5 10.5,13.5 12,13.5C13.5,13.5 15,14.5 16,16C15,17.2 13.5,18 12,18M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"/></svg>
+                            <span>Moisture Logs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="nav-item-link" data-target="valve-control">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/></svg>
+                            <span>Valve Automation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="nav-item-link" data-target="fleet-tracking">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20,8H17V4H3A2,2 0 0,0 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8M6,18.5A1.5,1.5 0 1,1 7.5,17A1.5,1.5 0 0,1 6,18.5M17,12V9.5H19.5L21.4,12H17M18,18.5A1.5,1.5 0 1,1 19.5,17A1.5,1.5 0 0,1 18,18.5Z"/></svg>
+                            <span>Transit Routes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="nav-item-link" data-target="profile-settings">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/></svg>
+                            <span>Partner Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Bottom Positioned Log Out Key Section -->
+            <div class="sidebar-bottom-actions">
+                <button class="btn-sidebar-logout" id="portal-logout-trigger">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.08,15.59L16.66,13H7V11H16.66L14.08,8.41L15.5,7L20.5,12L15.5,17L14.08,15.59M19,3A2,2 0 0,1 21,5V9.67L19,7.67V5H5V19H19V16.33L21,14.33V19A2,2 0 0,1 19,21H5C3.89,21 3,20.11 3,19V5C3,3.89 3.89,3 5,3H14.08Z"/></svg>
+                    <span>Log Out</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- --- MODULE 2: RE-ENGINEERED PRIMARY DASHBOARD BODY --- -->
+        <div class="dashboard-main-wrapper">
+            
+            <!-- Central Dynamic Dashboard Top Header -->
+            <header class="dashboard-header-bar">
+                <!-- Hamburger Icon Layout Block Button Component for Mobile Access -->
+                <button class="hamburger-menu-trigger" id="mobile-hamburger-btn" aria-label="Open sidebar menu channels">
+                    <svg viewBox="0 0 24 24" width="24" height="24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/></svg>
+                </button>
+
+                <div class="header-left-greeting">
+                    <span>Field Console / <strong>Partner Profile Workspace</strong></span>
+                </div>
+
+                <!-- Right Side Profile Actions Group Layout -->
+                <div class="header-right-actions">
+                 <!-- Bell Alert Notification Anchor -->
+<button 
+    class="header-utility-btn" 
+    aria-label="Open notifications summary drawer"
+    onclick="window.location.href='404.html';"
+>
+    <div class="alert-unread-dot"></div>
+
+    <svg viewBox="0 0 24 24" width="22" height="22">
+        <path d="M12,2A2,2 0 0,0 10,4A2,2 0,0,0 10,4.29C7.12,5.14 5,7.82 5,11V17L3,19V20H21V19L19,17V11C19,7.82 16.88,5.14 14,4.29A2,2 0,0,0 12,2M12,22A2,2 0 0,0 14,20H10A2,2 0 0,0 12,22Z"/>
+    </svg>
+</button>
+
+                    <!-- Profile Account Capsule (Extracts clean string nicknames dynamically) -->
+                    <div class="header-profile-badge">
+                        <div class="profile-avatar-circle">P</div>
+                        <!-- Dynamic User Session Identifier Container Tag -->
+                        <span class="profile-username-string" id="dashboard-user-display">Loading User...</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- --- MODULE 3: SECTION TITLE VIEWPORTS (PLACEHOLDERS) --- -->
+            <main class="dashboard-content-viewport">
+                
+                <!-- Section Block 1: Telemetry Scans -->
+              <!-- Enhanced Telemetry Scans Workspace Panel Layer -->
+<section class="viewport-section-card active" id="telemetry-view">
+    
+    <!-- Row Block 1: Live Status Grid Tracker -->
+    <div class="telemetry-summary-strip">
+        
+        <!-- Metric Card 1 -->
+        <div class="telemetry-mini-card">
+            <div class="mini-card-header">
+                <span class="mini-card-label">Active Node Clusters</span>
+                <div class="mini-vector-box pulse-green">
+                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,7H13V12H11V7M11,14H13V16H11V14Z"/></svg>
+                </div>
+            </div>
+            <div class="mini-card-value">24 / 25</div>
+            <p class="mini-card-footer-text">Mesh connectivity optimal</p>
+        </div>
+
+        <!-- Metric Card 2 -->
+        <div class="telemetry-mini-card">
+            <div class="mini-card-header">
+                <span class="mini-card-label">Avg Soil Moisture VWC</span>
+                <div class="mini-vector-box blue-accent">
+                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17Z"/></svg>
+                </div>
+            </div>
+            <div class="mini-card-value">34.2%</div>
+            <p class="mini-card-footer-text">+2.1% from baseline logs</p>
+        </div>
+
+        <!-- Metric Card 3 -->
+        <div class="telemetry-mini-card">
+            <div class="mini-card-header">
+                <span class="mini-card-label">Network Signal Strength</span>
+                <div class="mini-vector-box amber-accent">
+                    <svg viewBox="0 0 24 24"><path d="M12,3c-4.97,0-9,4.03-9,9c0,2.12,0.74,4.07,1.97,5.61L4.35,19.4c-1.48-1.92-2.35-4.31-2.35-6.91c0-6.08,4.92-11,11-11c2.6,0,4.99,0.87,6.91,2.35l-1.79,1.79C16.07,3.74,14.12,3,12,3z M22,12c0,2.6-0.87,4.99-2.35,6.91l-1.79-1.79c1.23-1.54,1.97-3.49,1.97-5.61c0-4.97-4.03-9-9-9c-2.12,0-4.07,0.74-5.61,1.97L3.42,2.63C5.35,1.15,7.74,0.28,10.33,0.28C16.41,0.28,21.33,5.2,21.33,11.28c0,0.24-0.01,0.48-0.03,0.72H22z"/></svg>
+                </div>
+            </div>
+            <div class="mini-card-value">-68 dBm</div>
+            <p class="mini-card-footer-text">Pre-processed at field edge</p>
+        </div>
+
+    </div>
+
+    <!-- Row Block 2: Interactive Microclimate Radar Analytics -->
+    <div class="telemetry-chart-section">
+        <div class="chart-header">
+            <h3>Interactive Sector Microclimate Map</h3>
+            <span class="live-stream-pill"><span class="live-pulse"></span>Live Analytics Stream</span>
+        </div>
+        <div class="chart-mockup-canvas">
+            <!-- Simulated background map crop metrics graphic overlay asset -->
+            <img src="./Assests/agriculture land.webp" alt="Telemetry mapping diagnostics curves" class="chart-backdrop-img">
+            
+            <!-- Floating Data Submodule Badge 1 -->
+            <div class="chart-ui-node-badge position-1">
+                <div class="node-indicator-dot"></div>
+                <div class="node-metrics-bubble">
+                    <strong>Node #04A</strong>
+                    <span>Temp: 28.4°C</span>
+                    <span>Moisture: 31.5%</span>
+                </div>
+            </div>
+
+            <!-- Floating Data Submodule Badge 2 -->
+            <div class="chart-ui-node-badge position-2">
+                <div class="node-indicator-dot alert-orange"></div>
+                <div class="node-metrics-bubble">
+                    <strong>Node #12B</strong>
+                    <span>Temp: 31.2°C</span>
+                    <span class="text-alert-color">Moisture: 18.2%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row Block 3: Granular Real-Time Incoming Data Stream Table -->
+    <div class="telemetry-logs-table-box">
+        <div class="table-headline-row">
+            <h3>Granular Network Package Logs</h3>
+        </div>
+        
+        <div class="responsive-table-scroll-shield">
+            <table class="telemetry-raw-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Device Token ID</th>
+                        <th>Sector Node</th>
+                        <th>Volumetric Water</th>
+                        <th>Ambient Temp</th>
+                        <th>Network Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10:42:15 AM</td>
+                        <td><code class="code-token">STK-9482X</code></td>
+                        <td>Sector 4A - Upper Ridge</td>
+                        <td>31.5%</td>
+                        <td>28.4°C</td>
+                        <td><span class="status-pill state-green">Synced</span></td>
+                    </tr>
+                    <tr>
+                        <td>10:41:58 AM</td>
+                        <td><code class="code-token">STK-1052V</code></td>
+                        <td>Sector 12B - Low Hotbed</td>
+                        <td class="text-alert-color font-bold">18.2%</td>
+                        <td>31.2°C</td>
+                        <td><span class="status-pill state-orange">Low Moisture</span></td>
+                    </tr>
+                    <tr>
+                        <td>10:41:30 AM</td>
+                        <td><code class="code-token">STK-4921M</code></td>
+                        <td>Sector 2C - Greenhouse</td>
+                        <td>38.7%</td>
+                        <td>24.1°C</td>
+                        <td><span class="status-pill state-green">Synced</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+<style>
+    /* --- EXTENDED ELABORATED TELEMETRY PANEL VIEWPORT SYSTEM --- */
+
+/* 1. UPPER STRIP SUMMARY METRICS GRID */
+.telemetry-summary-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.telemetry-mini-card {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mini-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.mini-card-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mini-vector-box {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mini-vector-box svg { width: 18px; height: 18px; }
+
+/* Dynamic mini icon color tokens mapping */
+.mini-vector-box.pulse-green { background-color: var(--bg-bright); fill: var(--text-dark); }
+.mini-vector-box.blue-accent { background-color: #e3f2fd; fill: #1e88e5; }
+.mini-vector-box.amber-accent { background-color: #fff8e1; fill: #ffb300; }
+
+.mini-card-value {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--dark-neutral);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.5px;
+}
+
+.mini-card-footer-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #888888;
+}
+
+/* Summary Card Hover Illuminations */
+.telemetry-mini-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.12);
+}
+
+/* 2. MIDDLE ROW GRAPHIC ANALYTICS MONITOR */
+.telemetry-chart-section {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.chart-header h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-neutral); }
+
+.live-stream-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background-color: #f7f9fa;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #444444;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.live-pulse {
+    width: 8px;
+    height: 8px;
+    background-color: var(--agri-glow);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--agri-glow);
+    animation: chartIndicatorPulse 2s infinite ease-in-out;
+}
+
+.chart-mockup-canvas {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.chart-backdrop-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) contrast(1.1);
+}
+
+/* Interactive Floating Node Overlays Frame Layouts */
+.chart-ui-node-badge {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.chart-ui-node-badge.position-1 { left: 25%; top: 30%; }
+.chart-ui-node-badge.position-2 { right: 35%; bottom: 25%; }
+
+.node-indicator-dot {
+    width: 14px;
+    height: 14px;
+    background-color: var(--agri-glow);
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--agri-glow);
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.node-indicator-dot.alert-orange {
+    background-color: #ff9100;
+    box-shadow: 0 0 10px #ff9100;
+}
+
+.node-metrics-bubble {
+    background-color: rgba(15, 17, 21, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    opacity: 0.85;
+    transform: translateY(2px);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.node-metrics-bubble strong { font-size: 0.85rem; color: #ffffff; }
+.node-metrics-bubble span { font-size: 0.75rem; color: #9aa0a6; font-weight: 600; }
+
+/* Micro Floating Node Overlays Hover Interactions */
+.chart-ui-node-badge:hover .node-indicator-dot { transform: scale(1.25); }
+.chart-ui-node-badge:hover .node-metrics-bubble { opacity: 1; transform: translateY(0); border-color: var(--agri-glow); box-shadow: 0 8px 25px rgba(0, 230, 118, 0.2); }
+
+/* 3. BOTTOM ROW LOG DATA STREAM TABLE */
+.telemetry-logs-table-box {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    padding: 1.75rem;
+    width: 100%;
+}
+
+.table-headline-row { margin-bottom: 1.25rem; }
+.table-headline-row h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-neutral); }
+
+.responsive-table-scroll-shield {
+    width: 100%;
+    overflow-x: auto; /* Activates horizontal touch scroll protection on short mobile devices natively */
+}
+
+.telemetry-raw-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.telemetry-raw-table th,
+.telemetry-raw-table td {
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-bottom: 1px solid #f0f2f5;
+}
+
+.telemetry-raw-table th {
+    background-color: #f7f9fa;
+    color: #555555;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+}
+
+.telemetry-raw-table tbody tr { transition: background-color 0.2s ease; }
+.telemetry-raw-table tbody tr:hover { background-color: var(--bg-bright); }
+
+.code-token {
+    font-family: monospace;
+    background-color: #f0f2f5;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--dark-neutral);
+    font-weight: bold;
+}
+
+.text-alert-color { color: #e65100 !important; }
+.font-bold { font-weight: 800 !important; }
+
+/* Status pill frames layouts mappings */
+.status-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.status-pill.state-green { background-color: rgba(76, 175, 80, 0.1); color: #2e7d32; }
+.status-pill.state-orange { background-color: rgba(255, 145, 0, 0.1); color: #e65100; }
+
+/* --- HARDWARE-ACCELERATED STREAM INDICATOR KEYFRAMES --- */
+@keyframes chartIndicatorPulse { 0% { transform: scale(0.95); opacity: 0.5; box-shadow: 0 0 4px var(--agri-glow); } 50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 12px var(--agri-glow); } 100% { transform: scale(0.95); opacity: 0.5; box-shadow: 0 0 4px var(--agri-glow); } }
+
+/* --- RIGID RESPONSIVE BREAKPOINT GRID COLLAPSES --- */
+@media (max-width: 1200px) {
+    .telemetry-summary-strip { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    /* Stretch third metric full-width across grid parameters if remaining column breaks down */
+    .telemetry-mini-card:last-child { grid-column: span 2; } 
+}
+
+@media (max-width: 768px) {
+    .telemetry-summary-strip { grid-template-columns: 1fr; gap: 1rem; }
+    .telemetry-mini-card:last-child { grid-column: span 1; }
+    .chart-mockup-canvas { height: 240px; }
+    .chart-ui-node-badge.position-1 { left: 10%; top: 20%; }
+    .chart-ui-node-badge.position-2 { right: 10%; bottom: 15%; }
+    .node-metrics-bubble { padding: 0.5rem 0.75rem; }
+}
+
+@media (max-width: 480px) {
+    .chart-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .telemetry-raw-table th, .telemetry-raw-table td { padding: 0.85rem 0.75rem; font-size: 0.8rem; }
+    .node-metrics-bubble { display: none; } /* Drop heavy interactive overlays on extra narrow touchscreen views */
+}
+
+</style>
+
+                <!-- Section Block 2: Moisture Logs -->
+               <!-- Enhanced Subsurface Soil Moisture Logs Array Section -->
+<section class="viewport-section-card" id="moisture-logs">
+    
+    <!-- Row Block 1: Soil Sensor Diagnostics Matrix Grid -->
+    <div class="moisture-diagnostics-grid">
+        
+        <!-- Summary Metric Tile 1 -->
+        <div class="moisture-metric-tile">
+            <div class="tile-header-row">
+                <h4>Average Sector Hydration</h4>
+                <div class="tile-vector-frame green-theme">
+                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17Z"/></svg>
+                </div>
+            </div>
+            <div class="tile-value-display">34.2% <span class="unit-label">VWC</span></div>
+            <div class="tile-status-bar-wrapper">
+                <div class="status-bar-fill progress-optimal" style="width: 74%;"></div>
+            </div>
+            <p class="tile-footer-note">Optimal saturation zone bounds</p>
+        </div>
+
+        <!-- Summary Metric Tile 2 -->
+        <div class="moisture-metric-tile">
+            <div class="tile-header-row">
+                <h4>Transpiration Deficit Rate</h4>
+                <div class="tile-vector-frame amber-theme">
+                    <svg viewBox="0 0 24 24"><path d="M12,2c-5.52,0-10,4.48-10,10s4.48,10,10,10,10-4.48,10-10-4.48-10-10-10zm0,18c-4.41,0-8-3.59-8-8s3.59-8,8-8,8,3.59,8,8-3.59,8-8,8zm-1-13h2v6h-2zm0,8h2v2h-2z"/></svg>
+                </div>
+            </div>
+            <div class="tile-value-display">1.4 <span class="unit-label">mm/day</span></div>
+            <div class="tile-status-bar-wrapper">
+                <div class="status-bar-fill progress-warning" style="width: 32%;"></div>
+            </div>
+            <p class="tile-footer-note">Elevated stress logs in Sector 12B</p>
+        </div>
+
+        <!-- Summary Metric Tile 3 -->
+        <div class="moisture-metric-tile">
+            <div class="tile-header-row">
+                <h4>Subsurface Core Temperature</h4>
+                <div class="tile-vector-frame blue-theme">
+                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18Z"/></svg>
+                </div>
+            </div>
+            <div class="tile-value-display">22.8°C</div>
+            <div class="tile-status-bar-wrapper">
+                <div class="status-bar-fill progress-cool" style="width: 58%;"></div>
+            </div>
+            <p class="tile-footer-note">Stable microclimate root profiles</p>
+        </div>
+
+    </div>
+
+    <!-- Row Block 2: Depth Analytics Array & Visual Strata Mockup -->
+    <div class="moisture-strata-analytics-panel">
+        <div class="analytics-panel-header">
+            <h3>Subsurface Hydration Depth Vectors</h3>
+            <span class="live-telemetry-badge"><span class="badge-dot-blink"></span>Edge Probe Streaming</span>
+        </div>
+        
+        <div class="strata-mockup-layout">
+            
+            <!-- Depth Vector Segment 1: Topsoil -->
+            <div class="strata-depth-segment layer-topsoil">
+                <div class="strata-depth-label">
+                    <strong>Topsoil Zone Profile</strong>
+                    <span>Depth: 0cm - 15cm</span>
+                </div>
+                <div class="strata-metric-readout">
+                    <span class="vwc-percentage">28.5% VWC</span>
+                    <span class="strata-pill-badge optimal">Optimal Moisture</span>
+                </div>
+            </div>
+
+            <!-- Depth Vector Segment 2: Root Matrix -->
+            <div class="strata-depth-segment layer-rootzone">
+                <div class="strata-depth-label">
+                    <strong>Core Root Matrix Zone</strong>
+                    <span>Depth: 15cm - 45cm</span>
+                </div>
+                <div class="strata-metric-readout">
+                    <span class="vwc-percentage">36.8% VWC</span>
+                    <span class="strata-pill-badge heavy">High Saturation</span>
+                </div>
+            </div>
+
+            <!-- Depth Vector Segment 3: Deep Clay Bed -->
+            <div class="strata-depth-segment layer-claybed">
+                <div class="strata-depth-label">
+                    <strong>Deep Subsurface Clay Bed</strong>
+                    <span>Depth: 45cm - 100cm</span>
+                </div>
+                <div class="strata-metric-readout">
+                    <span class="vwc-percentage">19.4% VWC</span>
+                    <span class="strata-pill-badge dry">Low Caching</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Row Block 3: Granular Crop Sector Analysis Data Table -->
+    <div class="moisture-sectors-table-box">
+        <div class="table-title-row">
+            <h3>Granular Sector Moisture Diagnostics</h3>
+        </div>
+        
+        <div class="table-overflow-containment">
+            <table class="moisture-diagnostic-table">
+                <thead>
+                    <tr>
+                        <th>Sector ID Zone</th>
+                        <th>Node Probe ID</th>
+                        <th>Soil Stratum Type</th>
+                        <th>15cm VWC</th>
+                        <th>45cm VWC</th>
+                        <th>Hydration State</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sector 4A - Upper Ridge</strong></td>
+                        <td><code class="probe-token">NODE-04A1</code></td>
+                        <td>Sandy Loam Soil</td>
+                        <td>28.5%</td>
+                        <td>32.1%</td>
+                        <td><span class="indicator-tag tag-stable">Optimal</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sector 12B - Low Hotbed</strong></td>
+                        <td><code class="probe-token">NODE-12B4</code></td>
+                        <td>Silty Clay Strata</td>
+                        <td class="text-danger-color">15.4%</td>
+                        <td class="text-danger-color">18.2%</td>
+                        <td><span class="indicator-tag tag-critical">Deficit Stress</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sector 2C - Greenhouse</strong></td>
+                        <td><code class="probe-token">NODE-02C2</code></td>
+                        <td>Organic Composted Peat</td>
+                        <td>34.8%</td>
+                        <td>38.7%</td>
+                        <td><span class="indicator-tag tag-stable">Optimal</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sector 8F - Orchard Grid</strong></td>
+                        <td><code class="probe-token">NODE-08F7</code></td>
+                        <td>Alluvial Floodplain Mud</td>
+                        <td>41.2%</td>
+                        <td>43.5%</td>
+                        <td><span class="indicator-tag tag-saturated">Saturated</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+<style>
+    /* --- ELABORATED SUBSURFACE MOISTURE LOGS VIEWPORT SYSTEM --- */
+
+/* 1. TOP DIAGNOSTICS MATRIX GRID */
+.moisture-diagnostics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.moisture-metric-tile {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tile-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.tile-header-row h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tile-vector-frame {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tile-vector-frame svg { width: 18px; height: 18px; }
+
+/* Vector badge colors mapping codes */
+.tile-vector-frame.green-theme { background-color: var(--bg-bright); fill: var(--text-dark); }
+.tile-vector-frame.amber-theme { background-color: #fff8e1; fill: #e65100; }
+.tile-vector-frame.blue-theme { background-color: #e3f2fd; fill: #1e88e5; }
+
+.tile-value-display {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--dark-neutral);
+    line-height: 1;
+    margin-bottom: 0.85rem;
+    letter-spacing: -0.5px;
+}
+.tile-value-display .unit-label { font-size: 0.95rem; font-weight: 700; color: #777777; }
+
+/* In-line continuous progress bar status indicators tracking scales */
+.tile-status-bar-wrapper {
+    width: 100%;
+    height: 6px;
+    background-color: #f0f2f5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.6rem;
+}
+
+.status-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+}
+.status-bar-fill.progress-optimal { background-color: var(--agri-glow); }
+.status-bar-fill.progress-warning { background-color: #ff9100; }
+.status-bar-fill.progress-cool { background-color: #29b6f6; }
+
+.tile-footer-note { font-size: 0.8rem; font-weight: 600; color: #888888; }
+
+.moisture-metric-tile:hover {
+    transform: translateY(-4px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.12);
+}
+
+/* 2. MIDDLE ROW SUBSURFACE SOIL LAYER MOCKUP PANEL */
+.moisture-strata-analytics-panel {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.analytics-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.analytics-panel-header h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-neutral); }
+
+.live-telemetry-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background-color: #f7f9fa;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #444444;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.badge-dot-blink {
+    width: 8px;
+    height: 8px;
+    background-color: #29b6f6;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #29b6f6;
+    animation: blueProbeBlink 2s infinite ease-in-out;
+}
+
+/* Layered Cross-Section Visual Soil Matrix Table Deck Blueprint */
+.strata-mockup-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.strata-depth-segment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dynamic agriculture soil profile background washes */
+.layer-topsoil { background-color: #f5ece4; border-color: #e5d3c5; }
+.layer-rootzone { background-color: #ede2d7; border-color: #dbcaa9; }
+.layer-claybed { background-color: #e3d5ca; border-color: #c7b8ac; }
+
+.strata-depth-label strong { display: block; font-size: 1rem; color: #4e342e; margin-bottom: 0.15rem; }
+.strata-depth-label span { font-size: 0.8rem; color: #795548; font-weight: 700; text-transform: uppercase; }
+
+.strata-metric-readout { display: flex; align-items: center; gap: 1.5rem; }
+.vwc-percentage { font-size: 1.3rem; font-weight: 900; color: #4e342e; letter-spacing: -0.5px; }
+
+.strata-pill-badge {
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.strata-pill-badge.optimal { background-color: rgba(76, 175, 80, 0.15); color: #2e7d32; border: 1px solid rgba(76, 175, 80, 0.2); }
+.strata-pill-badge.heavy { background-color: rgba(30, 136, 229, 0.12); color: #1e88e5; border: 1px solid rgba(30, 136, 229, 0.2); }
+.strata-pill-badge.dry { background-color: rgba(230, 81, 0, 0.12); color: #e65100; border: 1px solid rgba(230, 81, 0, 0.2); }
+
+/* Soil cross-section hover feedback transformations */
+.strata-depth-segment:hover {
+    transform: scale(1.01) translateY(-2px);
+    box-shadow: 0 6px 15px rgba(121, 85, 72, 0.08);
+    border-color: #795548;
+}
+
+/* 3. BOTTOM DATA SECTORS DATA WELL TABLE */
+.moisture-sectors-table-box {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    padding: 1.75rem;
+    width: 100%;
+}
+
+.table-title-row { margin-bottom: 1.25rem; }
+.table-title-row h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-neutral); }
+
+.table-overflow-containment { width: 100%; overflow-x: auto; }
+
+.moisture-diagnostic-table { width: 100%; border-collapse: collapse; text-align: left; }
+.moisture-diagnostic-table th, .moisture-diagnostic-table td { padding: 1rem 1.25rem; font-size: 0.9rem; font-weight: 600; border-bottom: 1px solid #f0f2f5; }
+
+.moisture-diagnostic-table th {
+    background-color: #f7f9fa;
+    color: #555555;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+}
+
+.moisture-diagnostic-table tbody tr { transition: background-color 0.2s ease; }
+.moisture-diagnostic-table tbody tr:hover { background-color: var(--bg-bright); }
+
+.probe-token {
+    font-family: monospace;
+    background-color: #f0f2f5;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--dark-neutral);
+    font-weight: bold;
+}
+
+.text-danger-color { color: #d32f2f !important; font-weight: 800; }
+
+.indicator-tag { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.indicator-tag.tag-stable { background-color: rgba(76, 175, 80, 0.1); color: #2e7d32; }
+.indicator-tag.tag-critical { background-color: rgba(211, 47, 47, 0.1); color: #d32f2f; }
+.indicator-tag.tag-saturated { background-color: rgba(30, 136, 229, 0.1); color: #1e88e5; }
+
+/* --- HARDWARE-ACCELERATED DATA BLINK KEYFRAMES --- */
+@keyframes blueProbeBlink { 0% { transform: scale(0.95); opacity: 0.5; box-shadow: 0 0 4px #29b6f6; } 50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 12px #29b6f6; } 100% { transform: scale(0.95); opacity: 0.5; box-shadow: 0 0 4px #29b6f6; } }
+
+/* --- RIGID RESPONSIVE BREAKPOINT GRID CLOSURES --- */
+@media (max-width: 1200px) {
+    .moisture-diagnostics-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .moisture-metric-tile:last-child { grid-column: span 2; }
+}
+
+@media (max-width: 768px) {
+    .moisture-diagnostics-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .moisture-metric-tile:last-child { grid-column: span 1; }
+    .strata-depth-label strong { font-size: 0.9rem; }
+    .vwc-percentage { font-size: 1.15rem; }
+    .strata-metric-readout { gap: 1rem; }
+}
+
+@media (max-width: 520px) {
+    .strata-depth-segment { padding: 1.25rem 1rem; flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .strata-metric-readout { width: 100%; justify-content: space-between; }
+    .moisture-diagnostic-table th, .moisture-diagnostic-table td { padding: 0.85rem 0.6rem; font-size: 0.8rem; }
+}
+
+</style>
+
+                <!-- Section Block 3: Valve Automation -->
+             <!-- Enhanced Automated Solenoid Valve Control Center Section -->
+<section class="viewport-section-card" id="valve-control">
+    
+    <!-- Row Block 1: Interactive Physical Solenoid Valve Toggles Grid -->
+    <div class="valve-actuators-grid">
+        
+        <!-- Valve Control Card 1 -->
+        <div class="valve-control-card">
+            <div class="valve-card-header">
+                <div class="valve-meta">
+                    <h4>Main Solenoid Line A</h4>
+                    <span class="valve-loc-tag">Sector 4A - Orchard</span>
+                </div>
+                <div class="valve-status-indicator online">
+                    <span class="pulse-dot"></span> Active Flow
+                </div>
+            </div>
+            
+            <div class="valve-interactive-body">
+                <div class="flow-rate-display">
+                    <span class="rate-value">45.2</span>
+                    <span class="rate-unit">L / Min</span>
+                </div>
+                
+                <!-- Pure CSS Interactive Toggle Switch -->
+                <label class="valve-switch-toggle">
+                    <input type="checkbox" checked class="valve-toggle-input" data-line="Line A">
+                    <span class="switch-slider"></span>
+                </label>
+            </div>
+            <p class="valve-card-footer">Last actuated via webhook: 10:42:15 AM</p>
+        </div>
+
+        <!-- Valve Control Card 2 -->
+        <div class="valve-control-card">
+            <div class="valve-card-header">
+                <div class="valve-meta">
+                    <h4>Auxiliary Solenoid Line B</h4>
+                    <span class="valve-loc-tag">Sector 12B - Low Hotbed</span>
+                </div>
+                <div class="valve-status-indicator offline">
+                    <span class="pulse-dot"></span> Closed Lock
+                </div>
+            </div>
+            
+            <div class="valve-interactive-body">
+                <div class="flow-rate-display">
+                    <span class="rate-value">0.0</span>
+                    <span class="rate-unit">L / Min</span>
+                </div>
+                
+                <label class="valve-switch-toggle">
+                    <input type="checkbox" class="valve-toggle-input" data-line="Line B">
+                    <span class="switch-slider"></span>
+                </label>
+            </div>
+            <p class="valve-card-footer">Threshold shutdown: Moisture Deficit Alert</p>
+        </div>
+
+        <!-- Valve Control Card 3 -->
+        <div class="valve-control-card">
+            <div class="valve-card-header">
+                <div class="valve-meta">
+                    <h4>Greenhouse Mist Line C</h4>
+                    <span class="valve-loc-tag">Sector 2C - Hydro Deck</span>
+                </div>
+                <div class="valve-status-indicator online">
+                    <span class="pulse-dot"></span> Active Flow
+                </div>
+            </div>
+            
+            <div class="valve-interactive-body">
+                <div class="flow-rate-display">
+                    <span class="rate-value">12.8</span>
+                    <span class="rate-unit">L / Min</span>
+                </div>
+                
+                <!-- Pure CSS Interactive Toggle Switch -->
+                <label class="valve-switch-toggle">
+                    <input type="checkbox" checked class="valve-toggle-input" data-line="Line C">
+                    <span class="switch-slider"></span>
+                </label>
+            </div>
+            <p class="valve-card-footer">Automated cycle: Humidity Optimization</p>
+        </div>
+
+    </div>
+
+    <!-- Row Block 2: Live Automation Script Payload Monitor Box -->
+    <div class="valve-payload-monitor-panel">
+        <div class="payload-panel-header">
+            <h3>API Webhook Telemetry Payload Stream</h3>
+            <span class="json-stream-pill"><span class="json-pulse"></span>Active JSON Listening</span>
+        </div>
+        
+        <!-- Code console terminal emulator container box block -->
+        <div class="payload-console-terminal">
+            <pre class="terminal-code-block"><code>{
+  <span class="json-key">"timestamp"</span>: <span class="json-string">"2026-08-11T10:46:15Z"</span>,
+  <span class="json-key">"gateway_token"</span>: <span class="json-string">"STK-GW-9482X"</span>,
+  <span class="json-key">"active_relays"</span>: [
+    { <span class="json-key">"relay_id"</span>: <span class="json-string">"SOL-04A"</span>, <span class="json-key">"state"</span>: <span class="json-string">"OPEN"</span>, <span class="json-key">"pressure_psi"</span>: <span class="json-number">42.5</span> },
+    { <span class="json-key">"relay_id"</span>: <span class="json-string">"SOL-12B"</span>, <span class="json-key">"state"</span>: <span class="json-string">"CLOSED"</span>, <span class="json-key">"pressure_psi"</span>: <span class="json-number">0.0</span> },
+    { <span class="json-key">"relay_id"</span>: <span class="json-string">"SOL-02C"</span>, <span class="json-key">"state"</span>: <span class="json-string">"OPEN"</span>, <span class="json-key">"pressure_psi"</span>: <span class="json-number">28.1</span> }
+  ],
+  <span class="json-key">"network_latency"</span>: <span class="json-string">"42ms"</span>,
+  <span class="json-key">"hardware_status"</span>: <span class="json-string">"NOMINAL"</span>
+}</code></pre>
+        </div>
+    </div>
+
+    <!-- Row Block 3: Responsive Flow Telemetry Stream Table -->
+    <div class="valve-telemetry-table-box">
+        <div class="v-table-title-row">
+            <h3>Recent Mechanical Relay Executions</h3>
+        </div>
+        
+        <div class="v-table-overflow-containment">
+            <table class="valve-execution-table">
+                <thead>
+                    <tr>
+                        <th>Execution Time</th>
+                        <th>Relay Target</th>
+                        <th>Command Trigger Source</th>
+                        <th>Flow Rate Volume</th>
+                        <th>Solenoid Voltage</th>
+                        <th>Network Acknowledgment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10:42:15 AM</td>
+                        <td><strong>SOL-04A (Line A)</strong></td>
+                        <td><span class="trigger-badge type-auto">Auto-AI Loop</span></td>
+                        <td>45.2 L/Min</td>
+                        <td>24V DC</td>
+                        <td><span class="ack-pill ok">ACK 200 SUCCESS</span></td>
+                    </tr>
+                    <tr>
+                        <td>10:38:04 AM</td>
+                        <td><strong>SOL-12B (Line B)</strong></td>
+                        <td><span class="trigger-badge type-manual">Manual Switch</span></td>
+                        <td class="text-muted-color">0.0 L/Min</td>
+                        <td>0V Standby</td>
+                        <td><span class="ack-pill ok">ACK 200 SUCCESS</span></td>
+                    </tr>
+                    <tr>
+                        <td>10:15:30 AM</td>
+                        <td><strong>SOL-02C (Line C)</strong></td>
+                        <td><span class="trigger-badge type-webhook">Developer API</span></td>
+                        <td>12.8 L/Min</td>
+                        <td>24V DC</td>
+                        <td><span class="ack-pill ok">ACK 200 SUCCESS</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+<style>
+    /* --- EXTENDED ELABORATED VALVE CONTROL VIEWPORT SYSTEM --- */
+
+/* 1. UPPER INTERACTIVE TOGGLES GRID */
+.valve-actuators-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.valve-control-card {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.valve-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+    width: 100%;
+}
+
+.valve-meta h4 { font-size: 1.05rem; font-weight: 800; color: var(--dark-neutral); margin-bottom: 0.15rem; }
+.valve-loc-tag { font-size: 0.8rem; font-weight: 700; color: #777777; }
+
+/* Status pill indicator strings layout mapping */
+.valve-status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+}
+.valve-status-indicator.online { background-color: rgba(76, 175, 80, 0.1); color: #2e7d32; }
+.valve-status-indicator.offline { background-color: #f0f2f5; color: #555555; }
+
+.valve-status-indicator.online .pulse-dot { width: 6px; height: 6px; background-color: var(--agri-glow); border-radius: 50%; box-shadow: 0 0 6px var(--agri-glow); animation: valveDotPulse 2s infinite; }
+.valve-status-indicator.offline .pulse-dot { width: 6px; height: 6px; background-color: #888888; border-radius: 50%; }
+
+.valve-interactive-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    width: 100%;
+}
+
+.flow-rate-display { display: flex; align-items: baseline; gap: 0.35rem; }
+.rate-value { font-size: 2.2rem; font-weight: 900; color: var(--dark-neutral); letter-spacing: -1px; }
+.rate-unit { font-size: 0.85rem; font-weight: 700; color: #777777; }
+
+/* --- PURE CSS HARDWARE ACCELERATED INTERACTIVE TOGGLE SLIDER --- */
+.valve-switch-toggle {
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.valve-toggle-input { opacity: 0; width: 0; height: 0; }
+
+.switch-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #e0e0e0;
+    border-radius: 34px;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.switch-slider::before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.valve-toggle-input:checked + .switch-slider { background-color: var(--agri-glow); }
+.valve-toggle-input:checked + .switch-slider::before { transform: translateX(26px); }
+
+.valve-card-footer { font-size: 0.8rem; font-weight: 600; color: #888888; border-top: 1px solid #f0f2f5; padding-top: 0.75rem; width: 100%; }
+
+/* Card Hover Illuminations */
+.valve-control-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.12);
+}
+
+/* 2. MIDDLE ROW JSON CODE TERMINAL PANEL */
+.valve-payload-monitor-panel {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.payload-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+.payload-panel-header h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-neutral); }
+
+.json-stream-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background-color: #f7f9fa;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #444444;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.json-pulse {
+    width: 8px;
+    height: 8px;
+    background-color: #ff9100;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ff9100;
+    animation: valveDotPulse 2s infinite ease-in-out;
+}
+
+/* Terminal Console Formatting Rules Layers */
+.payload-console-terminal {
+    width: 100%;
+    background-color: #1a1e24; /* Code terminal dark black backdrop */
+    border-radius: 12px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terminal-code-block code {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #f8f8f2;
+}
+
+/* High-Utility Code Text Shading Syntaxes Mapping Nodes */
+.json-key { color: #ff79c6; font-weight: 700; }     /* Pink key attributes */
+.json-string { color: #f1fa8c; }                  /* Yellow strings */
+.json-number { color: #bd93f9; font-weight: bold; } /* Purple numbers */
+
+/* 3. BOTTOM MECHANICAL STREAM TABLE BUILD */
+.valve-telemetry-table-box {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    padding: 1.75rem;
+    width: 100%;
+}
+
+.v-table-title-row { margin-bottom: 1.25rem; }
+.v-table-title-row h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-neutral); }
+
+.v-table-overflow-containment { width: 100%; overflow-x: auto; }
+
+.valve-execution-table { width: 100%; border-collapse: collapse; text-align: left; }
+.valve-execution-table th, .valve-execution-table td { padding: 1rem 1.25rem; font-size: 0.9rem; font-weight: 600; border-bottom: 1px solid #f0f2f5; }
+
+.valve-execution-table th {
+    background-color: #f7f9fa;
+    color: #555555;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+}
+
+.valve-execution-table tbody tr { transition: background-color 0.2s ease; }
+.valve-execution-table tbody tr:hover { background-color: var(--bg-bright); }
+
+.trigger-badge {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.trigger-badge.type-auto { background-color: rgba(76, 175, 80, 0.1); color: #2e7d32; }
+.trigger-badge.type-manual { background-color: #e3f2fd; color: #1e88e5; }
+.trigger-badge.type-webhook { background-color: #ede7f6; color: #5e35b1; }
+
+.text-muted-color { color: #888888 !important; }
+
+.ack-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.ack-pill.ok { background-color: rgba(76, 175, 80, 0.1); color: #2e7d32; border: 1px solid rgba(76, 175, 80, 0.15); }
+
+/* --- ACTIVE VALVE DOT KEYFRAMES --- */
+@keyframes valveDotPulse { 0% { transform: scale(0.95); opacity: 0.5; } 50% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.5; } }
+
+/* --- RESPONSIVE MEDIA GRID CRASH RESOLUTIONS --- */
+@media (max-width: 1200px) {
+    .valve-actuators-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .valve-control-card:last-child { grid-column: span 2; }
+}
+
+@media (max-width: 768px) {
+    .valve-actuators-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .valve-control-card:last-child { grid-column: span 1; }
+    .terminal-code-block code { font-size: 0.8rem; }
+    .payload-console-terminal { padding: 1rem; }
+}
+
+@media (max-width: 520px) {
+    .valve-interactive-body { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .valve-switch-toggle { align-self: flex-end; }
+    .valve-execution-table th, .valve-execution-table td { padding: 0.85rem 0.6rem; font-size: 0.8rem; }
+}
+
+</style>
+
+<script>
+        // --- INTERACTIVE MECHANICAL SOLENOID RELAY SWITCH TRACKING ---
+    const valveInputsCollection = document.querySelectorAll(".valve-toggle-input");
+
+    valveInputsCollection.forEach((inputNode) => {
+        inputNode.addEventListener("change", (event) => {
+            const linesCodeLabel = inputNode.getAttribute("data-line");
+            const isLineActuated = inputNode.checked;
+            
+            console.log(`[TELEMETRY COMMAND] ${linesCodeLabel} State Mutation Triggered: ${isLineActuated ? 'OPEN_FLOW' : 'CLOSED_HALT'}`);
+            
+            // Toggle corresponding parent status indicator labels safely
+            const cardHeader = inputNode.closest(".valve-control-card").querySelector(".valve-status-indicator");
+            if (cardHeader) {
+                if (isLineActuated) {
+                    cardHeader.className = "valve-status-indicator online";
+                    cardHeader.innerHTML = '<span class="pulse-dot"></span> Active Flow';
+                } else {
+                    cardHeader.className = "valve-status-indicator offline";
+                    cardHeader.innerHTML = '<span class="pulse-dot"></span> Closed Lock';
+                }
+            }
+        });
+    });
+
+</script>
+
+                <!-- Section Block 4: Transit Routes -->
+               <!-- Enhanced Cold-Chain Logistics Fleet Tracking Dashboard Section -->
+<section class="viewport-section-card" id="fleet-tracking">
+    
+    <!-- Row Block 1: Live Transit Status Analytics Grid -->
+    <div class="fleet-status-analytics-grid">
+        
+        <!-- Fleet Card 1 -->
+        <div class="fleet-status-card">
+            <div class="fleet-card-header-row">
+                <span class="fleet-card-tag">Active Dispatches</span>
+                <div class="fleet-vector-shield green-theme">
+                    <svg viewBox="0 0 24 24"><path d="M20,8H17V4H3A2,2 0 0,0 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8M6,18.5A1.5,1.5 0 1,1 7.5,17A1.5,1.5 0 0,1 6,18.5M17,12V9.5H19.5L21.4,12H17M18,18.5A1.5,1.5 0 1,1 19.5,17A1.5,1.5 0 0,1 18,18.5Z"/></svg>
+                </div>
+            </div>
+            <div class="fleet-card-value">04 / 04</div>
+            <p class="fleet-card-footer-note">All vehicles inside safe geofences</p>
+        </div>
+
+        <!-- Fleet Card 2 -->
+        <div class="fleet-status-card">
+            <div class="fleet-card-header-row">
+                <span class="fleet-card-tag">Avg Payload Temperature</span>
+                <div class="fleet-vector-shield blue-theme">
+                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18Z"/></svg>
+                </div>
+            </div>
+            <div class="fleet-card-value">4.2°C</div>
+            <p class="fleet-card-footer-note">Nominal cold-chain threshold bounds</p>
+        </div>
+
+        <!-- Fleet Card 3 -->
+        <div class="fleet-status-card">
+            <div class="fleet-card-header-row">
+                <span class="fleet-card-tag">Pending Gate Deliveries</span>
+                <div class="fleet-vector-shield amber-theme">
+                    <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6H13V12H11V6M11,14H13V16H11V14Z"/></svg>
+                </div>
+            </div>
+            <div class="fleet-card-value">02 <span class="sub-unit-text">Units</span></div>
+            <p class="fleet-card-footer-note">ETA less than 45 mins remaining</p>
+        </div>
+
+    </div>
+
+    <!-- Row Block 2: Interactive Geospatial Dispatch Route Mapping Track -->
+    <div class="fleet-mapping-panel">
+        <div class="fleet-panel-header-row">
+            <h3>Geospatial Supply Chain Route Monitors</h3>
+            <span class="gps-stream-pill"><span class="gps-pulse"></span>Live GPS Tracking Array</span>
+        </div>
+        
+        <div class="fleet-map-canvas-mockup">
+            <!-- Simulated topographical roadmap overlay asset -->
+            <img src="./Assests/drone.webp" alt="Topographical regional supply chain roadmaps grid" class="fleet-map-backdrop-img">
+            
+            <!-- Transit Vehicle Tracker Badge 1 -->
+            <div class="fleet-ui-vehicle-node position-truck-1">
+                <div class="truck-indicator-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20,8H17V4H3A2,2 0 0,0 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8M6,18.5A1.5,1.5 0 1,1 7.5,17A1.5,1.5 0 0,1 6,18.5M17,12V9.5H19.5L21.4,12H17M18,18.5A1.5,1.5 0 1,1 19.5,17A1.5,1.5 0 0,1 18,18.5Z"/></svg>
+                </div>
+                <div class="truck-metrics-bubble-popup">
+                    <strong>Asset STK-TRK-01</strong>
+                    <span>Cargo: Organic Avocados</span>
+                    <span>Temp: 3.8°C (Optimal)</span>
+                </div>
+            </div>
+
+            <!-- Transit Vehicle Tracker Badge 2 -->
+            <div class="fleet-ui-vehicle-node position-truck-2">
+                <div class="truck-indicator-icon blink-amber">
+                    <svg viewBox="0 0 24 24"><path d="M20,8H17V4H3A2,2 0 0,0 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8M6,18.5A1.5,1.5 0 1,1 7.5,17A1.5,1.5 0 0,1 6,18.5M17,12V9.5H19.5L21.4,12H17M18,18.5A1.5,1.5 0 1,1 19.5,17A1.5,1.5 0 0,1 18,18.5Z"/></svg>
+                </div>
+                <div class="truck-metrics-bubble-popup">
+                    <strong>Asset STK-TRK-04</strong>
+                    <span>Cargo: Microgreen Yields</span>
+                    <span class="text-caution-color">Temp: 5.4°C (Elevated)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row Block 3: Responsive Logistical Waypoint Log Stream Table -->
+    <div class="fleet-waypoint-table-box">
+        <div class="f-table-title-row">
+            <h3>Real-Time Dispatch Waypoint Streams</h3>
+        </div>
+        
+        <div class="f-table-overflow-containment">
+            <table class="fleet-dispatch-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Vehicle Fleet ID</th>
+                        <th>Current Geofence Node</th>
+                        <th>Payload Temp</th>
+                        <th>Humidity Index</th>
+                        <th>Transit Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10:48:02 AM</td>
+                        <td><code class="fleet-token">STK-TRK-01</code></td>
+                        <td>Salem Northern Interchange</td>
+                        <td>3.8°C</td>
+                        <td>62% rH</td>
+                        <td><span class="transit-pill state-moving">In Transit</span></td>
+                    </tr>
+                    <tr>
+                        <td>10:47:15 AM</td>
+                        <td><code class="fleet-token">STK-TRK-04</code></td>
+                        <td>MMR Complex Gate 2</td>
+                        <td class="text-caution-color font-heavy">5.4°C</td>
+                        <td>58% rH</td>
+                        <td><span class="transit-pill state-holding">Arrived / Docking</span></td>
+                    </tr>
+                    <tr>
+                        <td>10:45:50 AM</td>
+                        <td><code class="fleet-token">STK-TRK-02</code></td>
+                        <td>Chinna Thirupathi Sector</td>
+                        <td>4.1°C</td>
+                        <td>64% rH</td>
+                        <td><span class="transit-pill state-moving">In Transit</span></td>
+                    </tr>
+                    <tr>
+                        <td>10:42:10 AM</td>
+                        <td><code class="fleet-token">STK-TRK-03</code></td>
+                        <td>Distribution Depot Beta</td>
+                        <td>4.5°C</td>
+                        <td>61% rH</td>
+                        <td><span class="transit-pill state-complete">Discharged</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+<style>
+    /* --- EXTENDED ELABORATED FLEET TRACKING VIEWPORT SYSTEM --- */
+
+/* 1. UPPER LIVE STATUS ANALYTICS GRID */
+.fleet-status-analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.fleet-status-card {
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fleet-card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.fleet-card-tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #666666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.fleet-vector-shield {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fleet-vector-shield svg { width: 18px; height: 18px; }
+
+/* Vector shield colors mappings */
+.fleet-vector-shield.green-theme { background-color: var(--bg-bright); fill: var(--text-dark); }
+.fleet-vector-shield.blue-theme { background-color: #e3f2fd; fill: #1e88e5; }
+.fleet-vector-shield.amber-theme { background-color: #fff8e1; fill: #ffb300; }
+
+.fleet-card-value {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--dark-neutral);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.5px;
+}
+.fleet-card-value .sub-unit-text { font-size: 0.95rem; font-weight: 700; color: #777777; }
+
+.fleet-card-footer-note {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #888888;
+}
+
+/* Card Hover Illuminations */
+.fleet-status-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.12);
+}
+
+/* 2. MIDDLE ROW GEOSPATIAL MAP PANEL */
+.fleet-mapping-panel {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.fleet-panel-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+.fleet-panel-header-row h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-neutral); }
+
+.gps-stream-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background-color: #f7f9fa;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #444444;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.gps-pulse {
+    width: 8px;
+    height: 8px;
+    background-color: var(--agri-glow);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--agri-glow);
+    animation: gpsTrackerPulse 2s infinite ease-in-out;
+}
+
+.fleet-map-canvas-mockup {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.fleet-map-backdrop-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.65) contrast(1.1) saturate(0.9);
+}
+
+/* Layered Vehicle Tracking Anchors Layouts Mapping */
+.fleet-ui-vehicle-node {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.fleet-ui-vehicle-node.position-truck-1 { left: 20%; top: 40%; }
+.fleet-ui-vehicle-node.position-truck-2 { right: 28%; bottom: 35%; }
+
+.truck-indicator-icon {
+    width: 36px;
+    height: 36px;
+    background-color: var(--text-dark);
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 12px var(--agri-glow);
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.truck-indicator-icon svg { width: 16px; height: 16px; fill: var(--white); }
+
+.truck-indicator-icon.blink-amber {
+    background-color: #ff9100;
+    box-shadow: 0 0 12px #ff9100;
+}
+
+.truck-metrics-bubble-popup {
+    background-color: rgba(15, 17, 21, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    opacity: 0.85;
+    transform: translateY(2px);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.truck-metrics-bubble-popup strong { font-size: 0.85rem; color: #ffffff; }
+.truck-metrics-bubble-popup span { font-size: 0.75rem; color: #9aa0a6; font-weight: 600; }
+.text-caution-color { color: #ff9100 !important; }
+
+/* Vehicle Nodes Hover Interactions */
+.fleet-ui-vehicle-node:hover .truck-indicator-icon { transform: scale(1.2) rotate(4deg); border-color: var(--agri-glow); }
+.fleet-ui-vehicle-node:hover .truck-metrics-bubble-popup { opacity: 1; transform: translateY(0); border-color: var(--agri-glow); box-shadow: 0 8px 25px rgba(0, 230, 118, 0.2); }
+
+/* 3. BOTTOM WAYPOINTS LOG DATA WELL TABLE */
+.fleet-waypoint-table-box {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    padding: 1.75rem;
+    width: 100%;
+}
+
+.f-table-title-row { margin-bottom: 1.25rem; }
+.f-table-title-row h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-neutral); }
+
+.f-table-overflow-containment { width: 100%; overflow-x: auto; }
+
+.fleet-dispatch-table { width: 100%; border-collapse: collapse; text-align: left; }
+.fleet-dispatch-table th, .fleet-dispatch-table td { padding: 1rem 1.25rem; font-size: 0.9rem; font-weight: 600; border-bottom: 1px solid #f0f2f5; }
+
+.fleet-dispatch-table th {
+    background-color: #f7f9fa;
+    color: #555555;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+}
+
+.fleet-dispatch-table tbody tr { transition: background-color 0.2s ease; }
+.fleet-dispatch-table tbody tr:hover { background-color: var(--bg-bright); }
+
+.fleet-token {
+    font-family: monospace;
+    background-color: #f0f2f5;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--dark-neutral);
+    font-weight: bold;
+}
+
+.font-heavy { font-weight: 800 !important; }
+
+/* Status transit indicator tags */
+.transit-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.transit-pill.state-moving { background-color: rgba(30, 136, 229, 0.1); color: #1e88e5; }
+.transit-pill.state-holding { background-color: rgba(255, 145, 0, 0.1); color: #e65100; }
+.transit-pill.state-complete { background-color: rgba(76, 175, 80, 0.1); color: #2e7d32; }
+
+/* --- HARDWARE-ACCELERATED GPS SIGNAL KEYFRAMES --- */
+@keyframes gpsTrackerPulse { 0% { transform: scale(0.95); opacity: 0.5; box-shadow: 0 0 4px var(--agri-glow); } 50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 12px var(--agri-glow); } 100% { transform: scale(0.95); opacity: 0.5; box-shadow: 0 0 4px var(--agri-glow); } }
+
+/* --- RIGID RESPONSIVE BREAKPOINT GRID BOUNDARIES --- */
+@media (max-width: 1200px) {
+    .fleet-status-analytics-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .fleet-status-card:last-child { grid-column: span 2; }
+}
+
+@media (max-width: 768px) {
+    .fleet-status-analytics-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .fleet-status-card:last-child { grid-column: span 1; }
+    .fleet-map-canvas-mockup { height: 260px; }
+    .fleet-ui-vehicle-node.position-truck-1 { left: 10%; top: 30%; }
+    .fleet-ui-vehicle-node.position-truck-2 { right: 10%; bottom: 20%; }
+    .truck-metrics-bubble-popup { padding: 0.5rem 0.75rem; }
+}
+
+@media (max-width: 520px) {
+    .fleet-dispatch-table th, .fleet-dispatch-table td { padding: 0.85rem 0.6rem; font-size: 0.8rem; }
+    .truck-metrics-bubble-popup { display: none; } /* Drop heavy interactive overlays on extra narrow touchscreen views */
+}
+
+</style>
+
+                <!-- Section Block 5: Profile Settings -->
+             <!-- Enhanced Field Partner Operational Security Records Section -->
+<section class="viewport-section-card" id="profile-settings">
+    
+    <!-- Row Block 1: Account Metadata & Profile Credentials Panel -->
+    <div class="security-meta-grid">
+        
+        
+        <div class="security-profile-card">
+            <div class="sec-card-header">
+                <h3>Operational Identity Metadata</h3>
+                <span class="sec-badge badge-verified">Verified Partner</span>
+            </div>
+            
+            <div class="profile-avatar-upload-row">
+                <div class="profile-large-avatar">P</div>
+                <div class="avatar-meta-text">
+                    <strong>Console Root Node</strong>
+                    <span>System Role: Senior Field Operator</span>
+                </div>
+            </div>
+
+            <div class="profile-readonly-fields">
+                <div class="readonly-item">
+                    <span class="r-label">Registered Node Email</span>
+                    <span class="r-value" id="security-profile-email">Loading email...</span>
+                </div>
+                <div class="readonly-item">
+                    <span class="r-label">Regional Hardware Node Authority</span>
+                    <span class="r-value">Salem Agriculture Zone (IN-TN-SLM)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Cryptographic Summary Stats Tile -->
+        <div class="security-stats-card">
+            <div class="sec-card-header">
+                <h3>Cryptographic Health Status</h3>
+            </div>
+            <div class="sec-stats-body">
+                <div class="stat-indicator-row">
+                    <div class="stat-meta">
+                        <strong>AES-256 Mesh Encryption</strong>
+                        <p>Firmware-enforced packet security loops</p>
+                    </div>
+                    <span class="status-indicator-tag state-secure">Enforced</span>
+                </div>
+                <div class="stat-indicator-row">
+                    <div class="stat-meta">
+                        <strong>API Access Webhooks</strong>
+                        <p>Cryptographic tokens currently operational</p>
+                    </div>
+                    <span class="status-indicator-tag state-secure">03 Active</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Row Block 2: Interactive Cryptographic Token & Security Key Deck -->
+    <div class="security-token-management-deck">
+        <div class="token-deck-header">
+            <h3>Enforced Hardware Security Keys</h3>
+            <span class="hardware-stream-pill"><span class="hardware-pulse"></span>Hardware Layer Active</span>
+        </div>
+        
+        <div class="token-cards-wrapper">
+            
+            <!-- Security Token 1 -->
+            <div class="token-interactive-tile">
+                <div class="token-tile-top">
+                    <div class="token-vector-box key-green">
+                        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A1.5,1.5 0 0,1 13.5,5.5A1.5,1.5 0 0,1 12,7A1.5,1.5 0 0,1 10.5,5.5A1.5,1.5 0 0,1 12,4M12,18C10.5,18 9,17.2 8,16C9,14.5 10.5,13.5 12,13.5C13.5,13.5 15,14.5 16,16C15,17.2 13.5,18 12,18M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"/></svg>
+                    </div>
+                    <div class="token-meta-title">
+                        <h4>Field Spike Authorization API Key</h4>
+                        <code>token_stk_live_49218s92mx...</code>
+                    </div>
+                </div>
+                <div class="token-tile-interactive">
+                    <span class="token-creation-date">Generated: 2026-03-12</span>
+                    <!-- Pure CSS Switch Component to revoke token streams -->
+                    <label class="security-switch-toggle">
+                        <input type="checkbox" checked class="security-toggle-input" data-token-id="API-Key-01">
+                        <span class="sec-switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Security Token 2 -->
+            <div class="token-interactive-tile">
+                <div class="token-tile-top">
+                    <div class="token-vector-box key-blue">
+                        <svg viewBox="0 0 24 24"><path d="M21,2H3A2,2 0 0,0 1,4V20A2,2 0 0,0 3,22H21A2,2 0 0,0 23,20V4A2,2 0 0,0 21,2M21,7H3V4H21V7M21,11H3V9H21V11M21,20H3V13H21V20Z"/></svg>
+                    </div>
+                    <div class="token-meta-title">
+                        <h4>Mobile Console Biometric Auth Node</h4>
+                        <code>device_node_fingerprint_6c...</code>
+                    </div>
+                </div>
+                <div class="token-tile-interactive">
+                    <span class="token-creation-date">Generated: 2026-06-20</span>
+                    <label class="security-switch-toggle">
+                        <input type="checkbox" checked class="security-toggle-input" data-token-id="Biometric-02">
+                        <span class="sec-switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Row Block 3: Responsive Device Session Access Log Stream Table -->
+    <div class="security-sessions-table-box">
+        <div class="s-table-title-row">
+            <h3>Recent Secure Infrastructure Access Logs</h3>
+        </div>
+        
+        <div class="s-table-overflow-containment">
+            <table class="security-logs-table">
+                <thead>
+                    <tr>
+                        <th>Access Time</th>
+                        <th>Device Interface Platform</th>
+                        <th>IP Address Route</th>
+                        <th>Regional Node Location</th>
+                        <th>Action Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10:54:12 AM (Current)</td>
+                        <td>Chrome 127 / Windows 11</td>
+                        <td><code class="sec-ip-token">192.168.1.145</code></td>
+                        <td>Salem, Tamil Nadu, IN</td>
+                        <td><span class="session-pill state-current">Active Session</span></td>
+                    </tr>
+                    <tr>
+                        <td>08:14:22 AM</td>
+                        <td>Stackly Operator App v2.4</td>
+                        <td><code class="sec-ip-token">103.86.92.12</code></td>
+                        <td>MMR Complex Cell Node</td>
+                        <td><span class="session-pill state-closed">Terminated</span></td>
+                    </tr>
+                    <tr>
+                        <td>Yesterday, 04:32:10 PM</td>
+                        <td>Safari Mobile / iOS 17</td>
+                        <td><code class="sec-ip-token">157.44.182.204</code></td>
+                        <td>Chinna Thirupathi, IN</td>
+                        <td><span class="session-pill state-closed">Terminated</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+<style>
+    /* --- EXTENDED ELABORATED OPERATIONAL SECURITY VIEWPORT SYSTEM --- */
+
+/* 1. UPPER ACCOUNT CREDENTIALS GRID MATRIX */
+.security-meta-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Asymmetric grid distributions mirroring standard visual themes */
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.security-profile-card, .security-stats-card {
+    background-color: var(--white);
+    padding: 1.75rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+}
+
+.sec-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f2f5;
+    padding-bottom: 0.75rem;
+}
+.sec-card-header h3 { font-size: 1.15rem; font-weight: 800; color: var(--dark-neutral); }
+
+.sec-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.sec-badge.badge-verified { background-color: rgba(76, 175, 80, 0.1); color: #2e7d32; }
+
+/* Avatar Display Component Row */
+.profile-avatar-upload-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-large-avatar {
+    width: 56px;
+    height: 56px;
+    background-color: var(--text-dark);
+    color: var(--white);
+    font-size: 1.4rem;
+    font-weight: 800;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.2);
+}
+
+.avatar-meta-text strong { display: block; font-size: 1.1rem; color: var(--dark-neutral); margin-bottom: 0.15rem; }
+.avatar-meta-text span { font-size: 0.85rem; color: #666666; font-weight: 600; }
+
+/* Readonly data parameter containers */
+.profile-readonly-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.readonly-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    background-color: #f7f9fa;
+    padding: 0.85rem 1.15rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.r-label { font-size: 0.75rem; font-weight: 800; color: #777777; text-transform: uppercase; letter-spacing: 0.5px; }
+.r-value { font-size: 0.95rem; font-weight: 700; color: var(--dark-neutral); }
+
+/* Right Box Stat Indicators Rows */
+.sec-stats-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.stat-indicator-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f7f9fa;
+    padding: 1.1rem;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.stat-meta strong { display: block; font-size: 0.95rem; color: var(--dark-neutral); margin-bottom: 0.15rem; }
+.stat-meta p { font-size: 0.8rem; color: #666666; font-weight: 500; }
+
+.status-indicator-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+.status-indicator-tag.state-secure { background-color: var(--text-dark); color: var(--white); }
+
+/* 2. MIDDLE ROW HARDWARE TOKEN CONTROL DECK */
+.security-token-management-deck {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.token-deck-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.token-deck-header h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-neutral); }
+
+.hardware-stream-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background-color: #f7f9fa;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #444444;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.hardware-pulse {
+    width: 8px;
+    height: 8px;
+    background-color: var(--agri-glow);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--agri-glow);
+    animation: secPulseGlow 2s infinite ease-in-out;
+}
+
+.token-cards-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.token-interactive-tile {
+    background-color: var(--bg-bright);
+    border: 1px solid rgba(27, 94, 32, 0.04);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.token-tile-top {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.token-vector-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.token-vector-box svg { width: 20px; height: 20px; }
+
+.token-vector-box.key-green { background-color: rgba(76, 175, 80, 0.12); fill: var(--text-dark); }
+.token-vector-box.key-blue { background-color: #e3f2fd; fill: #1e88e5; }
+
+.token-meta-title h4 { font-size: 1.05rem; font-weight: 800; color: var(--dark-neutral); margin-bottom: 0.25rem; }
+.token-meta-title code { font-family: monospace; font-size: 0.85rem; color: #555555; background-color: rgba(0,0,0,0.03); padding: 0.15rem 0.4rem; border-radius: 4px; font-weight: bold; }
+
+.token-tile-interactive {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(27, 94, 32, 0.06);
+    padding-top: 1rem;
+    width: 100%;
+}
+.token-creation-date { font-size: 0.8rem; font-weight: 700; color: #666666; }
+
+/* Pure CSS Switch Component to handle cryptographic token status */
+.security-switch-toggle { position: relative; display: inline-block; width: 46px; height: 24px; flex-shrink: 0; }
+.security-toggle-input { opacity: 0; width: 0; height: 0; }
+
+.sec-switch-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #e0e0e0;
+    border-radius: 34px;
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sec-switch-slider::before {
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.security-toggle-input:checked + .sec-switch-slider { background-color: var(--text-dark); }
+.security-toggle-input:checked + .sec-switch-slider::before { transform: translateX(22px); }
+
+/* Interactive Card Hovers */
+.token-interactive-tile:hover {
+    transform: translateY(-4px);
+    border-color: var(--agri-glow);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.1);
+}
+
+/* 3. BOTTOM ACCESS SESSIONS DATA STREAM TABLE */
+.security-sessions-table-box {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    padding: 1.75rem;
+    width: 100%;
+}
+
+.s-table-title-row { margin-bottom: 1.25rem; }
+.s-table-title-row h3 { font-size: 1.2rem; font-weight: 800; color: var(--dark-neutral); }
+
+.s-table-overflow-containment { width: 100%; overflow-x: auto; }
+
+.security-logs-table { width: 100%; border-collapse: collapse; text-align: left; }
+.security-logs-table th, .security-logs-table td { padding: 1rem 1.25rem; font-size: 0.9rem; font-weight: 600; border-bottom: 1px solid #f0f2f5; }
+
+.security-logs-table th {
+    background-color: #f7f9fa;
+    color: #555555;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+}
+
+.security-logs-table tbody tr { transition: background-color 0.2s ease; }
+.security-logs-table tbody tr:hover { background-color: var(--bg-bright); }
+
+.sec-ip-token {
+    font-family: monospace;
+    background-color: #f0f2f5;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--dark-neutral);
+    font-weight: bold;
+}
+
+.session-pill {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.session-pill.state-current { background-color: rgba(76, 175, 80, 0.1); color: #2e7d32; border: 1px solid rgba(76, 175, 80, 0.15); }
+.session-pill.state-closed { background-color: #f0f2f5; color: #777777; }
+
+/* --- SECURITY INDICATOR KEYFRAMES --- */
+@keyframes secPulseGlow { 0% { transform: scale(0.95); opacity: 0.5; } 50% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(0.95); opacity: 0.5; } }
+
+/* --- RIGID RESPONSIVE BREAKPOINT GRID CLOSURES --- */
+@media (max-width: 1200px) {
+    .security-meta-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+    .token-cards-wrapper { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+@media (max-width: 768px) {
+    .security-logs-table th, .security-logs-table td { padding: 0.85rem 0.6rem; font-size: 0.8rem; }
+}
+
+@media (max-width: 520px) {
+    .profile-avatar-upload-row { flex-direction: column; text-align: center; gap: 0.75rem; }
+    .token-tile-top { flex-direction: column; gap: 0.75rem; }
+}
+
+</style>
+
+<script>
+        // Target your newly added security metadata display element node
+    const securityEmailContainerNode = document.getElementById("security-profile-email");
+    if (securityEmailContainerNode && sessionEmail) {
+        securityEmailContainerNode.textContent = sessionEmail; // Prints full address cleanly
+    }
+
+</script>
+
+            </main>
+
+        </div>
+    </div>
+
+ <style>
+     /* ==========================================================
+   MOBILE SIDEBAR - PREVENT BACKGROUND CONTENT SCROLL
+========================================================== */
+
+@media (max-width: 992px) {
+
+    /* Lock the dashboard content while sidebar is open */
+    body.sidebar-scroll-lock {
+        overflow: hidden !important;
+        height: 100vh !important;
+        touch-action: none;
+    }
+
+    /* Stop the main dashboard viewport from scrolling */
+    body.sidebar-scroll-lock .dashboard-content-viewport {
+        overflow: hidden !important;
+        touch-action: none;
+    }
+
+    /* Allow sidebar itself to scroll if its content is taller */
+    body.sidebar-scroll-lock .sidebar-wrapper.mobile-open {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+}
+
+    /* --- COMPREHENSIVE AGRICULTURE PORTAL DASHBOARD MATRIX --- */
+:root {
+    --bg-bright: #f1f8e9;      /* Natural soft foliage background wash layer pass */
+    --text-dark: #1b5e20;      /* Rigid premium forest green primary text color string */
+    --agri-glow: #4caf50;      /* Grass green validation active track glow accent token */
+    --white: #ffffff;
+    --dark-neutral: #1a1e24;   /* Deep solid charcoal slate text for structural panel grids */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f7f9fa;
+    color: var(--dark-neutral);
+    overflow: hidden;
+    height: 100vh;
+}
+
+.dashboard-layout {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+/* --- SIDEBAR MASTER SYSTEM DESKTOP ARCHITECTURE --- */
+.sidebar-wrapper {
+    width: 260px;
+    background-color: var(--dark-neutral); /* Reference screenshot matched solid dark side menu */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    flex-shrink: 0;
+    padding: 1.5rem;
+    z-index: 100;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.sidebar-brand-box {
+    display: inline-flex;
+}
+
+.sidebar-logo-img {
+    height: 34px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.btn-close-sidebar {
+    display: none; /* Hidden by default on wide desktop viewports layout grids */
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Sidebar Traversal Link List Formatting Rules Layers */
+.sidebar-navigation {
+    flex-grow: 1;
+}
+
+.nav-links-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-links-list li { width: 100%; }
+
+.nav-item-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1.15rem;
+    border-radius: 12px;
+    color: #9aa0a6;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+
+.nav-item-link svg {
+    width: 18px;
+    height: 18px;
+    fill: #9aa0a6;
+    transition: fill 0.25s ease, filter 0.25s ease;
+}
+
+/* Active Highlight Item Styles Mapped Exactly to Domain Specs */
+.nav-item-link:hover, .nav-item-link.active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.nav-item-link.active {
+    background-color: rgba(76, 175, 80, 0.1) !important;
+    color: var(--agri-glow);
+    border: 1px solid rgba(76, 175, 80, 0.15);
+}
+
+.nav-item-link.active svg {
+    fill: var(--agri-glow);
+    filter: drop-shadow(0 0 3px var(--agri-glow));
+}
+
+/* Sidebar Logout Row */
+.sidebar-bottom-actions {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.25rem;
+}
+
+.btn-sidebar-logout {
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1.15rem;
+    color: #f05454; /* Clean warning red logout action string */
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    transition: background-color 0.25s ease;
+}
+
+.btn-sidebar-logout svg {
+    width: 18px;
+    height: 18px;
+    fill: #f05454;
+}
+
+.btn-sidebar-logout:hover {
+    background-color: rgba(240, 84, 84, 0.05);
+}
+
+/* --- MAIN DASHBOARD BODY CONTENT FRAMEWORK PANEL --- */
+.dashboard-main-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f7f9fa;
+}
+
+/* --- UPPER ROW DASHBOARD TOP HEADER BAR --- */
+.dashboard-header-bar {
+    height: 70px;
+    background-color: var(--white);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.hamburger-menu-trigger {
+    display: none; /* Hidden on desktop monitors grid tracking formats */
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.hamburger-menu-trigger svg { fill: var(--dark-neutral); }
+
+.header-left-greeting {
+    font-size: 0.95rem;
+    color: #666666;
+}
+.header-left-greeting strong { color: var(--dark-neutral); }
+
+.header-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Bell Notification Elements */
+.header-utility-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    color: var(--dark-neutral);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.header-utility-btn:hover { background-color: var(--bg-bright); }
+.header-utility-btn svg { fill: var(--dark-neutral); }
+
+.alert-unread-dot {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    width: 7px;
+    height: 7px;
+    background-color: #f05454;
+    border-radius: 50%;
+}
+
+/* Profile Capsule Element Blocks Mapping Profiles */
+.header-profile-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.35rem 1rem 0.35rem 0.4rem;
+    background-color: #f7f9fa;
+    border-radius: 30px;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.profile-avatar-circle {
+    width: 32px;
+    height: 32px;
+    background-color: var(--text-dark);
+    color: var(--white);
+    font-weight: 800;
+    font-size: 0.9rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-username-string {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--dark-neutral);
+}
+
+/* --- CORE DYNAMIC CONTENT SECTION HOUSING VIEWPORTS --- */
+.dashboard-content-viewport {
+    flex-grow: 1;
+    padding: 2.5rem;
+    overflow-y: auto;
+}
+
+.viewport-section-card {
+    display: none; /* Hide out of viewport streams natively until triggered */
+    width: 100%;
+    animation: fadeInPanel 0.4s ease-out forwards;
+}
+
+.viewport-section-card.active {
+    display: block; /* Locks execution state visibility exclusively over target anchors code maps */
+}
+
+.placeholder-content-title {
+    background-color: var(--white);
+    padding: 4rem 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+    text-align: center;
+}
+
+.placeholder-content-title h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--dark-neutral);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.5px;
+}
+
+.placeholder-content-title p {
+    font-size: 1rem;
+    color: #666666;
+    font-weight: 500;
+}
+
+/* Accelerated animations maps */
+@keyframes fadeInPanel {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- RIGID RESPONSIVE BREAKPOINT INTERPOLATION CONFIGURATIONS --- */
+@media (max-width: 992px) {
+    /* Hide desktop sidebar off canvas bounds automatically inside tablet displays grids */
+    .sidebar-wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-100%); /* Displace left out of windows scope views */
+        z-index: 1000;
+        box-shadow: 20px 0 50px rgba(0,0,0,0.3);
+    }
+    
+    .sidebar-wrapper.mobile-open {
+        transform: translateX(0); /* Reveal slide structural sidebar layer */
+    }
+    
+    .btn-close-sidebar { display: block; }
+    .hamburger-menu-trigger { display: flex; }
+    .dashboard-header-bar { padding: 0 1.5rem; }
+    .dashboard-content-viewport { padding: 1.5rem; }
+}
+
+@media (max-width: 580px) {
+    .header-left-greeting { display: none; } /* Drop redundant copy tracks under heavy screens parameters contractions */
+}
+
+ </style>
+
+ <script>
+   document.addEventListener("DOMContentLoaded", () => {
+
+    // ==========================================================
+    // 1. USER SESSION / DISPLAY USERNAME
+    // ==========================================================
+
+    const sessionEmail = localStorage.getItem("stackly_session_user");
+    const userDisplayNode = document.getElementById("dashboard-user-display");
+
+    if (userDisplayNode) {
+
+        if (sessionEmail && sessionEmail.includes("@")) {
+
+            // Example:
+            // test@gmail.com -> test
+            const extractedNickname = sessionEmail.split("@")[0];
+
+            userDisplayNode.textContent = extractedNickname;
+
+        } else {
+
+            userDisplayNode.textContent = "Field Partner";
+
+        }
+    }
+
+
+    // ==========================================================
+    // 2. GET DASHBOARD NAVIGATION ELEMENTS
+    // ==========================================================
+
+    const navLinksCollection =
+        document.querySelectorAll(".nav-item-link");
+
+    const sectionPanelsCollection =
+        document.querySelectorAll(".viewport-section-card");
+
+
+    // ==========================================================
+    // 3. MOBILE SIDEBAR ELEMENTS
+    // ==========================================================
+
+    const hamburgerOpenBtn =
+        document.getElementById("mobile-hamburger-btn");
+
+    const hamburgerCloseBtn =
+        document.getElementById("sidebar-close-trigger");
+
+    const mobileSidebarWrapper =
+        document.getElementById("dashboard-sidebar");
+
+
+    // ==========================================================
+    // 4. DASHBOARD CONTENT VIEWPORT
+    // ==========================================================
+
+    const dashboardContentViewport =
+        document.querySelector(".dashboard-content-viewport");
+
+
+    // ==========================================================
+    // 5. FUNCTION - LOCK BACKGROUND SCROLL
+    // ==========================================================
+
+    function lockBackgroundScroll() {
+
+        // Prevent body scrolling
+        document.body.classList.add("sidebar-scroll-lock");
+
+        // Prevent dashboard content from scrolling
+        if (dashboardContentViewport) {
+            dashboardContentViewport.classList.add(
+                "dashboard-scroll-locked"
+            );
+        }
+
+    }
+
+
+    // ==========================================================
+    // 6. FUNCTION - RESTORE BACKGROUND SCROLL
+    // ==========================================================
+
+    function unlockBackgroundScroll() {
+
+        // Allow body scrolling again
+        document.body.classList.remove("sidebar-scroll-lock");
+
+        // Allow dashboard content scrolling again
+        if (dashboardContentViewport) {
+            dashboardContentViewport.classList.remove(
+                "dashboard-scroll-locked"
+            );
+        }
+
+    }
+
+
+    // ==========================================================
+    // 7. FUNCTION - OPEN MOBILE SIDEBAR
+    // ==========================================================
+
+    function openMobileSidebar() {
+
+        if (!mobileSidebarWrapper) {
+            return;
+        }
+
+        // Open sidebar
+        mobileSidebarWrapper.classList.add("mobile-open");
+
+        // Lock the dashboard behind sidebar
+        lockBackgroundScroll();
+
+    }
+
+
+    // ==========================================================
+    // 8. FUNCTION - CLOSE MOBILE SIDEBAR
+    // ==========================================================
+
+    function closeMobileSidebar() {
+
+        if (!mobileSidebarWrapper) {
+            return;
+        }
+
+        // Close sidebar
+        mobileSidebarWrapper.classList.remove("mobile-open");
+
+        // Restore dashboard scrolling
+        unlockBackgroundScroll();
+
+    }
+
+
+    // ==========================================================
+    // 9. FUNCTION TO ACTIVATE A DASHBOARD SECTION
+    // ==========================================================
+
+    function activateDashboardSection(targetId) {
+
+        if (!targetId) {
+            return;
+        }
+
+
+        // Remove active class from all navigation links
+        navLinksCollection.forEach((link) => {
+
+            link.classList.remove("active");
+
+        });
+
+
+        // Remove active class from all dashboard sections
+        sectionPanelsCollection.forEach((panel) => {
+
+            panel.classList.remove("active");
+
+        });
+
+
+        // Find navigation link belonging to selected section
+        const targetNavLink =
+            document.querySelector(
+                `.nav-item-link[data-target="${targetId}"]`
+            );
+
+
+        // Find dashboard section
+        const targetPanel =
+            document.getElementById(targetId);
+
+
+        // Activate navigation link
+        if (targetNavLink) {
+
+            targetNavLink.classList.add("active");
+
+        }
+
+
+        // Activate dashboard section
+        if (targetPanel) {
+
+            targetPanel.classList.add("active");
+
+        }
+
+    }
+
+
+    // ==========================================================
+    // 10. NAVIGATION CLICK HANDLER
+    // ==========================================================
+
+    navLinksCollection.forEach((linkAnchor) => {
+
+        linkAnchor.addEventListener("click", (event) => {
+
+            event.preventDefault();
+
+
+            // Get selected section ID
+            const targetedPanelId =
+                linkAnchor.getAttribute("data-target");
+
+
+            if (!targetedPanelId) {
+                return;
+            }
+
+
+            // --------------------------------------------------
+            // SAVE CURRENT SECTION
+            // --------------------------------------------------
+
+            sessionStorage.setItem(
+                "stackly_active_dashboard_section",
+                targetedPanelId
+            );
+
+
+            // --------------------------------------------------
+            // ACTIVATE SELECTED SECTION
+            // --------------------------------------------------
+
+            activateDashboardSection(targetedPanelId);
+
+
+            // --------------------------------------------------
+            // CLOSE MOBILE SIDEBAR
+            // --------------------------------------------------
+
+            if (
+                mobileSidebarWrapper &&
+                mobileSidebarWrapper.classList.contains("mobile-open")
+            ) {
+
+                closeMobileSidebar();
+
+            }
+
+        });
+
+    });
+
+
+    // ==========================================================
+    // 11. RESTORE LAST ACTIVE SECTION AFTER REFRESH
+    // ==========================================================
+
+    const savedSection =
+        sessionStorage.getItem(
+            "stackly_active_dashboard_section"
+        );
+
+
+    if (savedSection) {
+
+        const savedPanel =
+            document.getElementById(savedSection);
+
+        const savedNavLink =
+            document.querySelector(
+                `.nav-item-link[data-target="${savedSection}"]`
+            );
+
+
+        // Restore only when both elements exist
+        if (savedPanel && savedNavLink) {
+
+            activateDashboardSection(savedSection);
+
+        } else {
+
+            // Remove invalid saved section
+            sessionStorage.removeItem(
+                "stackly_active_dashboard_section"
+            );
+
+        }
+
+    }
+
+
+    // ==========================================================
+    // 12. MOBILE HAMBURGER OPEN
+    // ==========================================================
+
+    if (hamburgerOpenBtn) {
+
+        hamburgerOpenBtn.addEventListener(
+            "click",
+            openMobileSidebar
+        );
+
+    }
+
+
+    // ==========================================================
+    // 13. MOBILE SIDEBAR CLOSE
+    // ==========================================================
+
+    if (hamburgerCloseBtn) {
+
+        hamburgerCloseBtn.addEventListener(
+            "click",
+            closeMobileSidebar
+        );
+
+    }
+
+
+    // ==========================================================
+    // 14. CLOSE SIDEBAR WHEN CLICKING OUTSIDE
+    // ==========================================================
+
+    document.addEventListener("click", (event) => {
+
+        if (!mobileSidebarWrapper) {
+            return;
+        }
+
+
+        // Only execute when sidebar is open
+        if (
+            !mobileSidebarWrapper.classList.contains(
+                "mobile-open"
+            )
+        ) {
+            return;
+        }
+
+
+        // Ignore click inside sidebar
+        if (
+            mobileSidebarWrapper.contains(event.target)
+        ) {
+            return;
+        }
+
+
+        // Ignore hamburger button
+        if (
+            hamburgerOpenBtn &&
+            hamburgerOpenBtn.contains(event.target)
+        ) {
+            return;
+        }
+
+
+        // Close sidebar
+        closeMobileSidebar();
+
+    });
+
+
+    // ==========================================================
+    // 15. CLOSE SIDEBAR WITH ESCAPE KEY
+    // ==========================================================
+
+    document.addEventListener("keydown", (event) => {
+
+        if (event.key === "Escape") {
+
+            if (
+                mobileSidebarWrapper &&
+                mobileSidebarWrapper.classList.contains(
+                    "mobile-open"
+                )
+            ) {
+
+                closeMobileSidebar();
+
+            }
+
+        }
+
+    });
+
+
+    // ==========================================================
+    // 16. SECURE LOGOUT
+    // ==========================================================
+
+    const logoutBtn =
+        document.getElementById("portal-logout-trigger");
+
+
+    if (logoutBtn) {
+
+        logoutBtn.addEventListener("click", () => {
+
+            // Close sidebar if currently open
+            closeMobileSidebar();
+
+
+            // Remove logged-in user
+            localStorage.removeItem(
+                "stackly_session_user"
+            );
+
+
+            // Remove saved dashboard section
+            sessionStorage.removeItem(
+                "stackly_active_dashboard_section"
+            );
+
+
+            // Go to login page
+            window.location.href = "login.html";
+
+        });
+
+    }
+
+
+    // ==========================================================
+    // 17. HANDLE WINDOW RESIZE
+    // ==========================================================
+
+    window.addEventListener("resize", () => {
+
+        /*
+         * When returning from mobile/tablet to desktop,
+         * remove the mobile sidebar state and restore scrolling.
+         */
+
+        if (window.innerWidth > 992) {
+
+            if (mobileSidebarWrapper) {
+                mobileSidebarWrapper.classList.remove(
+                    "mobile-open"
+                );
+            }
+
+            unlockBackgroundScroll();
+
+        }
+
+    });
+
+});
+
+
+// ==========================================================
+// 18. REFRESH DASHBOARD WITHOUT LOSING CURRENT SECTION
+// ==========================================================
+
+function refreshDashboardState() {
+
+    // Find currently active sidebar item
+    const activeLink =
+        document.querySelector(
+            ".nav-item-link.active"
+        );
+
+
+    if (activeLink) {
+
+        const activeTarget =
+            activeLink.getAttribute("data-target");
+
+
+        if (activeTarget) {
+
+            sessionStorage.setItem(
+                "stackly_active_dashboard_section",
+                activeTarget
+            );
+
+        }
+
+    }
+
+
+    // Make sure scroll lock is removed before refresh
+    document.body.classList.remove(
+        "sidebar-scroll-lock"
+    );
+
+
+    const dashboardContentViewport =
+        document.querySelector(
+            ".dashboard-content-viewport"
+        );
+
+
+    if (dashboardContentViewport) {
+
+        dashboardContentViewport.classList.remove(
+            "dashboard-scroll-locked"
+        );
+
+    }
+
+
+    // Refresh page
+    window.location.reload();
+
+}
+ </script>
+</body>
+</html>
