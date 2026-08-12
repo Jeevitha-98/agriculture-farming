@@ -269,24 +269,240 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background-color: var(--bg-bright); /* Matches light bright green canvas palette */
+    background-color: var(--bg-bright);
     display: flex;
     align-items: center;
-    padding-top: 75px; /* Clear fixed top navigation safe zone barrier */
+    padding-top: 75px;
     overflow: hidden;
 
-    /* CRITICAL PROTECTION: Keeps hero perfectly hidden under the preloader screen */
+    /* Initial hidden state */
     opacity: 0;
     pointer-events: none;
-    transform: translateY(20px);
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* 3D starting position */
+    transform: perspective(1400px)
+               rotateX(8deg)
+               rotateY(-5deg)
+               translateY(50px)
+               scale(0.96);
+
+    transform-origin: center center;
+
+    transition:
+        opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Modifier class triggered exclusively by JavaScript once the loader reaches 100% */
+
+/* Hero appears after preloader */
 .hero-section.revealed {
     opacity: 1;
     pointer-events: auto;
+
+    transform:
+        perspective(1400px)
+        rotateX(0deg)
+        rotateY(0deg)
+        translateY(0)
+        scale(1);
+}
+
+/* ==========================================
+   HERO ROTATE + APPEAR EFFECT
+========================================== */
+
+.hero-content {
+    opacity: 0;
+    transform:
+        perspective(1000px)
+        rotateY(-12deg)
+        translateX(-50px)
+        scale(0.96);
+
+    transition:
+        opacity 0.9s ease 0.35s,
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
+}
+
+
+.hero-graphics {
+    opacity: 0;
+    transform:
+        perspective(1000px)
+        rotateY(12deg)
+        translateX(50px)
+        scale(0.94);
+
+    transition:
+        opacity 1s ease 0.55s,
+        transform 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.55s;
+}
+
+
+/* Activate content animation */
+.hero-section.revealed .hero-content {
+    opacity: 1;
+
+    transform:
+        perspective(1000px)
+        rotateY(0deg)
+        translateX(0)
+        scale(1);
+}
+
+
+/* Activate graphics animation */
+.hero-section.revealed .hero-graphics {
+    opacity: 1;
+
+    transform:
+        perspective(1000px)
+        rotateY(0deg)
+        translateX(0)
+        scale(1);
+}
+
+
+/* ==========================================
+   BADGE APPEAR
+========================================== */
+
+.hero-badge {
+    opacity: 0;
+    transform: translateY(20px) rotateX(-20deg);
+
+    transition:
+        opacity 0.7s ease 0.65s,
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.65s;
+}
+
+.hero-section.revealed .hero-badge {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+}
+
+
+/* ==========================================
+   TITLE APPEAR
+========================================== */
+
+.hero-title {
+    opacity: 0;
+    transform:
+        translateY(30px)
+        rotateX(-12deg);
+
+    transition:
+        opacity 0.8s ease 0.8s,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.8s;
+}
+
+.hero-section.revealed .hero-title {
+    opacity: 1;
+    transform:
+        translateY(0)
+        rotateX(0);
+}
+
+
+/* ==========================================
+   DESCRIPTION APPEAR
+========================================== */
+
+.hero-description {
+    opacity: 0;
+    transform: translateY(25px);
+
+    transition:
+        opacity 0.8s ease 1s,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1s;
+}
+
+.hero-section.revealed .hero-description {
+    opacity: 1;
     transform: translateY(0);
+}
+
+
+/* ==========================================
+   BUTTONS APPEAR
+========================================== */
+
+.hero-cta-group {
+    opacity: 0;
+    transform:
+        translateY(25px)
+        scale(0.95);
+
+    transition:
+        opacity 0.8s ease 1.15s,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.15s;
+}
+
+.hero-section.revealed .hero-cta-group {
+    opacity: 1;
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* ==========================================
+   IMAGE ROTATION ENTRY
+========================================== */
+
+.main-frame {
+    opacity: 0;
+    transform:
+        perspective(1000px)
+        rotateY(-15deg)
+        rotateZ(-4deg)
+        translateX(-40px)
+        scale(0.9);
+}
+
+.float-card {
+    opacity: 0;
+    transform:
+        perspective(1000px)
+        rotateY(15deg)
+        rotateZ(5deg)
+        translateX(40px)
+        scale(0.85);
+}
+
+
+/* Main image enters first */
+.hero-section.revealed .main-frame {
+    opacity: 1;
+
+    transform:
+        perspective(1000px)
+        rotateY(0deg)
+        rotateZ(0deg)
+        translateX(0)
+        scale(1);
+
+    transition:
+        opacity 0.9s ease 0.75s,
+        transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.75s;
+}
+
+
+/* Floating image enters slightly later */
+.hero-section.revealed .float-card {
+    opacity: 1;
+
+    transform:
+        perspective(1000px)
+        rotateY(0deg)
+        rotateZ(0deg)
+        translateX(0)
+        scale(1);
+
+    transition:
+        opacity 0.9s ease 1s,
+        transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s;
 }
 
 .hero-container {
@@ -888,7 +1104,368 @@
     .about-features-grid { grid-template-columns: 1fr; }
 }
 
+/* ==========================================
+   ABOUT SECTION - SCROLL VIEW EFFECT
+========================================== */
+
+/* Initial hidden state */
+.about-graphics {
+    opacity: 0;
+    transform:
+        perspective(1200px)
+        rotateY(-18deg)
+        translateX(-80px)
+        scale(0.94);
+
+    transition:
+        opacity 0.9s ease,
+        transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.about-content {
+    opacity: 0;
+    transform:
+        perspective(1200px)
+        rotateY(18deg)
+        translateX(80px)
+        scale(0.96);
+
+    transition:
+        opacity 0.9s ease 0.15s,
+        transform 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+
+/* ==========================================
+   ACTIVE / VISIBLE STATE
+========================================== */
+
+.about-section.scroll-visible .about-graphics {
+    opacity: 1;
+
+    transform:
+        perspective(1200px)
+        rotateY(0deg)
+        translateX(0)
+        scale(1);
+}
+
+
+.about-section.scroll-visible .about-content {
+    opacity: 1;
+
+    transform:
+        perspective(1200px)
+        rotateY(0deg)
+        translateX(0)
+        scale(1);
+}
+
+
+/* ==========================================
+   IMAGE CARD SCROLL ENTRY
+========================================== */
+
+.main-about-card {
+    opacity: 0;
+    transform:
+        rotate(-7deg)
+        translateX(-60px)
+        scale(0.9);
+
+    transition:
+        opacity 0.8s ease 0.35s,
+        transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.35s;
+}
+
+
+.float-about-card {
+    opacity: 0;
+    transform:
+        rotate(8deg)
+        translateX(60px)
+        translateY(30px)
+        scale(0.85);
+
+    animation: none;
+    transition:
+        opacity 0.8s ease 0.65s,
+        transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.65s;
+}
+
+
+/* Activate image cards */
+.about-section.scroll-visible .main-about-card {
+    opacity: 1;
+
+    transform:
+        rotate(0deg)
+        translateX(0)
+        scale(1);
+}
+
+
+.about-section.scroll-visible .float-about-card {
+    opacity: 1;
+
+    transform:
+        rotate(0deg)
+        translateX(0)
+        translateY(0)
+        scale(1);
+}
+
+
+/* ==========================================
+   BADGE REVEAL
+========================================== */
+
+.about-badge {
+    opacity: 0;
+    transform:
+        translateY(25px)
+        rotateX(-15deg);
+
+    transition:
+        opacity 0.7s ease 0.35s,
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
+}
+
+
+.about-section.scroll-visible .about-badge {
+    opacity: 1;
+    transform:
+        translateY(0)
+        rotateX(0);
+}
+
+
+/* ==========================================
+   TITLE REVEAL
+========================================== */
+
+.about-title {
+    opacity: 0;
+    transform:
+        translateY(35px)
+        rotateX(-10deg);
+
+    transition:
+        opacity 0.8s ease 0.5s,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+}
+
+
+.about-section.scroll-visible .about-title {
+    opacity: 1;
+    transform:
+        translateY(0)
+        rotateX(0);
+}
+
+
+/* ==========================================
+   DESCRIPTION REVEAL
+========================================== */
+
+.about-text {
+    opacity: 0;
+    transform: translateY(25px);
+
+    transition:
+        opacity 0.8s ease 0.7s,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.7s;
+}
+
+
+.about-section.scroll-visible .about-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ==========================================
+   FEATURE CARDS STAGGERED REVEAL
+========================================== */
+
+.feature-glow-card {
+    opacity: 0;
+    transform:
+        translateY(45px)
+        rotateX(10deg)
+        scale(0.94);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* First feature */
+.about-section.scroll-visible .feature-glow-card:nth-child(1) {
+    opacity: 1;
+    transform:
+        translateY(0)
+        rotateX(0)
+        scale(1);
+
+    transition-delay: 0.9s;
+}
+
+
+/* Second feature */
+.about-section.scroll-visible .feature-glow-card:nth-child(2) {
+    opacity: 1;
+    transform:
+        translateY(0)
+        rotateX(0)
+        scale(1);
+
+    transition-delay: 1.05s;
+}
+
+
+/* ==========================================
+   GLOW ORB SCROLL ENTRY
+========================================== */
+
+.about-glow-orb {
+    opacity: 0;
+    transform: scale(0.5);
+
+    transition:
+        opacity 1s ease 0.4s,
+        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;
+}
+
+
+.about-section.scroll-visible .about-glow-orb {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* ==========================================
+   CONTINUOUS FLOAT AFTER REVEAL
+========================================== */
+
+.about-section.scroll-visible .float-about-card {
+    animation:
+        dynamicAboutBounce 4s ease-in-out 1.8s infinite alternate;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 992px) {
+
+    .about-graphics {
+        transform:
+            translateY(60px)
+            scale(0.95);
+    }
+
+    .about-content {
+        transform:
+            translateY(60px)
+            scale(0.95);
+    }
+
+    .about-section.scroll-visible .about-graphics,
+    .about-section.scroll-visible .about-content {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .about-graphics {
+        transform:
+            translateY(50px)
+            scale(0.94);
+    }
+
+    .about-content {
+        transform:
+            translateY(50px)
+            scale(0.94);
+    }
+
+    .about-section.scroll-visible .about-graphics,
+    .about-section.scroll-visible .about-content {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* ==========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .about-graphics,
+    .about-content,
+    .main-about-card,
+    .float-about-card,
+    .about-badge,
+    .about-title,
+    .about-text,
+    .feature-glow-card,
+    .about-glow-orb {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .float-about-card {
+        animation: none !important;
+    }
+}
 </style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const aboutSection = document.querySelector(".about-section");
+
+    if (!aboutSection) return;
+
+    const aboutObserver = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    aboutSection.classList.add("scroll-visible");
+
+                    /*
+                     * Remove observer after first reveal.
+                     * This means animation happens once.
+                     */
+                    aboutObserver.unobserve(aboutSection);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.2
+        }
+    );
+
+    aboutObserver.observe(aboutSection);
+
+});
+</script>
 
 <!-- Services & Smart Platform Section Landmark -->
 <section id="services" class="services-section">
@@ -1703,7 +2280,116 @@
     .blog-info-box { padding: 1.5rem; }
 }
 
+/* ==========================================
+   BLOG SIMPLE SCROLL REVEAL
+========================================== */
+
+.blog-header {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.blog-glow-card {
+    opacity: 0;
+    transform: translateY(45px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+
+/* Active scroll state */
+.blog-section.scroll-visible .blog-header {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Card 1 */
+.blog-section.scroll-visible .blog-glow-card:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+
+/* Card 2 */
+.blog-section.scroll-visible .blog-glow-card:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+
+/* Card 3 */
+.blog-section.scroll-visible .blog-glow-card:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+}
+
+
+/* Mobile - slightly smaller movement */
+@media (max-width: 480px) {
+
+    .blog-header {
+        transform: translateY(25px);
+    }
+
+    .blog-glow-card {
+        transform: translateY(30px);
+    }
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .blog-header,
+    .blog-glow-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
 </style>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const blogSection = document.querySelector(".blog-section");
+
+    if (!blogSection) return;
+
+    const blogObserver = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    blogSection.classList.add("scroll-visible");
+
+                    // Animate only once
+                    blogObserver.unobserve(blogSection);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    blogObserver.observe(blogSection);
+
+});
+</script>
 
 <!-- Farming Statistics & Live Milestones Landmark Section -->
 <section id="stats" class="stats-section">
@@ -2345,7 +3031,95 @@
     .market-details-box { padding: 1.5rem; }
 }
 
+/* ==========================================
+   MARKETPLACE - SIMPLE FADE IN ON SCROLL
+========================================== */
+
+.market-header {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.market-glow-card {
+    opacity: 0;
+    transition:
+        opacity 0.9s ease,
+        transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+
+/* Visible state */
+.market-section.fade-visible .market-header {
+    opacity: 1;
+}
+
+
+/* Card 1 */
+.market-section.fade-visible .market-glow-card:nth-child(1) {
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+
+
+/* Card 2 */
+.market-section.fade-visible .market-glow-card:nth-child(2) {
+    opacity: 1;
+    transition-delay: 0.4s;
+}
+
+
+/* Card 3 */
+.market-section.fade-visible .market-glow-card:nth-child(3) {
+    opacity: 1;
+    transition-delay: 0.6s;
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .market-header,
+    .market-glow-card {
+        opacity: 1;
+        transition: none;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const marketSection = document.querySelector(".market-section");
+
+    if (!marketSection) return;
+
+    const marketObserver = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    marketSection.classList.add("fade-visible");
+
+                    // Run the fade-in only once
+                    marketObserver.unobserve(marketSection);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    marketObserver.observe(marketSection);
+
+});
+</script>
 
 <!-- Interactive Pricing & Deployment Tiers Landmark Section -->
 <section id="pricing" class="pricing-section">
@@ -3128,7 +3902,147 @@
     .accordion-content-panel { padding: 0 1.2rem; }
 }
 
+/* ==========================================
+   FAQ ROTATE + APPEAR ON SCROLL
+========================================== */
+
+/* Initial hidden state */
+.faq-graphics-block{
+    opacity:0;
+    transform:perspective(1200px) rotateY(-18deg) translateX(-70px) scale(.94);
+    transition:opacity .9s ease,
+               transform 1.1s cubic-bezier(.22,1,.36,1);
+}
+
+.faq-accordion-block{
+    opacity:0;
+    transform:perspective(1200px) rotateY(18deg) translateX(70px) scale(.96);
+    transition:opacity .9s ease .15s,
+               transform 1.1s cubic-bezier(.22,1,.36,1) .15s;
+}
+
+/* Visible state */
+.faq-section.scroll-visible .faq-graphics-block{
+    opacity:1;
+    transform:perspective(1200px) rotateY(0) translateX(0) scale(1);
+}
+
+.faq-section.scroll-visible .faq-accordion-block{
+    opacity:1;
+    transform:perspective(1200px) rotateY(0) translateX(0) scale(1);
+}
+
+/* Badge */
+.faq-badge{
+    opacity:0;
+    transform:translateY(20px) rotateX(-15deg);
+    transition:opacity .6s ease .35s,
+               transform .7s cubic-bezier(.22,1,.36,1) .35s;
+}
+
+.faq-section.scroll-visible .faq-badge{
+    opacity:1;
+    transform:translateY(0) rotateX(0);
+}
+
+/* Title */
+.faq-title{
+    opacity:0;
+    transform:translateY(25px) rotateX(-10deg);
+    transition:opacity .7s ease .5s,
+               transform .8s cubic-bezier(.22,1,.36,1) .5s;
+}
+
+.faq-section.scroll-visible .faq-title{
+    opacity:1;
+    transform:translateY(0) rotateX(0);
+}
+
+/* Description */
+.faq-desc{
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity .7s ease .7s,
+               transform .7s ease .7s;
+}
+
+.faq-section.scroll-visible .faq-desc{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* FAQ Cards */
+.faq-accordion-item{
+    opacity:0;
+    transform:translateY(35px) rotateX(8deg);
+    transition:opacity .6s ease,
+               transform .7s cubic-bezier(.22,1,.36,1);
+}
+
+.faq-section.scroll-visible .faq-accordion-item:nth-child(1){
+    opacity:1;
+    transform:translateY(0) rotateX(0);
+    transition-delay:.9s;
+}
+
+.faq-section.scroll-visible .faq-accordion-item:nth-child(2){
+    opacity:1;
+    transform:translateY(0) rotateX(0);
+    transition-delay:1.05s;
+}
+
+.faq-section.scroll-visible .faq-accordion-item:nth-child(3){
+    opacity:1;
+    transform:translateY(0) rotateX(0);
+    transition-delay:1.2s;
+}
+
+/* Mobile */
+@media (max-width:992px){
+    .faq-graphics-block,
+    .faq-accordion-block{
+        transform:translateY(50px) scale(.95);
+    }
+
+    .faq-section.scroll-visible .faq-graphics-block,
+    .faq-section.scroll-visible .faq-accordion-block{
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce){
+    .faq-graphics-block,
+    .faq-accordion-block,
+    .faq-badge,
+    .faq-title,
+    .faq-desc,
+    .faq-accordion-item{
+        opacity:1;
+        transform:none;
+        transition:none;
+    }
+}
 </style>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const faqSection = document.querySelector(".faq-section");
+    if (!faqSection) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                faqSection.classList.add("scroll-visible");
+                observer.unobserve(faqSection); // Run once
+            }
+        });
+    }, { threshold: 0.2 });
+
+    observer.observe(faqSection);
+});
+</script>
+
 <!-- Live Testimonials & Social Proof Landmark Section -->
 <section class="testimonials-section">
     <div class="testimonials-container">
@@ -3310,7 +4224,133 @@
     .testimonial-glow-card { padding: 1.75rem; }
 }
 
+/* ==========================================
+   TESTIMONIALS - SCROLL APPEAR EFFECT
+========================================== */
+
+/* Initial hidden state */
+.testimonials-header {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.testimonial-glow-card {
+    opacity: 0;
+    transform: translateY(45px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+
+/* ==========================================
+   VISIBLE STATE
+========================================== */
+
+.testimonials-section.scroll-visible .testimonials-header {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Card 1 */
+.testimonials-section.scroll-visible
+.testimonial-glow-card:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+
+/* Card 2 */
+.testimonials-section.scroll-visible
+.testimonial-glow-card:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+
+/* Card 3 */
+.testimonials-section.scroll-visible
+.testimonial-glow-card:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.6s;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+
+    .testimonials-header {
+        transform: translateY(20px);
+    }
+
+    .testimonial-glow-card {
+        transform: translateY(30px);
+    }
+}
+
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .testimonials-header,
+    .testimonial-glow-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const testimonialsSection =
+        document.querySelector(".testimonials-section");
+
+    if (!testimonialsSection) return;
+
+    const testimonialsObserver = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    testimonialsSection.classList.add("scroll-visible");
+
+                    // Animate only once
+                    testimonialsObserver.unobserve(
+                        testimonialsSection
+                    );
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    testimonialsObserver.observe(testimonialsSection);
+
+});
+</script>
 
 <!-- Interactive 1-Line Call To Action Landmark -->
 <section class="single-line-cta-section">

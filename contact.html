@@ -526,7 +526,219 @@
     .cnt-float-card { height: 120px; right: 0; bottom: 10px; }
 }
 
+/* ==========================================================
+   CONTACT HERO SCROLL VIEW EFFECT
+   ========================================================== */
+
+/* Initial hidden state */
+.contact-hero-content {
+    opacity: 0;
+    transform: translateX(-70px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-hero-media {
+    opacity: 0;
+    transform: translateX(70px);
+    transition:
+        opacity 0.9s ease 0.15s,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+/* Active state when section enters viewport */
+.contact-hero-section.scroll-visible .contact-hero-content {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.contact-hero-section.scroll-visible .contact-hero-media {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Badge comes slightly after the main content */
+.contact-hero-section.scroll-visible .contact-hero-badge {
+    animation: contactBadgeReveal 0.7s ease 0.2s both;
+}
+
+/* Title reveal */
+.contact-hero-section.scroll-visible .contact-hero-title {
+    animation: contactTextReveal 0.8s ease 0.3s both;
+}
+
+/* Description reveal */
+.contact-hero-section.scroll-visible .contact-hero-description {
+    animation: contactTextReveal 0.8s ease 0.45s both;
+}
+
+/* Metrics reveal */
+.contact-hero-section.scroll-visible .contact-hero-metrics {
+    animation: contactTextReveal 0.8s ease 0.6s both;
+}
+
+
+/* ----------------------------------------------------------
+   TEXT REVEAL KEYFRAMES
+   ---------------------------------------------------------- */
+
+@keyframes contactTextReveal {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ----------------------------------------------------------
+   BADGE REVEAL
+   ---------------------------------------------------------- */
+
+@keyframes contactBadgeReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-15px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ----------------------------------------------------------
+   IMAGE CARD SCROLL REVEAL
+   ---------------------------------------------------------- */
+
+.contact-hero-section.scroll-visible .cnt-main-frame {
+    animation: contactMainImageReveal 1s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.25s both;
+}
+
+.contact-hero-section.scroll-visible .cnt-float-card {
+    animation:
+        contactFloatImageReveal 0.9s
+        cubic-bezier(0.22, 1, 0.36, 1)
+        0.55s both,
+        cntCardBounce 4s ease-in-out 1.45s infinite alternate;
+}
+
+
+/* Main image enters from left + slight scale */
+@keyframes contactMainImageReveal {
+    from {
+        opacity: 0;
+        transform: translateX(60px) scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+
+/* Floating image enters from right */
+@keyframes contactFloatImageReveal {
+    from {
+        opacity: 0;
+        transform: translateX(70px) translateY(25px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1);
+    }
+}
+
+
+/* Aurora appears softly */
+.contact-hero-section.scroll-visible .contact-hero-orb-aura {
+    animation:
+        contactAuroraReveal 1.2s ease 0.2s both,
+        cntOrbMotion 6s ease-in-out 1.4s infinite alternate;
+}
+
+@keyframes contactAuroraReveal {
+    from {
+        opacity: 0;
+        transform: scale(0.65);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* ----------------------------------------------------------
+   ACCESSIBILITY
+   ---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .contact-hero-content,
+    .contact-hero-media {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .contact-hero-section.scroll-visible .contact-hero-content,
+    .contact-hero-section.scroll-visible .contact-hero-media,
+    .contact-hero-section.scroll-visible .contact-hero-badge,
+    .contact-hero-section.scroll-visible .contact-hero-title,
+    .contact-hero-section.scroll-visible .contact-hero-description,
+    .contact-hero-section.scroll-visible .contact-hero-metrics,
+    .contact-hero-section.scroll-visible .cnt-main-frame,
+    .contact-hero-section.scroll-visible .cnt-float-card,
+    .contact-hero-section.scroll-visible .contact-hero-orb-aura {
+        animation: none;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const contactHero = document.querySelector(".contact-hero-section");
+
+    if (!contactHero) return;
+
+    const observer = new IntersectionObserver(
+        (entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    contactHero.classList.add("scroll-visible");
+
+                    // Run the animation only once
+                    observer.unobserve(contactHero);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.2
+        }
+    );
+
+    observer.observe(contactHero);
+
+});
+</script>
 
 <!-- Light Agriculture Technical Inquiry & Contact Section -->
 <section class="cnt-form-section">
@@ -952,7 +1164,140 @@
     .cnt-submit-blueprint-btn { font-size: 0.95rem; }
 }
 
+/* ==========================================
+   CONTACT SECTION - APPEAR EFFECT
+   ========================================== */
+
+.cnt-form-section {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Active state */
+.cnt-form-section.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Slight staggered appearance of inner content */
+.cnt-form-section.section-visible .cnt-details-panel {
+    animation: contactContentAppear 0.9s ease 0.15s both;
+}
+
+.cnt-form-section.section-visible .cnt-form-card {
+    animation: contactFormAppear 0.9s ease 0.3s both;
+}
+
+
+@keyframes contactContentAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes contactFormAppear {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 992px) {
+
+    .cnt-form-section {
+        transform: translateY(40px);
+    }
+
+    .cnt-form-section.section-visible .cnt-details-panel,
+    .cnt-form-section.section-visible .cnt-form-card {
+        animation: contactMobileAppear 0.8s ease both;
+    }
+
+    .cnt-form-section.section-visible .cnt-form-card {
+        animation-delay: 0.15s;
+    }
+}
+
+
+@keyframes contactMobileAppear {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .cnt-form-section {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .cnt-details-panel,
+    .cnt-form-card {
+        animation: none !important;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const contactSection = document.querySelector(".cnt-form-section");
+
+    if (!contactSection) return;
+
+    const observer = new IntersectionObserver(
+        function (entries, observer) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    contactSection.classList.add("section-visible");
+
+                    // Run only once
+                    observer.unobserve(contactSection);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    observer.observe(contactSection);
+
+});
+</script>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -1387,7 +1732,212 @@
     .btn-launch-google-maps { width: 100%; text-align: center; justify-content: center; }
 }
 
+/* =========================================================
+   LOCATION MAP SECTION - SCROLL VIEW EFFECT
+   ========================================================= */
+
+.map-section {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Activated when section enters viewport */
+.map-section.map-section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ---------------------------------------------------------
+   LEFT CONTENT APPEARANCE
+   --------------------------------------------------------- */
+
+.map-section.map-section-visible .map-content-block {
+    animation: mapContentReveal 0.9s ease 0.15s both;
+}
+
+
+@keyframes mapContentReveal {
+
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   RIGHT MAP IMAGE APPEARANCE
+   --------------------------------------------------------- */
+
+.map-section.map-section-visible .map-graphic-column {
+    animation: mapGraphicReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+}
+
+
+@keyframes mapGraphicReveal {
+
+    from {
+        opacity: 0;
+        transform: translateX(60px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   COORDINATE BOX SLIGHT DELAY
+   --------------------------------------------------------- */
+
+.map-section.map-section-visible .map-coordinates-box {
+    animation: mapCoordinateReveal 0.7s ease 0.45s both;
+}
+
+
+@keyframes mapCoordinateReveal {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   GOOGLE MAP BUTTON
+   --------------------------------------------------------- */
+
+.map-section.map-section-visible .btn-launch-google-maps {
+    animation: mapButtonReveal 0.7s ease 0.55s both;
+}
+
+
+@keyframes mapButtonReveal {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 992px) {
+
+    .map-section {
+        transform: translateY(40px);
+    }
+
+    .map-section.map-section-visible .map-content-block {
+        animation: mapMobileReveal 0.8s ease 0.1s both;
+    }
+
+    .map-section.map-section-visible .map-graphic-column {
+        animation: mapMobileReveal 0.8s ease 0.25s both;
+    }
+
+}
+
+
+@keyframes mapMobileReveal {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   ACCESSIBILITY
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .map-section {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .map-section.map-section-visible .map-content-block,
+    .map-section.map-section-visible .map-graphic-column,
+    .map-section.map-section-visible .map-coordinates-box,
+    .map-section.map-section-visible .btn-launch-google-maps {
+        animation: none;
+    }
+
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const mapSection = document.querySelector("#location-map");
+
+    if (!mapSection) return;
+
+    const mapObserver = new IntersectionObserver(
+        function (entries, observer) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    mapSection.classList.add("map-section-visible");
+
+                    // Animate only once
+                    observer.unobserve(mapSection);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15,
+            rootMargin: "0px 0px -60px 0px"
+        }
+    );
+
+    mapObserver.observe(mapSection);
+
+});
+</script>
 
 <!-- Interactive 1-Line Call To Action Landmark -->
 <section class="single-line-cta-section">

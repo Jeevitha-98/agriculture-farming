@@ -480,7 +480,202 @@
     }
 }
 
+/* ==========================================
+   ABOUT HERO - ROTATE APPEAR EFFECT
+========================================== */
+
+.about-hero-content,
+.about-hero-media {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+/* Content starts from left */
+.about-hero-content {
+    transform: translateX(-80px) rotateY(-12deg);
+    transition:
+        opacity 0.9s ease,
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Image starts from right */
+.about-hero-media {
+    transform: translateX(80px) rotateY(12deg);
+    transition:
+        opacity 0.9s ease 0.15s,
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+
+/* ==========================================
+   VISIBLE STATE
+========================================== */
+
+.about-hero-section.is-visible .about-hero-content {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg);
+}
+
+.about-hero-section.is-visible .about-hero-media {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg);
+}
+
+
+/* ==========================================
+   INNER CONTENT STAGGER
+========================================== */
+
+.about-hero-badge,
+.about-hero-title,
+.about-hero-description,
+.about-hero-cta-group {
+    opacity: 0;
+    transform: translateY(25px);
+}
+
+.about-hero-badge {
+    transition:
+        opacity 0.6s ease 0.35s,
+        transform 0.6s ease 0.35s;
+}
+
+.about-hero-title {
+    transition:
+        opacity 0.7s ease 0.45s,
+        transform 0.7s ease 0.45s;
+}
+
+.about-hero-description {
+    transition:
+        opacity 0.7s ease 0.6s,
+        transform 0.7s ease 0.6s;
+}
+
+.about-hero-cta-group {
+    transition:
+        opacity 0.7s ease 0.75s,
+        transform 0.7s ease 0.75s;
+}
+
+
+/* Activate inner elements */
+.about-hero-section.is-visible .about-hero-badge,
+.about-hero-section.is-visible .about-hero-title,
+.about-hero-section.is-visible .about-hero-description,
+.about-hero-section.is-visible .about-hero-cta-group {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ==========================================
+   IMAGE ROTATION
+========================================== */
+
+.about-hero-img-box {
+    transform: rotate(3deg) scale(0.96);
+    transition:
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.25s,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+.about-hero-section.is-visible .about-hero-img-box {
+    transform: rotate(0deg) scale(1);
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 992px) {
+
+    .about-hero-content {
+        transform: translateY(60px);
+    }
+
+    .about-hero-media {
+        transform: translateY(60px);
+    }
+
+    .about-hero-section.is-visible .about-hero-content,
+    .about-hero-section.is-visible .about-hero-media {
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .about-hero-content,
+    .about-hero-media,
+    .about-hero-badge,
+    .about-hero-title,
+    .about-hero-description,
+    .about-hero-cta-group,
+    .about-hero-img-box {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
 </style>
+
+<script>
+(function () {
+
+    function initAboutHeroAnimation() {
+
+        const section = document.querySelector(".about-hero-section");
+
+        if (!section) {
+            console.log("About hero section not found");
+            return;
+        }
+
+        console.log("About hero animation initialized");
+
+        const observer = new IntersectionObserver(function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    console.log("About hero is visible");
+
+                    section.classList.add("is-visible");
+
+                    observer.unobserve(section);
+                }
+
+            });
+
+        }, {
+            threshold: 0.1
+        });
+
+        observer.observe(section);
+    }
+
+
+    /* Works whether DOMContentLoaded has already fired or not */
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            initAboutHeroAnimation
+        );
+    } else {
+        initAboutHeroAnimation();
+    }
+
+})();
+</script>
 
 <!-- Mission, Vision & Core Values Landmark Section -->
 <section id="philosophy" class="values-section">
@@ -788,7 +983,105 @@
     .value-glow-card { padding: 1.25rem; gap: 1rem; }
 }
 
+/* ============================================
+   SCROLL APPEAR EFFECT - VALUES SECTION
+   ============================================ */
+
+.values-section {
+    opacity: 0;
+    transform: translateY(70px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Activated when section enters viewport */
+.values-section.values-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Optional: animate the content slightly after the section */
+.values-section.values-visible .values-content {
+    animation: valuesContentReveal 0.9s ease 0.15s both;
+}
+
+.values-section.values-visible .values-graphics {
+    animation: valuesGraphicsReveal 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+@keyframes valuesContentReveal {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes valuesGraphicsReveal {
+    from {
+        opacity: 0;
+        transform: translateX(-40px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .values-section,
+    .values-section.values-visible .values-content,
+    .values-section.values-visible .values-graphics {
+        opacity: 1;
+        transform: none;
+        animation: none;
+        transition: none;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const valuesSection = document.querySelector(".values-section");
+
+    if (!valuesSection) return;
+
+    const valuesObserver = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+                    valuesSection.classList.add("values-visible");
+
+                    // Run only once
+                    valuesObserver.unobserve(valuesSection);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    valuesObserver.observe(valuesSection);
+
+});
+</script>
 
 <!-- Meet the Team & Expert Advisory Landmark Section -->
 <section id="team" class="team-section">
@@ -1095,7 +1388,127 @@
     .team-details-box { padding: 1.5rem; }
 }
 
+/* ============================================
+   TEAM SECTION - SCROLL APPEAR EFFECT
+   ============================================ */
+
+.team-section {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Activated when section enters the viewport */
+.team-section.team-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Header appears first */
+.team-section.team-visible .team-header {
+    animation: teamHeaderAppear 0.8s ease both;
+}
+
+
+/* Cards appear one after another */
+.team-section.team-visible .team-glow-card {
+    animation: teamCardAppear 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.team-section.team-visible .team-glow-card:nth-child(1) {
+    animation-delay: 0.15s;
+}
+
+.team-section.team-visible .team-glow-card:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.team-section.team-visible .team-glow-card:nth-child(3) {
+    animation-delay: 0.45s;
+}
+
+
+/* Header animation */
+@keyframes teamHeaderAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Card animation */
+@keyframes teamCardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .team-section {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .team-section.team-visible .team-header,
+    .team-section.team-visible .team-glow-card {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const teamSection = document.querySelector(".team-section");
+
+    if (!teamSection) return;
+
+    const teamObserver = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    teamSection.classList.add("team-visible");
+
+                    // Animate only once
+                    teamObserver.unobserve(teamSection);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    teamObserver.observe(teamSection);
+
+});
+</script>
 
 <section class="cta-section">
     <!-- Img tag layer acting as a deep parallax background framework -->
@@ -1648,7 +2061,107 @@
     .timeline-year-tag { font-size: 1.3rem; }
 }
 
+/* ============================================
+   SCROLL REVEAL EFFECT
+   ============================================ */
+
+/* Header starts slightly lower and invisible */
+.timeline-header {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Timeline cards start hidden */
+.timeline-glow-card {
+    opacity: 0;
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+/* Left cards enter from left */
+.timeline-item.alignment-left .timeline-glow-card {
+    transform: translateX(-80px);
+}
+
+/* Right cards enter from right */
+.timeline-item.alignment-right .timeline-glow-card {
+    transform: translateX(80px);
+}
+
+/* Visible state */
+.timeline-section.scroll-visible .timeline-header {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-section.scroll-visible .timeline-glow-card {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Stagger each timeline card */
+.timeline-section.scroll-visible .timeline-item:nth-child(2) .timeline-glow-card {
+    transition-delay: 0.15s;
+}
+
+.timeline-section.scroll-visible .timeline-item:nth-child(3) .timeline-glow-card {
+    transition-delay: 0.3s;
+}
+
+.timeline-section.scroll-visible .timeline-item:nth-child(4) .timeline-glow-card {
+    transition-delay: 0.45s;
+}
+
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .timeline-header,
+    .timeline-glow-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const timelineSection = document.querySelector(".timeline-section");
+
+    if (!timelineSection) return;
+
+    const timelineObserver = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+                    timelineSection.classList.add("scroll-visible");
+                } else {
+                    timelineSection.classList.remove("scroll-visible");
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    timelineObserver.observe(timelineSection);
+
+});
+</script>
 
 <!-- Global Partners & Ecosystem Network Landmark Section -->
 <section id="partners" class="partners-section">
@@ -1978,7 +2491,168 @@
     .partner-details-box { padding: 1.5rem; }
 }
 
+/* ============================================
+   PARTNERS - SCROLL APPEAR EFFECT
+   ============================================ */
+
+/* Section header starts hidden */
+.partners-header {
+    opacity: 0;
+    transform: translateY(45px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Featured card starts from the left */
+.partner-featured-glow-card {
+    opacity: 0;
+    transform: translateX(-80px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+/* Right-side content starts from the right */
+.partners-track-column {
+    opacity: 0;
+    transform: translateX(80px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Mini partner tiles start slightly lower */
+.partner-mini-glow-tile {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+
+/* ============================================
+   ACTIVE SCROLL STATE
+   ============================================ */
+
+.partners-section.scroll-visible .partners-header {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.partners-section.scroll-visible .partner-featured-glow-card {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.partners-section.scroll-visible .partners-track-column {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* ============================================
+   STAGGER PARTNER TILES
+   ============================================ */
+
+.partners-section.scroll-visible .partner-mini-glow-tile:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.25s;
+}
+
+.partners-section.scroll-visible .partner-mini-glow-tile:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+.partners-section.scroll-visible .partner-mini-glow-tile:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.55s;
+}
+
+.partners-section.scroll-visible .partner-mini-glow-tile:nth-child(4) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.7s;
+}
+
+
+/* ============================================
+   MOBILE
+   ============================================ */
+
+@media (max-width: 992px) {
+
+    .partner-featured-glow-card {
+        transform: translateY(50px);
+    }
+
+    .partners-track-column {
+        transform: translateY(50px);
+    }
+
+    .partners-section.scroll-visible .partner-featured-glow-card,
+    .partners-section.scroll-visible .partners-track-column {
+        transform: translateY(0);
+    }
+}
+
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .partners-header,
+    .partner-featured-glow-card,
+    .partners-track-column,
+    .partner-mini-glow-tile {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const partnersSection = document.querySelector(".partners-section");
+
+    if (!partnersSection) return;
+
+    const partnersObserver = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+                    partnersSection.classList.add("scroll-visible");
+                } else {
+                    partnersSection.classList.remove("scroll-visible");
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    partnersObserver.observe(partnersSection);
+
+});
+</script>
 
 <!-- Sustainability & Eco Responsibility Landmark Section -->
 <section id="sustainability" class="sustain-section">
@@ -2286,7 +2960,263 @@
     .sustain-glow-card { padding: 1.25rem; gap: 1rem; }
 }
 
+/* =========================================================
+   SUSTAINABILITY - ECO ZOOM REVEAL EFFECT
+   ========================================================= */
+
+.sustain-section .sustain-content,
+.sustain-section .sustain-graphics {
+    opacity: 0;
+    transform: scale(0.94);
+    transition:
+        opacity 1s ease,
+        transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sustain-section .sustain-content {
+    transform: translateY(35px) scale(0.96);
+}
+
+.sustain-section .sustain-graphics {
+    transform: translateY(35px) scale(0.92);
+}
+
+
+/* Active section */
+.sustain-section.sustain-active .sustain-content,
+.sustain-section.sustain-active .sustain-graphics {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+
+/* Main image reveal */
+.sustain-section .primary-sustain-frame {
+    opacity: 0;
+    transform: scale(0.88);
+    transition:
+        opacity 1s ease 0.25s,
+        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sustain-section.sustain-active .primary-sustain-frame {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* Secondary image reveal */
+.sustain-section .secondary-sustain-frame {
+    opacity: 0;
+    transform: translateY(40px) scale(0.85);
+    transition:
+        opacity 0.9s ease 0.55s,
+        transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.55s;
+}
+
+.sustain-section.sustain-active .secondary-sustain-frame {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+
+    /* retain your floating animation after reveal */
+    animation: sustainCardBounce 4s ease-in-out 1.5s infinite alternate;
+}
+
+
+/* Sustainability cards */
+.sustain-section .sustain-glow-card {
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+
+/* First card */
+.sustain-section.sustain-active .sustain-glow-card:nth-child(1) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.45s;
+}
+
+
+/* Second card */
+.sustain-section.sustain-active .sustain-glow-card:nth-child(2) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.65s;
+}
+
+
+/* Badge */
+.sustain-section .sustain-badge {
+    opacity: 0;
+    transform: translateY(15px);
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+.sustain-section.sustain-active .sustain-badge {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Title */
+.sustain-section .sustain-title {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.8s ease 0.15s,
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+.sustain-section.sustain-active .sustain-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Description */
+.sustain-section .sustain-text {
+    opacity: 0;
+    transform: translateY(15px);
+    transition:
+        opacity 0.7s ease 0.3s,
+        transform 0.7s ease 0.3s;
+}
+
+.sustain-section.sustain-active .sustain-text {
+    opacity: 0.8;
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   ECO AURA ANIMATION
+   ========================================================= */
+
+.sustain-section .sustain-aura-orb {
+    opacity: 0;
+    transform: scale(0.7);
+    transition:
+        opacity 1.5s ease 0.4s,
+        transform 1.5s ease 0.4s;
+}
+
+.sustain-section.sustain-active .sustain-aura-orb {
+    opacity: 1;
+    transform: scale(1);
+
+    animation:
+        sustainEcoAura 6s ease-in-out 1.5s infinite alternate;
+}
+
+
+@keyframes sustainEcoAura {
+
+    0% {
+        transform: scale(1) translate(0, 0);
+    }
+
+    50% {
+        transform: scale(1.08) translate(-8px, 6px);
+    }
+
+    100% {
+        transform: scale(0.96) translate(8px, -5px);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 992px) {
+
+    .sustain-section .sustain-content,
+    .sustain-section .sustain-graphics {
+        transform: translateY(30px) scale(0.96);
+    }
+
+    .sustain-section.sustain-active .sustain-content,
+    .sustain-section.sustain-active .sustain-graphics {
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .sustain-section .sustain-content {
+        transform: translateY(20px) scale(0.98);
+    }
+
+    .sustain-section.sustain-active .sustain-content {
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .sustain-section .sustain-content,
+    .sustain-section .sustain-graphics,
+    .sustain-section .sustain-badge,
+    .sustain-section .sustain-title,
+    .sustain-section .sustain-text,
+    .sustain-section .sustain-glow-card,
+    .sustain-section .primary-sustain-frame,
+    .sustain-section .secondary-sustain-frame,
+    .sustain-section .sustain-aura-orb {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        animation: none;
+    }
+
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const sustainSection = document.querySelector(".sustain-section");
+
+    if (!sustainSection) return;
+
+    const sustainObserver = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("sustain-active");
+                } else {
+                    entry.target.classList.remove("sustain-active");
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.2
+        }
+    );
+
+    sustainObserver.observe(sustainSection);
+
+});
+</script>
 
 <!-- Interactive 1-Line Call To Action Landmark -->
 <section class="single-line-cta-section">

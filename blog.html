@@ -599,7 +599,221 @@
     .blog-hero-categories .category-chip { width: 100%; text-align: center; } /* Blocks chip options full width across mobile */
 }
 
+/* ============================================
+   BLOG HERO SCROLL APPEAR ANIMATION
+   ============================================ */
+
+/* Initial hidden state */
+.blog-hero-content,
+.blog-hero-featured-wrapper {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+/* Left content enters from left */
+.blog-hero-content {
+    transform: translateX(-80px);
+}
+
+/* Featured card enters from right */
+.blog-hero-featured-wrapper {
+    transform: translateX(80px);
+}
+
+/* Activated state */
+.blog-hero-section.blog-hero-visible .blog-hero-content {
+    animation: blogHeroSlideLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.blog-hero-section.blog-hero-visible .blog-hero-featured-wrapper {
+    animation: blogHeroSlideRight 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+
+/* ============================================
+   LEFT CONTENT STAGGER EFFECT
+   ============================================ */
+
+.blog-hero-section.blog-hero-visible .blog-hero-badge {
+    animation: blogHeroFadeUp 0.7s ease forwards;
+    animation-delay: 0.25s;
+    opacity: 0;
+}
+
+.blog-hero-section.blog-hero-visible .blog-hero-title {
+    animation: blogHeroFadeUp 0.8s ease forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
+}
+
+.blog-hero-section.blog-hero-visible .blog-hero-description {
+    animation: blogHeroFadeUp 0.8s ease forwards;
+    animation-delay: 0.55s;
+    opacity: 0;
+}
+
+.blog-hero-section.blog-hero-visible .blog-hero-categories {
+    animation: blogHeroFadeUp 0.8s ease forwards;
+    animation-delay: 0.7s;
+    opacity: 0;
+}
+
+
+/* ============================================
+   FEATURED CARD APPEAR
+   ============================================ */
+
+.blog-hero-section.blog-hero-visible .featured-spotlight-card {
+    animation: blogHeroCardReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+    opacity: 0;
+}
+
+
+/* ============================================
+   KEYFRAMES
+   ============================================ */
+
+@keyframes blogHeroSlideLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes blogHeroSlideRight {
+    0% {
+        opacity: 0;
+        transform: translateX(80px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes blogHeroFadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes blogHeroCardReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(45px) scale(0.94);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ============================================
+   MOBILE
+   ============================================ */
+
+@media (max-width: 992px) {
+
+    .blog-hero-content {
+        transform: translateY(50px);
+    }
+
+    .blog-hero-featured-wrapper {
+        transform: translateY(50px);
+    }
+
+    .blog-hero-section.blog-hero-visible .blog-hero-content {
+        animation: blogHeroMobileReveal 0.9s ease forwards;
+    }
+
+    .blog-hero-section.blog-hero-visible .blog-hero-featured-wrapper {
+        animation: blogHeroMobileReveal 0.9s ease 0.2s forwards;
+    }
+}
+
+
+@keyframes blogHeroMobileReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .blog-hero-content,
+    .blog-hero-featured-wrapper,
+    .blog-hero-badge,
+    .blog-hero-title,
+    .blog-hero-description,
+    .blog-hero-categories,
+    .featured-spotlight-card {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const blogHero = document.querySelector(".blog-hero-section");
+
+    if (!blogHero) return;
+
+    const blogHeroObserver = new IntersectionObserver(
+        (entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("blog-hero-visible");
+
+                    // Run animation only once
+                    observer.unobserve(entry.target);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    blogHeroObserver.observe(blogHero);
+
+});
+</script>
 
 <!-- Interactive Blog Cards Grid Landmark Section -->
 <section id="blog-grid" class="blog-grid-section">
@@ -1012,7 +1226,218 @@
     .post-details-box { padding: 1.5rem; }
 }
 
+/* ============================================
+   BLOG GRID SCROLL APPEAR EFFECT
+   ============================================ */
+
+/* Initial hidden state */
+.blog-grid-header,
+.blog-post-card,
+.blog-pagination-row {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+
+/* Header starts slightly below */
+.blog-grid-header {
+    transform: translateY(50px);
+}
+
+
+/* Cards start slightly below + scaled down */
+.blog-post-card {
+    transform: translateY(60px) scale(0.94);
+}
+
+
+/* Pagination starts below */
+.blog-pagination-row {
+    transform: translateY(30px);
+}
+
+
+/* ============================================
+   ACTIVE SCROLL REVEAL
+   ============================================ */
+
+.blog-grid-section.blog-grid-visible .blog-grid-header {
+    animation: blogGridHeaderReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+
+/* Card stagger animations */
+
+.blog-grid-section.blog-grid-visible .blog-post-card:nth-child(1) {
+    animation: blogGridCardReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+.blog-grid-section.blog-grid-visible .blog-post-card:nth-child(2) {
+    animation: blogGridCardReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.28s forwards;
+}
+
+.blog-grid-section.blog-grid-visible .blog-post-card:nth-child(3) {
+    animation: blogGridCardReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.41s forwards;
+}
+
+.blog-grid-section.blog-grid-visible .blog-post-card:nth-child(4) {
+    animation: blogGridCardReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.54s forwards;
+}
+
+.blog-grid-section.blog-grid-visible .blog-post-card:nth-child(5) {
+    animation: blogGridCardReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.67s forwards;
+}
+
+.blog-grid-section.blog-grid-visible .blog-post-card:nth-child(6) {
+    animation: blogGridCardReveal 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.80s forwards;
+}
+
+
+/* Pagination appears after cards */
+.blog-grid-section.blog-grid-visible .blog-pagination-row {
+    animation: blogGridPaginationReveal 0.7s ease 1s forwards;
+}
+
+
+/* ============================================
+   KEYFRAMES
+   ============================================ */
+
+@keyframes blogGridHeaderReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes blogGridCardReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.94);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translateY(-4px) scale(1.01);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+@keyframes blogGridPaginationReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ============================================
+   MOBILE ADJUSTMENT
+   ============================================ */
+
+@media (max-width: 768px) {
+
+    .blog-grid-header {
+        transform: translateY(35px);
+    }
+
+    .blog-post-card {
+        transform: translateY(45px) scale(0.96);
+    }
+
+    .blog-grid-section.blog-grid-visible .blog-post-card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .blog-grid-section.blog-grid-visible .blog-post-card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .blog-grid-section.blog-grid-visible .blog-post-card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .blog-grid-section.blog-grid-visible .blog-post-card:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    .blog-grid-section.blog-grid-visible .blog-post-card:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+
+    .blog-grid-section.blog-grid-visible .blog-post-card:nth-child(6) {
+        animation-delay: 0.6s;
+    }
+}
+
+
+/* ============================================
+   REDUCED MOTION ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .blog-grid-header,
+    .blog-post-card,
+    .blog-pagination-row {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const blogGridSection = document.querySelector("#blog-grid");
+
+    if (!blogGridSection) return;
+
+    const blogGridObserver = new IntersectionObserver(
+        function (entries, observer) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("blog-grid-visible");
+
+                    // Animate only once
+                    observer.unobserve(entry.target);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+    blogGridObserver.observe(blogGridSection);
+
+});
+</script>
 
 <!-- Interactive Trending Spotlights Landmark Section -->
 <section id="trending-insights" class="trending-section">
@@ -1364,7 +1789,160 @@
     .trend-info-box { padding: 1.5rem; }
 }
 
+/* ============================================
+   TRENDING SECTION - SCROLL SIDE APPEAR EFFECT
+   ============================================ */
+
+/* Initial hidden state - LEFT CONTENT */
+.trending-content-column {
+    opacity: 0;
+    transform: translateX(-80px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Initial hidden state - RIGHT CARD */
+.trending-slider-column {
+    opacity: 0;
+    transform: translateX(80px);
+    transition:
+        opacity 0.9s ease 0.15s,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+/* Activated when section enters viewport */
+.trending-section.trending-visible .trending-content-column,
+.trending-section.trending-visible .trending-slider-column {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* Slightly stagger the individual left-side elements */
+.trending-section.trending-visible .trending-badge {
+    animation: trendingFadeUp 0.7s ease 0.15s both;
+}
+
+.trending-section.trending-visible .trending-title {
+    animation: trendingFadeUp 0.7s ease 0.25s both;
+}
+
+.trending-section.trending-visible .trending-desc {
+    animation: trendingFadeUp 0.7s ease 0.35s both;
+}
+
+.trending-section.trending-visible .trending-carousel-controls {
+    animation: trendingFadeUp 0.7s ease 0.45s both;
+}
+
+
+/* Card itself gets a subtle scale effect */
+.trending-section.trending-visible .trend-glow-card {
+    animation: trendingCardReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+
+/* Fade-up helper */
+@keyframes trendingFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Card reveal */
+@keyframes trendingCardReveal {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ============================================
+   MOBILE
+   ============================================ */
+
+@media (max-width: 992px) {
+
+    .trending-content-column {
+        transform: translateX(-50px);
+    }
+
+    .trending-slider-column {
+        transform: translateX(50px);
+    }
+}
+
+
+/* ============================================
+   REDUCED MOTION ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .trending-content-column,
+    .trending-slider-column {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .trending-section.trending-visible .trending-badge,
+    .trending-section.trending-visible .trending-title,
+    .trending-section.trending-visible .trending-desc,
+    .trending-section.trending-visible .trending-carousel-controls,
+    .trending-section.trending-visible .trend-glow-card {
+        animation: none;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const trendingSection = document.querySelector("#trending-insights");
+
+    if (!trendingSection) return;
+
+    const trendingObserver = new IntersectionObserver(
+        (entries, observer) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+
+                    trendingSection.classList.add("trending-visible");
+
+                    // Animate only once
+                    observer.unobserve(trendingSection);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.2,
+            rootMargin: "0px 0px -80px 0px"
+        }
+    );
+
+    trendingObserver.observe(trendingSection);
+
+});
+</script>
 
 <section class="cta-section">
     <!-- Img tag layer acting as a deep parallax background framework -->
@@ -1962,7 +2540,196 @@
     .hub-graphics-column { display: none; } /* Drop complex graphics overlay stack layers on mobile touch viewports */
 }
 
+/* ============================================
+   KNOWLEDGE HUB - SCROLL REVEAL EFFECT
+   ============================================ */
+
+/* Left search panel starts outside the viewport */
+.hub-interactive-column {
+    opacity: 0;
+    transform: translateX(-80px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* Right image area starts from the right */
+.hub-graphics-column {
+    opacity: 0;
+    transform: translateX(80px);
+    transition:
+        opacity 0.9s ease 0.15s,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+
+
+/* Activated state */
+.hub-section.hub-visible .hub-interactive-column,
+.hub-section.hub-visible .hub-graphics-column {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* ============================================
+   LEFT CARD INTERNAL STAGGER
+   ============================================ */
+
+.hub-section.hub-visible .hub-badge-tag {
+    animation: hubFadeUp 0.7s ease 0.15s both;
+}
+
+.hub-section.hub-visible .hub-glow-search-card h3 {
+    animation: hubFadeUp 0.7s ease 0.25s both;
+}
+
+.hub-section.hub-visible .hub-glow-search-card > p {
+    animation: hubFadeUp 0.7s ease 0.35s both;
+}
+
+.hub-section.hub-visible .hub-search-form {
+    animation: hubFadeUp 0.7s ease 0.45s both;
+}
+
+.hub-section.hub-visible .hub-tag-cloud {
+    animation: hubFadeUp 0.7s ease 0.55s both;
+}
+
+
+/* ============================================
+   RIGHT IMAGE STAGGER
+   ============================================ */
+
+.hub-section.hub-visible .primary-hub-frame {
+    animation:
+        hubPrimaryReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.hub-section.hub-visible .secondary-hub-frame {
+    animation:
+        hubSecondaryReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both,
+        hubCardBounce 4s ease-in-out 1.3s infinite alternate;
+}
+
+
+/* ============================================
+   KEYFRAMES
+   ============================================ */
+
+@keyframes hubFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes hubPrimaryReveal {
+    from {
+        opacity: 0;
+        transform: translateX(45px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+
+@keyframes hubSecondaryReveal {
+    from {
+        opacity: 0;
+        transform: translateX(55px) translateY(20px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1);
+    }
+}
+
+
+/* ============================================
+   MOBILE
+   ============================================ */
+
+@media (max-width: 992px) {
+
+    .hub-interactive-column {
+        transform: translateX(-50px);
+    }
+
+    .hub-graphics-column {
+        transform: translateX(50px);
+    }
+}
+
+
+/* ============================================
+   REDUCED MOTION ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hub-interactive-column,
+    .hub-graphics-column {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .hub-section.hub-visible .hub-badge-tag,
+    .hub-section.hub-visible .hub-glow-search-card h3,
+    .hub-section.hub-visible .hub-glow-search-card > p,
+    .hub-section.hub-visible .hub-search-form,
+    .hub-section.hub-visible .hub-tag-cloud,
+    .hub-section.hub-visible .primary-hub-frame,
+    .hub-section.hub-visible .secondary-hub-frame {
+        animation: none;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const hubSection = document.querySelector("#knowledge-hub");
+
+    if (!hubSection) return;
+
+    const hubObserver = new IntersectionObserver(
+        (entries, observer) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+
+                    hubSection.classList.add("hub-visible");
+
+                    // Animate only once
+                    observer.unobserve(hubSection);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.2,
+            rootMargin: "0px 0px -80px 0px"
+        }
+    );
+
+    hubObserver.observe(hubSection);
+
+});
+</script>
 
 <script>
   
@@ -2343,7 +3110,95 @@ document.addEventListener("DOMContentLoaded", () => {
     .author-details-box { padding: 1.5rem; }
 }
 
+/* ==========================================================
+   SCROLL REVEAL EFFECT - AUTHORS SECTION
+========================================================== */
+
+/* Initial hidden state */
+.authors-header,
+.author-glow-card {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Activated when section enters viewport */
+.authors-section.scroll-visible .authors-header {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Individual cards */
+.authors-section.scroll-visible .author-glow-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered card animation */
+.authors-section.scroll-visible .author-glow-card:nth-child(1) {
+    transition-delay: 0.15s;
+}
+
+.authors-section.scroll-visible .author-glow-card:nth-child(2) {
+    transition-delay: 0.3s;
+}
+
+.authors-section.scroll-visible .author-glow-card:nth-child(3) {
+    transition-delay: 0.45s;
+}
+
+
+/* ==========================================================
+   ACCESSIBILITY - REDUCED MOTION
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .authors-header,
+    .author-glow-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const authorsSection = document.querySelector(".authors-section");
+
+    if (!authorsSection) return;
+
+    const authorsObserver = new IntersectionObserver(
+        function (entries, observer) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    authorsSection.classList.add("scroll-visible");
+
+                    // Run only once
+                    observer.unobserve(authorsSection);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15,
+            rootMargin: "0px 0px -80px 0px"
+        }
+    );
+
+    authorsObserver.observe(authorsSection);
+
+});
+</script>
 
 <section id="faq" class="faq-section">
     <!-- Subtle environment background mesh texture overlay pass -->
@@ -2692,7 +3547,145 @@ document.addEventListener("DOMContentLoaded", () => {
     .accordion-content-panel { padding: 0 1.2rem; }
 }
 
+/* ==========================================================
+   FAQ SCROLL REVEAL EFFECT
+========================================================== */
+
+/* Initial hidden state */
+.faq-graphics-block,
+.faq-accordion-block {
+    opacity: 0;
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+/* Left content starts slightly from the left */
+.faq-graphics-block {
+    transform: translateX(-70px);
+}
+
+/* Right content starts slightly from the right */
+.faq-accordion-block {
+    transform: translateX(70px);
+}
+
+/* Active state after entering viewport */
+.faq-section.is-visible .faq-graphics-block,
+.faq-section.is-visible .faq-accordion-block {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Small stagger effect */
+.faq-section.is-visible .faq-accordion-block {
+    transition-delay: 0.15s;
+}
+
+
+/* ==========================================================
+   FAQ ELEMENT STAGGER EFFECT
+========================================================== */
+
+.faq-section .faq-badge,
+.faq-section .faq-title,
+.faq-section .faq-desc,
+.faq-section .faq-accordion-item {
+    opacity: 0;
+    transform: translateY(25px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faq-section.is-visible .faq-badge {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.25s;
+}
+
+.faq-section.is-visible .faq-title {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.35s;
+}
+
+.faq-section.is-visible .faq-desc {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.45s;
+}
+
+.faq-section.is-visible .faq-accordion-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.faq-section.is-visible .faq-accordion-item:nth-child(1) {
+    transition-delay: 0.55s;
+}
+
+.faq-section.is-visible .faq-accordion-item:nth-child(2) {
+    transition-delay: 0.65s;
+}
+
+.faq-section.is-visible .faq-accordion-item:nth-child(3) {
+    transition-delay: 0.75s;
+}
+
+
+/* ==========================================================
+   ACCESSIBILITY
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .faq-graphics-block,
+    .faq-accordion-block,
+    .faq-section .faq-badge,
+    .faq-section .faq-title,
+    .faq-section .faq-desc,
+    .faq-section .faq-accordion-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const faqSection = document.querySelector(".faq-section");
+
+    if (!faqSection) return;
+
+    const faqObserver = new IntersectionObserver(
+        function (entries, observer) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    faqSection.classList.add("is-visible");
+
+                    // Run only once
+                    observer.unobserve(faqSection);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    faqObserver.observe(faqSection);
+
+});
+</script>
 
 <!-- Interactive 1-Line Call To Action Landmark -->
 <section class="single-line-cta-section">
